@@ -11,7 +11,7 @@
 <style>
 :root{
   --bg:#f3f4f2; --paper:#ffffff; --ink:#111413; --ink2:#3a403d; --mute:#626a66; --line:#e1e4e1;
-  --or:#e8670f; --or-h:#cf5a0a; --dark:#121514; --ease:cubic-bezier(.2,.7,.2,1);
+  --or:#c2530a; --or-h:#a84606; --dark:#121514; --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
@@ -68,7 +68,7 @@ nav a:hover{background:#e8eae7;color:var(--ink)}
 
 .hero{padding:40px 0 0}
 .hero .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(46px,6vw,88px);margin:20px 0 22px}
+.hero h1{font-size:clamp(46px,6vw,88px);margin:0 0 22px}
 .hero h1 span{color:var(--or)}
 .hero p.lead{font-size:19px;color:var(--ink2);max-width:520px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 0}
@@ -100,7 +100,7 @@ nav a:hover{background:#e8eae7;color:var(--ink)}
 .trust{margin-top:56px;background:var(--paper);border-block:1px solid var(--line)}
 .trust .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
 .trust div{padding:26px 22px;border-left:1px solid var(--line)}
-.trust div:first-child{border-left:0;padding-left:0}
+.trust div:first-child{border-left:0}
 .trust b{display:block;font-size:30px;font-weight:700;letter-spacing:-.03em}
 .trust span{font-size:14px;color:var(--mute)}
 .trust b span{font-size:inherit;color:inherit}
@@ -228,13 +228,13 @@ section{padding:110px 0}
 .gs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .g{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:26px}
 .g b{display:block;font-size:30px;letter-spacing:-.03em}
-.g h4{font-size:17px;margin:10px 0 4px;letter-spacing:-.01em}
+.g h3{font-size:17px;margin:10px 0 4px;letter-spacing:-.01em}
 .g p{font-size:14px;color:var(--mute)}
 .final{background:var(--dark);color:#fff;border-radius:32px;padding:64px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .final .h2{color:#fff}
 .final p{color:#c3cac6;margin-top:16px;max-width:480px;font-size:17px}
 .form{background:#fff;color:var(--ink);border-radius:22px;padding:28px;position:relative}
-.form h4{font-size:20px;letter-spacing:-.01em}
+.form h3{font-size:20px;letter-spacing:-.01em}
 .form .s{font-size:14px;color:var(--mute);margin:4px 0 16px}
 .fld{position:relative;margin-bottom:10px}
 .fld input{width:100%;height:56px;border-radius:12px;border:1.5px solid var(--line);padding:18px 16px 0;font:inherit;outline:none;transition:border-color .2s}
@@ -346,9 +346,8 @@ footer .bot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);di
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <div class="lbl rv">Собственное производство · Барнаул</div>
       <h1 class="rv">Зимние палатки, в&nbsp;которых <span>тепло при&nbsp;−40°</span></h1>
-      <p class="lead rv">Шьём сами и проверяем в экспедициях от Алтая до Якутии. Ставятся за 2 минуты. Гарантия 12 месяцев, рассрочка 0% и отгрузка на следующий день.</p>
+      <p class="lead rv">Шьём сами в Барнауле и проверяем в экспедициях от Алтая до Якутии. Ставятся за 2 минуты. Гарантия 12 месяцев, рассрочка 0% и отгрузка на следующий день.</p>
       <div class="cta rv"><a class="btn btn-or" href="#pick">Подобрать палатку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ln" href="#cats">Смотреть каталог</a></div>
       <div class="proof rv"><span class="st">★★★★★</span><span><b>5,0</b> по 47 отзывам · покупатели от Тулы до Камчатки</span></div>
     </div>
@@ -465,12 +464,12 @@ footer .bot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);di
   <div class="wrap">
     <div class="sh rv"><div><div class="lbl">Без риска</div><h2 class="h2">Покупать у нас спокойно</h2></div></div>
     <div class="gs">
-      <div class="g rv"><b>12 мес</b><h4>Гарантия</h4><p>Уверены в каждом шве и молнии. Ремкомплект в комплекте.</p></div>
-      <div class="g rv"><b>0%</b><h4>Рассрочка на 4 месяца</h4><p>Со Сбербанком, без комиссий и переплат.</p></div>
-      <div class="g rv"><b>1 день</b><h4>Отгрузка</h4><p>Почта России, ПЭК, Деловые линии, «Энергия», GTD.</p></div>
-      <div class="g rv"><b>0 ₽</b><h4>Курьер по Барнаулу</h4><p>Или самовывоз: пр. Калинина, 116/10.</p></div>
-      <div class="g rv"><b>РФ + СНГ</b><h4>Доставка</h4><p>По России, в Казахстан и Беларусь.</p></div>
-      <div class="g rv"><b>14 дней</b><h4>На возврат</h4><p>По закону о защите прав потребителей.</p></div>
+      <div class="g rv"><b>12 мес</b><h3>Гарантия</h3><p>Уверены в каждом шве и молнии. Ремкомплект в комплекте.</p></div>
+      <div class="g rv"><b>0%</b><h3>Рассрочка на 4 месяца</h3><p>Со Сбербанком, без комиссий и переплат.</p></div>
+      <div class="g rv"><b>1 день</b><h3>Отгрузка</h3><p>Почта России, ПЭК, Деловые линии, «Энергия», GTD.</p></div>
+      <div class="g rv"><b>0 ₽</b><h3>Курьер по Барнаулу</h3><p>Или самовывоз: пр. Калинина, 116/10.</p></div>
+      <div class="g rv"><b>РФ + СНГ</b><h3>Доставка</h3><p>По России, в Казахстан и Беларусь.</p></div>
+      <div class="g rv"><b>14 дней</b><h3>На возврат</h3><p>По закону о защите прав потребителей.</p></div>
     </div>
   </div>
 </section>
@@ -480,12 +479,12 @@ footer .bot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);di
     <div class="final rv">
       <div><div class="lbl" style="color:#a9b1ad">Консультация</div><h2 class="h2" style="margin-top:12px">Не знаете, какую выбрать? Спросите тех, кто в них живёт</h2><p>Перезвоним в рабочее время, спросим, где и как отдыхаете, и подберём палатку, печь и пол без лишнего.</p></div>
       <form class="form" id="fForm" novalidate>
-        <div class="fm"><h4>Бесплатная консультация</h4><div class="s">Ежедневно 8:00-21:00 по Барнаулу</div>
+        <div class="fm"><h3>Бесплатная консультация</h3><div class="s">Ежедневно 8:00-21:00 по Барнаулу</div>
           <div class="fld"><input id="fN" placeholder=" "><label for="fN">Ваше имя</label></div>
           <div class="fld"><input id="fP" type="tel" placeholder=" "><label for="fP">Телефон</label></div>
           <button class="btn btn-or" type="submit">Жду звонка</button>
           <div class="ms"><a href="#">Telegram</a><a href="#">WhatsApp</a><a href="#">MAX</a></div></div>
-        <div class="ok-msg"><div class="ck"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Скоро перезвоним</div></div>
+        <div class="ok-msg"><div class="ck"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h3>Заявка принята</h3><div class="s">Скоро перезвоним</div></div>
       </form>
     </div>
   </div>
@@ -505,8 +504,8 @@ footer .bot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);di
 <div class="ov" id="ov"></div>
 <aside class="drawer" id="drawer"><div class="dh"><b>Корзина</b><button class="x" data-close>✕</button></div><div class="items" id="items"></div><div class="df"><div class="sum"><span>Итого</span><b id="sum">0 ₽</b></div><div class="ins" id="ins"></div><button class="btn btn-or" data-call>Оформить заказ</button></div></aside>
 <div class="modal" id="modal"><form class="form" id="mForm" novalidate><button type="button" class="x" data-close>✕</button>
-  <div class="fm"><h4>Перезвоним и подскажем</h4><div class="s">Модель, комплектация и доставка</div><div class="fld"><input id="mN" placeholder=" "><label for="mN">Ваше имя</label></div><div class="fld"><input id="mP" type="tel" placeholder=" "><label for="mP">Телефон</label></div><button class="btn btn-or" type="submit">Жду звонка</button><div class="s" style="margin-top:10px">Это демо: заявка никуда не отправляется</div></div>
-  <div class="ok-msg"><div class="ck"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Менеджер скоро перезвонит</div></div></form></div>
+  <div class="fm"><h3>Перезвоним и подскажем</h3><div class="s">Модель, комплектация и доставка</div><div class="fld"><input id="mN" placeholder=" "><label for="mN">Ваше имя</label></div><div class="fld"><input id="mP" type="tel" placeholder=" "><label for="mP">Телефон</label></div><button class="btn btn-or" type="submit">Жду звонка</button><div class="s" style="margin-top:10px">Это демо: заявка никуда не отправляется</div></div>
+  <div class="ok-msg"><div class="ck"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h3>Заявка принята</h3><div class="s">Менеджер скоро перезвонит</div></div></form></div>
 <div class="toast" id="toast"></div>
 
 <script>
