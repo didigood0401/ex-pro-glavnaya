@@ -126,7 +126,7 @@ nav.sub a.hot{color:var(--or);font-weight:600}
 
 .hero-r{position:relative;border-radius:28px;overflow:hidden;min-height:600px;background:#cfdde5;isolation:isolate}
 .hero-r .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1s var(--ease),transform 8s linear;transform:scale(1.06)}
-.hero-r .ph.sum{opacity:0;object-position:50% 100%}
+.hero-r .ph.sum{opacity:0}
 .hero-r.summer .ph.sum{opacity:1}
 .hero-r.summer .ph.win{opacity:0}
 .hero-r::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,18,0) 45%,rgba(10,14,18,.62));z-index:1;pointer-events:none}
@@ -883,24 +883,25 @@ $('#mqTr').innerHTML+=$('#mqTr').innerHTML;
 const heroR=$('#heroR'),cv=$('#snow'),cx=cv.getContext('2d');let flakes=[],temp=-40,W=0,H=0;
 function rs(){const d=Math.min(2,devicePixelRatio||1);W=heroR.clientWidth;H=heroR.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
 rs();addEventListener('resize',rs);
-for(let i=0;i<260;i++)flakes.push({x:Math.random(),y:Math.random(),r:Math.random()*2.2+.6,s:Math.random()*.6+.25,w:Math.random()*Math.PI*2});
-/* sun rays + glints, grows toward +50 (mirror of snow toward −40) */
-const SUN={t:0,b:Array.from({length:26},()=>({x:Math.random(),y:Math.random(),r:Math.random()*14+4,s:Math.random()*.3+.1,p:Math.random()*6.3}))};
-function sun(c,W,H,t){const k=Math.min(1,Math.max(0,(t-5)/45));if(!k)return;SUN.t+=.004;const sx=W*.86,sy=H*.06;c.save();c.globalCompositeOperation='screen';
- const g=c.createRadialGradient(sx,sy,0,sx,sy,Math.max(W,H)*.9);g.addColorStop(0,`rgba(255,240,200,${.55*k})`);g.addColorStop(.25,`rgba(255,200,120,${.22*k})`);g.addColorStop(1,'rgba(255,180,90,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
- const L=Math.hypot(W,H)*1.1,rg=c.createRadialGradient(sx,sy,0,sx,sy,L*.75);rg.addColorStop(0,`rgba(255,235,190,${.22*k})`);rg.addColorStop(1,'rgba(255,235,190,0)');c.fillStyle=rg;
- for(let i=0;i<14;i++){const a=SUN.t*.6+i*Math.PI/7+Math.sin(SUN.t*2+i)*.05,sp=.035+.02*Math.sin(SUN.t*3+i*1.7);c.beginPath();c.moveTo(sx,sy);c.lineTo(sx+Math.cos(a-sp)*L,sy+Math.sin(a-sp)*L);c.lineTo(sx+Math.cos(a+sp)*L,sy+Math.sin(a+sp)*L);c.closePath();c.fill()}
- const fx=W*.32,fy=H*.78;for(let i=0;i<5;i++){const q=(i+1)/6,r=(8+i*7)*(W/600);c.fillStyle=`rgba(255,${200+i*8},${150+i*15},${(.10+.05*Math.sin(SUN.t*4+i))*k})`;c.beginPath();c.arc(sx+(fx-sx)*q,sy+(fy-sy)*q,r,0,7);c.fill()}
- for(const b of SUN.b){b.y-=b.s*.0015;b.p+=.03;b.x+=Math.sin(b.p)*.0005;if(b.y<-.05){b.y=1.05;b.x=Math.random()}const a=(.25+.35*Math.abs(Math.sin(b.p)))*k,r=b.r*(W/700),X=b.x*W,Y=b.y*H,gg=c.createRadialGradient(X,Y,0,X,Y,r);gg.addColorStop(0,`rgba(255,240,200,${a})`);gg.addColorStop(1,'rgba(255,220,150,0)');c.fillStyle=gg;c.beginPath();c.arc(X,Y,r,0,7);c.fill()}
- c.restore()}
-function snow(){cx.clearRect(0,0,W,H);
-  const k=temp<=0?Math.min(1,(-temp+4)/44):0, n=Math.floor(flakes.length*k), wind=k*1.6;
-  cx.fillStyle='rgba(255,255,255,.9)';
-  for(let i=0;i<n;i++){const f=flakes[i];f.y+=f.s*(.0016+k*.0028);f.w+=.02;f.x+=(Math.sin(f.w)*.0006)+wind*.0009;
-    if(f.y>1.02){f.y=-.02;f.x=Math.random()}if(f.x>1.02)f.x=-.02;
-    cx.beginPath();cx.arc(f.x*W,f.y*H,f.r*(.7+k*.5),0,7);cx.fill()}
-  if(temp>5)sun(cx,W,H,temp);
-  if(!RM)requestAnimationFrame(snow)}
+/* weather fx: realistic snow (3 depth layers) toward −40, sun glints toward +50 */
+const FX=(()=>{
+ function sprite(soft,col){const s=32,c=document.createElement('canvas');c.width=c.height=s*2;const x=c.getContext('2d'),g=x.createRadialGradient(s,s,0,s,s,s);g.addColorStop(0,`rgba(${col},1)`);g.addColorStop(soft,`rgba(${col},.8)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;x.fillRect(0,0,s*2,s*2);return c}
+ const CR=sprite(.5,'255,255,255'),BL=sprite(.05,'255,255,255'),GL=sprite(.12,'255,238,195');
+ const F=[];for(let i=0;i<230;i++){const z=Math.random(),d=z<.6?0:z<.93?1:2;F.push({x:Math.random(),y:Math.random(),d,r:d==0?1+Math.random()*1.1:d==1?2+Math.random()*1.8:7+Math.random()*7,s:d==0?.35+Math.random()*.2:d==1?.6+Math.random()*.3:1.1+Math.random()*.5,w:Math.random()*6.3,ws:.008+Math.random()*.02,a:d==0?.6:d==1?.9:.3})}
+ const G=Array.from({length:40},()=>({x:Math.random(),y:Math.random(),r:3+Math.random()*9,s:.08+Math.random()*.22,p:Math.random()*6.3,tw:.02+Math.random()*.05}));
+ let t=0;
+ function snow(c,W,H,temp){const k=Math.min(1,Math.max(0,(-temp+6)/46));if(!k)return;const n=Math.floor(F.length*k),wind=k*1.4,sc=W/700+.4;
+  for(let i=0;i<n;i++){const f=F[i];f.y+=f.s*(.0011+k*.0022);f.w+=f.ws;f.x+=Math.sin(f.w)*.0007*(f.d+1)+wind*.0006*(f.d+1);
+   if(f.y>1.05){f.y=-.05;f.x=Math.random()}if(f.x>1.05)f.x=-.05;
+   const r=f.r*sc;c.globalAlpha=f.a*(.6+.4*k);c.drawImage(f.d==2?BL:CR,f.x*W-r,f.y*H-r,r*2,r*2)}
+  c.globalAlpha=1}
+ function sun(c,W,H,temp){const k=Math.min(1,Math.max(0,(temp-5)/45));if(!k)return;t+=.01;const sx=W*.86,sy=H*.06,sc=W/700+.3;c.save();c.globalCompositeOperation='screen';
+  const g=c.createRadialGradient(sx,sy,0,sx,sy,Math.max(W,H)*.75);g.addColorStop(0,`rgba(255,240,205,${.42*k})`);g.addColorStop(.3,`rgba(255,205,130,${.14*k})`);g.addColorStop(1,'rgba(255,190,100,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+  const fx=W*.3,fy=H*.8;for(let i=0;i<7;i++){const q=(i+1)/8,r=(6+i*6)*sc;c.globalAlpha=(.18+.08*Math.sin(t*1.6+i))*k;c.drawImage(GL,sx+(fx-sx)*q-r,sy+(fy-sy)*q-r,r*2,r*2)}
+  for(const b of G){b.y-=b.s*.0012;b.p+=b.tw;b.x+=Math.sin(b.p*.5)*.0004;if(b.y<-.05){b.y=1.05;b.x=Math.random()}const r=b.r*sc;c.globalAlpha=(.35+.6*Math.abs(Math.sin(b.p)))*k;c.drawImage(GL,b.x*W-r,b.y*H-r,r*2,r*2)}
+  c.restore()}
+ return{snow,sun}})();
+function snow(){cx.clearRect(0,0,W,H);FX.snow(cx,W,H,temp);FX.sun(cx,W,H,temp);if(!RM)requestAnimationFrame(snow)}
 snow();
 const tR=$('#tRange'),tV=$('#tVal'),hT=$('#hT'),tM=$('#tMdl'),fr=$('#frost');
 const fmt=t=>(t>0?'+':t<0?'−':'')+Math.abs(t)+'°';
