@@ -884,12 +884,22 @@ const heroR=$('#heroR'),cv=$('#snow'),cx=cv.getContext('2d');let flakes=[],temp=
 function rs(){const d=Math.min(2,devicePixelRatio||1);W=heroR.clientWidth;H=heroR.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
 rs();addEventListener('resize',rs);
 for(let i=0;i<260;i++)flakes.push({x:Math.random(),y:Math.random(),r:Math.random()*2.2+.6,s:Math.random()*.6+.25,w:Math.random()*Math.PI*2});
+/* sun rays + glints, grows toward +50 (mirror of snow toward −40) */
+const SUN={t:0,b:Array.from({length:26},()=>({x:Math.random(),y:Math.random(),r:Math.random()*14+4,s:Math.random()*.3+.1,p:Math.random()*6.3}))};
+function sun(c,W,H,t){const k=Math.min(1,Math.max(0,(t-5)/45));if(!k)return;SUN.t+=.004;const sx=W*.86,sy=H*.06;c.save();c.globalCompositeOperation='screen';
+ const g=c.createRadialGradient(sx,sy,0,sx,sy,Math.max(W,H)*.9);g.addColorStop(0,`rgba(255,240,200,${.55*k})`);g.addColorStop(.25,`rgba(255,200,120,${.22*k})`);g.addColorStop(1,'rgba(255,180,90,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+ const L=Math.hypot(W,H)*1.1,rg=c.createRadialGradient(sx,sy,0,sx,sy,L*.75);rg.addColorStop(0,`rgba(255,235,190,${.22*k})`);rg.addColorStop(1,'rgba(255,235,190,0)');c.fillStyle=rg;
+ for(let i=0;i<14;i++){const a=SUN.t*.6+i*Math.PI/7+Math.sin(SUN.t*2+i)*.05,sp=.035+.02*Math.sin(SUN.t*3+i*1.7);c.beginPath();c.moveTo(sx,sy);c.lineTo(sx+Math.cos(a-sp)*L,sy+Math.sin(a-sp)*L);c.lineTo(sx+Math.cos(a+sp)*L,sy+Math.sin(a+sp)*L);c.closePath();c.fill()}
+ const fx=W*.32,fy=H*.78;for(let i=0;i<5;i++){const q=(i+1)/6,r=(8+i*7)*(W/600);c.fillStyle=`rgba(255,${200+i*8},${150+i*15},${(.10+.05*Math.sin(SUN.t*4+i))*k})`;c.beginPath();c.arc(sx+(fx-sx)*q,sy+(fy-sy)*q,r,0,7);c.fill()}
+ for(const b of SUN.b){b.y-=b.s*.0015;b.p+=.03;b.x+=Math.sin(b.p)*.0005;if(b.y<-.05){b.y=1.05;b.x=Math.random()}const a=(.25+.35*Math.abs(Math.sin(b.p)))*k,r=b.r*(W/700),X=b.x*W,Y=b.y*H,gg=c.createRadialGradient(X,Y,0,X,Y,r);gg.addColorStop(0,`rgba(255,240,200,${a})`);gg.addColorStop(1,'rgba(255,220,150,0)');c.fillStyle=gg;c.beginPath();c.arc(X,Y,r,0,7);c.fill()}
+ c.restore()}
 function snow(){cx.clearRect(0,0,W,H);
   const k=temp<=0?Math.min(1,(-temp+4)/44):0, n=Math.floor(flakes.length*k), wind=k*1.6;
   cx.fillStyle='rgba(255,255,255,.9)';
   for(let i=0;i<n;i++){const f=flakes[i];f.y+=f.s*(.0016+k*.0028);f.w+=.02;f.x+=(Math.sin(f.w)*.0006)+wind*.0009;
     if(f.y>1.02){f.y=-.02;f.x=Math.random()}if(f.x>1.02)f.x=-.02;
     cx.beginPath();cx.arc(f.x*W,f.y*H,f.r*(.7+k*.5),0,7);cx.fill()}
+  if(temp>5)sun(cx,W,H,temp);
   if(!RM)requestAnimationFrame(snow)}
 snow();
 const tR=$('#tRange'),tV=$('#tVal'),hT=$('#hT'),tM=$('#tMdl'),fr=$('#frost');

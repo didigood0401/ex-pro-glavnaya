@@ -85,6 +85,9 @@ nav a:hover{background:#e8eae7;color:var(--ink)}
 .summer .ph-frame .sumbg,.summer .ph-frame .grass{opacity:1}
 .summer .ph-frame img.win{opacity:0}
 .summer .ph-frame img.sum{opacity:1;transform:translateX(-50%)}
+.ph-frame img.sum.scene{inset:0;left:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.04);filter:none}
+.summer .ph-frame img.sum.scene{transform:none}
+.ph-frame .sumbg,.ph-frame .grass{display:none}
 @keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
 .ph-frame canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .badge{position:absolute;left:18px;top:18px;background:#fff;border-radius:12px;padding:10px 14px;font-size:14px;line-height:1.35;box-shadow:0 8px 24px -12px rgba(0,0,0,.35)}
@@ -354,7 +357,7 @@ footer .bot{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);di
     <div class="ph-frame rv" id="frame">
       <div class="sumbg"></div><div class="grass"></div>
       <img class="main win" src="img/hero-1400.webp" srcset="img/hero-1000.webp 1000w, img/hero-1400.webp 1400w" sizes="(max-width:1100px) 100vw, 640px" alt="Палатка Куб EX-PRO Зима 4 на снегу" fetchpriority="high">
-      <img class="main sum" src="img/offsite.webp" alt="Автоматическая палатка EX-PRO off-site" loading="lazy">
+      <img class="main sum scene" src="img/summer-scene.webp" alt="Автоматическая палатка EX-PRO off-site на горной поляне" loading="lazy">
       <canvas id="snow"></canvas>
       <div class="badge"><b id="bN">Куб EX-PRO Зима 4</b><span id="bD">до 8 человек</span> · <span class="pr" id="bP">78 000 ₽</span></div>
       <div class="thermo"><div class="r"><span>Температура за бортом</span><b id="tV">−32°</b></div><input type="range" id="tR" min="-40" max="50" value="-32" aria-label="Температура"><div class="r" style="font-size:12px"><span>−40°</span><span id="tH">EX-PRO держит от −40° до +50°</span><span>+50°</span></div></div>
@@ -549,8 +552,17 @@ rs();addEventListener('resize',rs);
 for(let i=0;i<90;i++)fl.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.7,s:Math.random()*.5+.35,w:Math.random()*6.3});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(frame);
 (function loop(){if(vis&&!RM){cx.clearRect(0,0,W,H);if(temp<=5){const k=Math.min(1,(-temp+8)/48),n=Math.floor(fl.length*k);cx.fillStyle='rgba(255,255,255,.9)';
-  for(let i=0;i<n;i++){const f=fl[i];f.y+=f.s*(.0014+k*.0026);f.w+=.02;f.x+=Math.sin(f.w)*.0005+k*.0008;if(f.y>1.02){f.y=-.02;f.x=Math.random()}if(f.x>1.02)f.x=-.02;cx.beginPath();cx.arc(f.x*W,f.y*H,f.r,0,7);cx.fill()}}}
+  for(let i=0;i<n;i++){const f=fl[i];f.y+=f.s*(.0014+k*.0026);f.w+=.02;f.x+=Math.sin(f.w)*.0005+k*.0008;if(f.y>1.02){f.y=-.02;f.x=Math.random()}if(f.x>1.02)f.x=-.02;cx.beginPath();cx.arc(f.x*W,f.y*H,f.r,0,7);cx.fill()}}else sun(cx,W,H,temp)}
   requestAnimationFrame(loop)})();
+/* sun rays + glints, grows toward +50 (mirror of snow toward −40) */
+const SUN={t:0,b:Array.from({length:26},()=>({x:Math.random(),y:Math.random(),r:Math.random()*14+4,s:Math.random()*.3+.1,p:Math.random()*6.3}))};
+function sun(c,W,H,t){const k=Math.min(1,Math.max(0,(t-5)/45));if(!k)return;SUN.t+=.004;const sx=W*.86,sy=H*.06;c.save();c.globalCompositeOperation='screen';
+ const g=c.createRadialGradient(sx,sy,0,sx,sy,Math.max(W,H)*.9);g.addColorStop(0,`rgba(255,240,200,${.55*k})`);g.addColorStop(.25,`rgba(255,200,120,${.22*k})`);g.addColorStop(1,'rgba(255,180,90,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+ const L=Math.hypot(W,H)*1.1,rg=c.createRadialGradient(sx,sy,0,sx,sy,L*.75);rg.addColorStop(0,`rgba(255,235,190,${.22*k})`);rg.addColorStop(1,'rgba(255,235,190,0)');c.fillStyle=rg;
+ for(let i=0;i<14;i++){const a=SUN.t*.6+i*Math.PI/7+Math.sin(SUN.t*2+i)*.05,sp=.035+.02*Math.sin(SUN.t*3+i*1.7);c.beginPath();c.moveTo(sx,sy);c.lineTo(sx+Math.cos(a-sp)*L,sy+Math.sin(a-sp)*L);c.lineTo(sx+Math.cos(a+sp)*L,sy+Math.sin(a+sp)*L);c.closePath();c.fill()}
+ const fx=W*.32,fy=H*.78;for(let i=0;i<5;i++){const q=(i+1)/6,r=(8+i*7)*(W/600);c.fillStyle=`rgba(255,${200+i*8},${150+i*15},${(.10+.05*Math.sin(SUN.t*4+i))*k})`;c.beginPath();c.arc(sx+(fx-sx)*q,sy+(fy-sy)*q,r,0,7);c.fill()}
+ for(const b of SUN.b){b.y-=b.s*.0015;b.p+=.03;b.x+=Math.sin(b.p)*.0005;if(b.y<-.05){b.y=1.05;b.x=Math.random()}const a=(.25+.35*Math.abs(Math.sin(b.p)))*k,r=b.r*(W/700),X=b.x*W,Y=b.y*H,gg=c.createRadialGradient(X,Y,0,X,Y,r);gg.addColorStop(0,`rgba(255,240,200,${a})`);gg.addColorStop(1,'rgba(255,220,150,0)');c.fillStyle=gg;c.beginPath();c.arc(X,Y,r,0,7);c.fill()}
+ c.restore()}
 const fmt=t=>(t>0?'+':t<0?'−':'')+Math.abs(t)+'°';let sum=false;
 $('#tR').addEventListener('input',e=>{temp=+e.target.value;$('#tV').textContent=fmt(temp);const s=temp>5;if(s===sum)return;sum=s;document.body.classList.toggle('summer',s);
   $('#bN').textContent=s?'Автоматическая off-site':'Куб EX-PRO Зима 4';$('#bD').textContent=s?'раскладывается сама':'до 8 человек';$('#bP').textContent=s?'6 500 ₽':'78 000 ₽';
