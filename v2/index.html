@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>EX-PRO · Экспедиция</title>
+<meta name="description" content="Демо-концепт главной EX-PRO, вариант 2: видео, сцены товаров, анимации и переходы.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0d1211; --night2:#141b19; --moss:#1f2a26; --line:rgba(233,238,236,.12);
+  --frost:#eef2f1; --mute:#a7b2ae; --or:#f0761b; --or2:#ff9a4d; --sun:#ffc56b;
+  --ease:cubic-bezier(.2,.7,.2,1); --ease2:cubic-bezier(.7,0,.2,1);
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--night);color:var(--frost);font:16px/1.5 Onest,system-ui,sans-serif;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1320px,100% - 32px);margin-inline:auto}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1}
+.serif em{font-style:italic;color:var(--or2);font-weight:500}
+.mono{font:500 12px/1.4 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.mono::before{content:"";display:inline-block;width:26px;height:1px;background:currentColor;vertical-align:middle;margin-right:10px;opacity:.7}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;font-weight:600;transition:transform .3s var(--ease),background .3s,box-shadow .3s;white-space:nowrap;position:relative;overflow:hidden}
+.btn-or{background:var(--or);color:#fff;box-shadow:0 14px 34px -14px rgba(240,118,27,.8)}
+.btn-or:hover{background:#ff8226}
+.btn-gl{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-gl:hover{background:rgba(255,255,255,.16)}
+.btn svg{width:18px;height:18px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+
+/* preloader */
+.pre{position:fixed;inset:0;z-index:200;background:var(--night);display:grid;place-items:center;transition:clip-path 1.1s var(--ease2);clip-path:inset(0 0 0 0)}
+.pre.out{clip-path:inset(0 0 100% 0)}
+.pre .lg{font:700 64px/0.82 Onest;letter-spacing:-.05em;display:flex;flex-direction:column}
+.pre .lg span{display:block;overflow:hidden}
+.pre .lg i{display:block;font-style:normal;transform:translateY(100%);animation:upi .8s var(--ease) forwards}
+.pre .lg span:nth-child(2) i{animation-delay:.12s}
+.pre .lg span:first-child{color:var(--or)}
+.pre .bar{width:160px;height:1px;background:var(--line);margin-top:26px;position:relative;overflow:hidden}
+.pre .bar b{position:absolute;inset:0;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+@keyframes upi{to{transform:none}}
+
+/* demo ribbon */
+.demo{position:relative;z-index:60;background:#060908;color:#aab3b0;font-size:13px;text-align:center;padding:8px 16px}
+.demo b{color:#fff;font-weight:600}
+.demo a{color:var(--or2);border-bottom:1px solid rgba(255,154,77,.4)}
+
+/* header */
+header{position:fixed;left:0;right:0;top:34px;z-index:50;transition:top .4s var(--ease),background .4s,backdrop-filter .4s}
+header.sc{top:0;background:rgba(13,18,17,.78);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo .mk{font:700 22px/.84 Onest;letter-spacing:-.05em}
+.logo .mk span{display:block;color:var(--or)}
+.logo small{font:500 10px/1.3 "JetBrains Mono";letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+nav.mn{display:flex;gap:4px;margin-left:18px}
+nav.mn a{padding:9px 14px;border-radius:999px;font-size:14px;color:#d5dcda;transition:background .25s,color .25s}
+nav.mn a:hover{background:rgba(255,255,255,.08);color:#fff}
+.hd-r{margin-left:auto;display:flex;align-items:center;gap:6px}
+.ic{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;transition:background .25s}
+.ic:hover{background:rgba(255,255,255,.1)}
+.ic svg{width:21px;height:21px}
+.ic .n{position:absolute;top:4px;right:2px;min-width:18px;height:18px;border-radius:9px;background:var(--or);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.ic .n.on{transform:scale(1)}
+.ic.bump{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:scale(1.15)}}
+.tel{font-weight:600;font-size:15px;margin:0 8px;white-space:nowrap}
+.srch{position:fixed;inset:0;z-index:120;background:rgba(8,11,10,.92);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;padding-top:16vh;opacity:0;pointer-events:none;transition:opacity .35s}
+.srch.on{opacity:1;pointer-events:auto}
+.srch input{width:min(760px,100% - 32px);background:none;border:0;border-bottom:1px solid rgba(255,255,255,.3);color:#fff;font:500 clamp(28px,4vw,48px) "Cormorant Garamond";padding:10px 0;outline:none}
+.srch .res{width:min(760px,100% - 32px);margin-top:20px;display:grid;gap:6px}
+.srch .res a{display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid var(--line);color:#d5dcda}
+.srch .res a:hover{color:#fff}
+
+/* HERO */
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;overflow:hidden;isolation:isolate}
+.hv{position:absolute;inset:0;z-index:0}
+.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);clip-path:inset(0 0 0 100%);transition:clip-path 1.25s var(--ease2),transform 7s linear}
+.hv video.on{clip-path:inset(0 0 0 0);transform:scale(1.0)}
+.hv video.prev{clip-path:inset(0 0 0 0);z-index:-1}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(13,18,17,.55),rgba(13,18,17,.1) 30%,rgba(13,18,17,.25) 60%,var(--night)),linear-gradient(90deg,rgba(13,18,17,.75),rgba(13,18,17,0) 60%);pointer-events:none}
+#fx{position:absolute;inset:0;z-index:2;pointer-events:none}
+.h-in{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:end;padding-bottom:64px}
+.h-l .mono{color:#cfd7d4}
+.h-l h1{font-size:clamp(48px,6.2vw,98px);margin:18px 0 20px}
+.h-l h1 .ln{display:block;overflow:hidden;padding-bottom:.06em;white-space:nowrap}
+.h-l h1 .ln>span{display:inline-block;transform:translateY(110%)}
+.ready .h-l h1 .ln>span{animation:upi 1.1s var(--ease) forwards}
+.ready .h-l h1 .ln:nth-child(2)>span{animation-delay:.1s}
+.ready .h-l h1 .ln:nth-child(3)>span{animation-delay:.2s}
+.h-l p{max-width:520px;font-size:18px;color:#d5dcda}
+.h-l .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s}
+.ready .fade-in{opacity:1;transform:none}
+.chap{display:flex;gap:8px;margin-top:40px;max-width:520px}
+.chap button{flex:1;text-align:left;font:500 11px/1.3 "JetBrains Mono";letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:12px;position:relative;transition:color .3s}
+.chap button::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:rgba(255,255,255,.2)}
+.chap button i{position:absolute;left:0;top:0;height:2px;width:0;background:var(--or)}
+.chap button.on{color:#fff}
+
+/* stage card in hero */
+.stage{position:relative;border-radius:28px;overflow:hidden;height:min(540px,62vh);border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,#1c2724,#0f1513);box-shadow:0 40px 80px -30px rgba(0,0,0,.7);isolation:isolate;transition:background 1s}
+.stage .floor{position:absolute;left:-10%;right:-10%;bottom:-22%;height:52%;border-radius:50%;background:radial-gradient(closest-side,#e8eef0,#b9c8cd 55%,rgba(185,200,205,0) 100%);opacity:.95;transition:background 1s,opacity 1s}
+.stage .glow{position:absolute;left:50%;top:38%;width:120%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(160,200,215,.35),transparent);transition:background 1s}
+.stage .rays{position:absolute;left:50%;top:-30%;width:180%;aspect-ratio:1;transform:translateX(-50%);background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,214,140,.16) 0 6deg,transparent 6deg 18deg);mask:radial-gradient(closest-side,#000 30%,transparent 72%);-webkit-mask:radial-gradient(closest-side,#000 30%,transparent 72%);opacity:0;transition:opacity 1s;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.stage .prod{position:absolute;left:50%;bottom:16%;width:74%;transform:translateX(-50%);z-index:2;transition:opacity .7s var(--ease),transform .9s var(--ease);filter:drop-shadow(0 26px 22px rgba(0,0,0,.45))}
+.stage .prod.hide{opacity:0;transform:translateX(-50%) translateY(30px) scale(.94)}
+.stage .shadow{position:absolute;left:50%;bottom:14%;width:62%;height:28px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);z-index:1;filter:blur(4px)}
+.stage .lbl{position:absolute;left:20px;top:20px;right:20px;z-index:4;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.stage .lbl b{display:block;font:600 22px/1.15 "Cormorant Garamond";font-size:26px}
+.stage .lbl span{font-size:13px;color:#cfd7d4}
+.stage .pr{background:var(--or);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;white-space:nowrap}
+.thermo{position:absolute;left:16px;right:16px;bottom:16px;z-index:5;background:rgba(10,14,13,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px 16px}
+.thermo .row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#cfd7d4}
+.thermo .row b{font:600 26px/1 "JetBrains Mono";color:#fff;font-variant-numeric:tabular-nums}
+.thermo input{width:100%;margin:12px 0 4px;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,#8fc6ec,#e6f2f8 50%,#ffb36b);outline:none}
+.thermo input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid var(--or);box-shadow:0 4px 14px rgba(0,0,0,.4);cursor:grab}
+.thermo input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:6px solid var(--or)}
+.summer .stage{background:linear-gradient(180deg,#ffb978 0%,#f08a4b 28%,#5b4a3a 70%,#25211b)}
+.summer .stage .floor{background:radial-gradient(closest-side,#9fbf6a,#5d7d3a 55%,rgba(93,125,58,0) 100%)}
+.summer .stage .glow{background:radial-gradient(closest-side,rgba(255,224,150,.55),transparent)}
+.summer .stage .rays{opacity:1}
+
+.scroll-cue{position:absolute;left:50%;bottom:18px;z-index:3;transform:translateX(-50%);font:500 11px "JetBrains Mono";letter-spacing:.14em;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue i{width:1px;height:34px;background:linear-gradient(var(--or),transparent);animation:cue 2s var(--ease) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{opacity:0}}
+
+/* facts strip */
+.facts{border-block:1px solid var(--line);background:var(--night2)}
+.facts .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
+.facts div{padding:22px 18px;border-left:1px solid var(--line)}
+.facts div:first-child{border-left:0}
+.facts b{display:block;font:600 34px/1 "Cormorant Garamond";color:#fff}
+.facts span{font-size:13px;color:var(--mute)}
+
+section{padding:120px 0;position:relative}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:46px}
+.sh h2{font-size:clamp(40px,5.2vw,76px);margin-top:14px}
+.sh p{max-width:380px;color:var(--mute)}
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.wipe{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s var(--ease2)}
+.wipe.in{clip-path:inset(0 0 0 0)}
+
+/* horizontal categories */
+.hz{height:340vh;padding:0}
+.hz .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hz .head{padding:0 0 30px}
+.hz .track{display:flex;gap:22px;padding-left:max(16px,calc((100vw - 1320px)/2));will-change:transform}
+.hc{flex:none;width:min(560px,82vw);height:min(560px,62vh);border-radius:30px;position:relative;overflow:hidden;background:linear-gradient(180deg,#1b2522,#0f1513);border:1px solid var(--line);isolation:isolate;transition:transform .5s var(--ease)}
+.hc:hover{transform:translateY(-6px)}
+.hc .num{position:absolute;left:26px;top:24px;z-index:3;font:500 12px "JetBrains Mono";letter-spacing:.12em;color:var(--mute)}
+.hc h3{position:absolute;left:26px;top:50px;z-index:3;font:600 46px/1 "Cormorant Garamond"}
+.hc h3 em{font-style:italic;color:var(--or2);font-weight:500}
+.hc .meta{position:absolute;left:26px;bottom:26px;z-index:3;font-size:14px;color:#cfd7d4}
+.hc .meta b{display:block;font-size:20px;color:#fff}
+.hc .go{position:absolute;right:22px;bottom:22px;z-index:3;width:56px;height:56px;border-radius:50%;background:var(--or);display:grid;place-items:center;transition:transform .5s var(--ease)}
+.hc:hover .go{transform:rotate(-45deg)}
+.hc video,.hc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.05);transition:transform 1.2s var(--ease)}
+.hc:hover video,.hc:hover .bg{transform:scale(1.12)}
+.hc.v::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,14,13,.65),transparent 40%,rgba(10,14,13,.75))}
+.hc .cut{position:absolute;left:50%;bottom:14%;width:70%;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 24px 20px rgba(0,0,0,.5));transition:transform .9s var(--ease)}
+.hc:hover .cut{transform:translateX(-50%) translateY(-10px) rotate(-2deg)}
+.hc .fl{position:absolute;left:-10%;right:-10%;bottom:-24%;height:50%;border-radius:50%;background:radial-gradient(closest-side,#e8eef0,#b9c8cd 55%,transparent);z-index:1}
+.hc.warm{background:linear-gradient(180deg,#3a2316,#160f0b)}
+.hc.warm .fl{background:radial-gradient(closest-side,#ffb06b,#c05c22 50%,transparent);opacity:.75}
+.hz .prog{position:absolute;left:max(16px,calc((100vw - 1320px)/2));right:max(16px,calc((100vw - 1320px)/2));bottom:34px;height:2px;background:var(--line)}
+.hz .prog i{display:block;height:100%;width:0;background:var(--or)}
+
+/* inside zoom */
+.zoom{height:260vh;padding:0}
+.zoom .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+.zoom .frame{position:relative;width:100%;height:100%;overflow:hidden;will-change:clip-path}
+.zoom video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.zoom .frame::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 70% at 50% 60%,transparent,rgba(13,18,17,.75))}
+.zoom .t1{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:min(900px,90vw);pointer-events:none}
+.zoom .t1 h2{font-size:clamp(44px,6.5vw,100px)}
+.zoom .t1 p{color:#e3e9e7;margin-top:14px;font-size:18px}
+.hs{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.hs.on{opacity:1;transform:none}
+.hs i{width:16px;height:16px;border-radius:50%;background:var(--or);box-shadow:0 0 0 6px rgba(240,118,27,.25);animation:pl 2s infinite}
+@keyframes pl{50%{box-shadow:0 0 0 12px rgba(240,118,27,0)}}
+.hs span{background:rgba(10,14,13,.7);backdrop-filter:blur(10px);padding:8px 14px;border-radius:12px;font-size:14px;border:1px solid var(--line)}
+
+/* install phone */
+.inst .wrap{display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:center}
+.phone{width:300px;aspect-ratio:9/19;border-radius:44px;background:#000;padding:12px;position:relative;box-shadow:0 0 0 2px #2a312f,0 50px 90px -30px rgba(0,0,0,.8)}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:34px}
+.phone .ring{position:absolute;right:-50px;top:40px;width:120px;height:120px}
+.phone .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.phone .ring b{position:absolute;inset:0;display:grid;place-items:center;font:600 24px "JetBrains Mono";font-variant-numeric:tabular-nums}
+.steps{display:grid;gap:4px;margin-top:30px}
+.steps>div{display:grid;grid-template-columns:54px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line);opacity:.45;transition:opacity .4s}
+.steps>div.on{opacity:1}
+.steps em{font:500 13px "JetBrains Mono";color:var(--or2);font-style:normal;padding-top:3px}
+.steps b{display:block;font-size:18px;margin-bottom:2px}
+.steps span{color:var(--mute);font-size:15px}
+
+/* catalog */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);font-size:14px;color:#cfd7d4;transition:background .3s,color .3s,border-color .3s}
+.chip:hover{border-color:rgba(255,255,255,.4)}
+.chip.on{background:var(--frost);color:var(--night);border-color:var(--frost)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pc{background:linear-gradient(180deg,#18211e,#111816);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .3s}
+.pc:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.25)}
+.pc .st{position:relative;aspect-ratio:1/0.92;overflow:hidden;isolation:isolate;background:radial-gradient(90% 60% at 50% 30%,rgba(160,200,215,.18),transparent),linear-gradient(180deg,#22302c,#141c19)}
+.pc .st .fl{position:absolute;left:-15%;right:-15%;bottom:-30%;height:55%;border-radius:50%;background:radial-gradient(closest-side,#dfe7ea,#a9babf 55%,transparent);z-index:0}
+.pc.sum .st{background:radial-gradient(90% 60% at 50% 30%,rgba(255,210,140,.35),transparent),linear-gradient(180deg,#5a3d28,#1d1712)}
+.pc.sum .st .fl{background:radial-gradient(closest-side,#9fbf6a,#5d7d3a 55%,transparent)}
+.pc .st img.c{position:absolute;left:50%;bottom:13%;width:76%;transform:translateX(-50%);z-index:1;filter:drop-shadow(0 18px 14px rgba(0,0,0,.5));transition:transform .8s var(--ease)}
+.pc:hover .st img.c{transform:translateX(-50%) translateY(-8px)}
+.pc .st img.p{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.pc:hover .st img.p{transform:scale(1.07)}
+.pc .tags{position:absolute;left:12px;top:12px;z-index:2;display:flex;gap:6px}
+.pc .tags span{font:500 11px "JetBrains Mono";letter-spacing:.06em;padding:5px 9px;border-radius:999px;background:rgba(10,14,13,.7);backdrop-filter:blur(8px);border:1px solid var(--line)}
+.pc .tags span.o{background:var(--or);border-color:var(--or)}
+.pc .bd{padding:16px 16px 16px;display:flex;flex-direction:column;flex:1}
+.pc .bd small{font-size:12px;color:var(--mute)}
+.pc .bd h3{font-size:16px;font-weight:600;line-height:1.3;margin:4px 0 12px;min-height:42px}
+.pc .bd .row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pc .bd .row b{font-size:20px;font-weight:700;white-space:nowrap}
+.pc .bd .row s{display:block;font-size:13px;color:var(--mute)}
+.pc .add{width:46px;height:46px;border-radius:50%;background:var(--sun);color:#1a1a1a;display:grid;place-items:center;flex:none;transition:transform .3s var(--ease),background .3s}
+.pc .add:hover{transform:rotate(90deg);background:#ffd38a}
+.pc.hide{display:none}
+
+/* picker */
+.pick{border-radius:34px;overflow:hidden;position:relative;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+.pick .vbg{position:relative}
+.pick .vbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pick .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 40%,var(--night2))}
+.pick .q{background:var(--night2);padding:48px}
+.pick h2{font-size:clamp(34px,3.6vw,54px);margin:12px 0 26px}
+.qrow{margin-bottom:20px}
+.qrow p{font-size:14px;color:var(--mute);margin-bottom:10px}
+.qrow .opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);font-size:15px;transition:all .3s}
+.opt.on{background:var(--or);border-color:var(--or)}
+.ans{margin-top:26px;padding:18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--line);display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:center}
+.ans img{width:96px;height:80px;object-fit:contain}
+.ans b{display:block;font-size:17px}
+.ans span{font-size:14px;color:var(--mute)}
+.ans strong{font:600 26px "Cormorant Garamond";white-space:nowrap}
+
+/* reviews */
+.vr{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:260px 260px;gap:16px}
+.vt{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);cursor:none}
+.vt:first-child{grid-row:span 2}
+.vt img,.vt video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.vt video{opacity:0;transition:opacity .5s}
+.vt:hover video{opacity:1}
+.vt:hover img{transform:scale(1.06)}
+.vt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,14,13,.85))}
+.vt div{position:absolute;left:20px;right:20px;bottom:18px;z-index:2}
+.vt b{display:block;font-size:17px}
+.vt span{font-size:13px;color:#cfd7d4}
+.cur{position:fixed;left:0;top:0;z-index:150;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:var(--or);color:#fff;font:600 12px "JetBrains Mono";letter-spacing:.08em;display:grid;place-items:center;pointer-events:none;transform:scale(0);transition:transform .35s var(--ease)}
+.cur.on{transform:scale(1)}
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cities span{font-size:13px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);color:#cfd7d4}
+
+/* custom blueprint */
+.bp{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.bp svg{width:100%;height:auto}
+.bp svg .d{fill:none;stroke:#cfe0e6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bp svg .o{stroke:var(--or2)}
+.bp svg text{fill:#9fb3b9;font:12px "JetBrains Mono"}
+.bp .card{background:var(--night2);border:1px solid var(--line);border-radius:28px;padding:36px}
+.bp ul{list-style:none;display:grid;gap:12px;margin:22px 0 28px}
+.bp li{display:flex;gap:12px;color:#d5dcda}
+.bp li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--or);margin-top:8px;flex:none}
+
+/* final */
+.final{position:relative;border-radius:36px;overflow:hidden;margin:0 16px;min-height:620px;display:flex;align-items:center}
+.final video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.final::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,18,17,.9),rgba(13,18,17,.35));z-index:1}
+.final .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:80px 0}
+.final h2{font-size:clamp(42px,5.4vw,84px)}
+.form{background:rgba(13,18,17,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:26px;padding:30px}
+.form h4{font-size:20px;font-weight:600}
+.form .s{font-size:14px;color:var(--mute);margin:4px 0 18px}
+.fld{position:relative;margin-bottom:10px}
+.fld input{width:100%;height:56px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);padding:18px 16px 0;color:#fff;font:inherit;outline:none;transition:border-color .2s}
+.fld label{position:absolute;left:17px;top:17px;color:var(--mute);font-size:15px;transition:all .2s var(--ease);pointer-events:none}
+.fld input:focus{border-color:var(--or)}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label{top:8px;font-size:12px}
+.form .btn{width:100%;justify-content:center;margin-top:6px}
+.form .ms{display:flex;gap:8px;margin-top:12px}
+.form .ms a{flex:1;height:42px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:14px;transition:background .2s}
+.form .ms a:hover{background:rgba(255,255,255,.06)}
+.ok-msg{display:none;text-align:center;padding:30px 0}
+.form.done .ok-msg{display:block}.form.done .fm{display:none}
+.ok-msg .ck{width:64px;height:64px;border-radius:50%;background:#1f9d55;display:grid;place-items:center;margin:0 auto 14px;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(0)}}
+
+footer{padding:80px 0 120px;color:var(--mute);font-size:14px}
+footer .grid4{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h5{font:500 11px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;color:#a3aeaa}
+footer a{display:block;padding:4px 0;color:#c9d1ce;transition:color .2s}
+footer a:hover{color:var(--or2)}
+footer .big{font:600 30px "Cormorant Garamond";color:#fff;margin:6px 0}
+footer .bot{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
+
+/* drawer/modal/toast */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:opacity .35s}
+.ov.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--night2);border-left:1px solid var(--line);z-index:100;transform:translateX(100%);transition:transform .55s var(--ease2);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.dh b{font:600 28px "Cormorant Garamond"}
+.x{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.x:hover{transform:rotate(90deg)}
+.items{flex:1;overflow:auto;padding:16px 24px;display:grid;gap:10px;align-content:start}
+.it{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;background:rgba(255,255,255,.04);border-radius:16px;padding:10px;animation:slin .45s var(--ease)}
+@keyframes slin{from{opacity:0;transform:translateX(30px)}}
+.it img{width:70px;height:60px;object-fit:contain}
+.it b{font-size:14px;display:block;line-height:1.25}
+.it span{font-size:14px;color:var(--mute)}
+.it button{color:var(--mute);font-size:20px;width:30px}
+.empty{color:var(--mute);text-align:center;padding:60px 0}
+.df{padding:20px 24px;border-top:1px solid var(--line)}
+.df .sum{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.df .sum b{font:600 30px "Cormorant Garamond"}
+.df .ins{font-size:13px;color:#7bd39b;margin-bottom:14px;min-height:18px}
+.df .btn{width:100%;justify-content:center}
+.modal{position:fixed;left:50%;top:50%;z-index:110;width:min(440px,100% - 32px);transform:translate(-50%,-46%) scale(.96);opacity:0;pointer-events:none;transition:all .4s var(--ease)}
+.modal.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+.modal .form{background:var(--night2)}
+.modal .x{position:absolute;right:16px;top:16px}
+.fly{position:fixed;z-index:160;width:70px;height:60px;object-fit:contain;pointer-events:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,200%);visibility:hidden;background:var(--frost);color:var(--night);padding:13px 20px;border-radius:14px;z-index:170;font-size:14px;font-weight:500;transition:transform .45s var(--ease)}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+.mbar{display:none}
+
+@media (max-width:1100px){
+  nav.mn,.tel{display:none}
+  .hero{height:auto;min-height:0}
+  .h-in{grid-template-columns:1fr;align-items:start;padding:150px 0 50px;gap:40px}
+  .stage{height:460px}
+  .scroll-cue{display:none}
+  .facts .wrap{grid-template-columns:repeat(3,1fr)}.facts div:nth-child(n+4){display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .inst .wrap,.bp,.final .wrap,.pick{grid-template-columns:1fr}
+  .pick .vbg{min-height:260px}.pick .vbg::after{background:linear-gradient(180deg,transparent 40%,var(--night2))}
+  .vr{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .vt{min-height:220px}.vt:first-child{grid-column:span 2;grid-row:auto;min-height:300px}
+  footer .grid4{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  header{top:52px}
+  .demo{font-size:12px}
+  header .wrap{height:64px}
+  .hd-r>.btn,#cmpBtn{display:none}
+  .h-in{padding-top:130px}
+  .logo small{display:none}
+  .hero{min-height:600px}
+  .h-l h1{font-size:clamp(38px,10.6vw,60px)}
+  .h-l p{font-size:16px}
+  .h-l .cta .btn{flex:1;justify-content:center}
+  .chap{margin-top:28px}
+  .facts .wrap{grid-template-columns:1fr 1fr}.facts div:nth-child(n+3){display:none}.facts div:nth-child(2){border-left:1px solid var(--line)}
+  section{padding:80px 0}
+  .sh{flex-direction:column;align-items:flex-start}
+  .hz{height:auto}.hz .pin{position:static;height:auto;padding:80px 0}
+  .hz .track{overflow-x:auto;scroll-snap-type:x mandatory;padding-right:16px;transform:none!important;scrollbar-width:none}
+  .hz .track::-webkit-scrollbar{display:none}
+  .hc{scroll-snap-align:start;height:440px}.hc h3{font-size:38px}
+  .hz .prog{display:none}
+  .zoom{height:180vh}
+  .inst .wrap{gap:40px;justify-items:center}
+  .phone{width:240px}.phone .ring{right:-30px;width:90px;height:90px}.phone .ring b{font-size:18px}
+  .grid{gap:10px}.pc .bd{padding:12px}.pc .bd h3{font-size:14px}.pc .bd .row b{font-size:16px}.pc .add{width:38px;height:38px}
+  .pick .q{padding:26px}
+  .ans{grid-template-columns:70px 1fr}.ans strong{grid-column:2}
+  .vr{grid-template-columns:1fr}.vt:first-child{grid-column:auto}
+  .final{margin:0 8px;border-radius:28px}
+  footer .grid4{grid-template-columns:1fr}
+  .cur{display:none}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:8px;right:8px;bottom:8px;z-index:60;background:rgba(13,18,17,.92);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:20px;padding:8px;transform:translateY(130%);transition:transform .45s var(--ease)}
+  .mbar.on{transform:none}
+  .mbar a,.mbar button{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;background:rgba(255,255,255,.06)}
+  .mbar .o{background:var(--or)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv,.fade-in{opacity:1;transform:none}.wipe{clip-path:none}
+}
+</style>
+</head>
+<body>
+<div class="pre" id="pre"><div style="text-align:center"><div class="lg"><span><i>EX</i></span><span><i>PRO</i></span></div><div class="bar"><b id="preB"></b></div></div></div>
+
+<div class="demo"><b>Демо EX-PRO · вариант 2</b> · видео с вашего сайта, сцены товаров, переходы · <a href="../">открыть вариант 1</a></div>
+
+<header id="hd">
+  <div class="wrap">
+    <a class="logo" href="#"><div class="mk"><span>EX</span>PRO</div><small>снаряжение<br>Барнаул</small></a>
+    <nav class="mn"><a href="#cats">Каталог</a><a href="#shop">Акции</a><a href="#custom">На заказ</a><a href="#reviews">Отзывы</a><a href="#final">Доставка</a></nav>
+    <div class="hd-r">
+      <a class="tel" href="tel:78006005229">8 800 600-52-29</a>
+      <button class="ic" id="sBtn" aria-label="Поиск"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="ic" id="cmpBtn" aria-label="Сравнение"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span class="n" id="cmpN">0</span></button>
+      <button class="ic" id="cartBtn" aria-label="Корзина"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="n" id="cartN">0</span></button>
+      <button class="btn btn-or" data-call="Шапка" style="height:46px;padding:0 20px">Заказать звонок</button>
+    </div>
+  </div>
+</header>
+<div class="srch" id="srch"><input id="q" placeholder="Что ищете? Куб, юрта, печь…" autocomplete="off"><div class="res" id="qres"></div></div>
+
+<!-- HERO -->
+<section class="hero" id="hero" style="padding:0">
+  <div class="hv" id="hv"></div>
+  <canvas id="fx"></canvas>
+  <div class="wrap h-in">
+    <div class="h-l">
+      <div class="mono fade-in">Собственное производство · Барнаул</div>
+      <h1 class="serif"><span class="ln"><span>Ваш дом там,</span></span><span class="ln"><span>где <em>заканчивается</em></span></span><span class="ln"><span><em>дорога</em></span></span></h1>
+      <p class="fade-in">Зимние и летние палатки, которые мы шьём сами и проверяем в экспедициях от Алтая до Якутии. Ставятся за минуты, держат тепло при −40°.</p>
+      <div class="cta fade-in"><a class="btn btn-or" href="#pick">Подобрать палатку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-gl" href="#cats">Смотреть каталог</a></div>
+      <div class="chap fade-in" id="chap"></div>
+    </div>
+    <div class="h-r fade-in">
+      <div class="stage" id="stage">
+        <div class="glow"></div><div class="rays"></div><div class="floor"></div><div class="shadow"></div>
+        <img class="prod" id="prodW" src="img/yurta.webp" alt="Палатка EX-PRO Зима Юрта">
+        <img class="prod hide" id="prodS" src="img/offsite.webp" alt="Автоматическая палатка EX-PRO off-site">
+        <canvas id="sfx"></canvas>
+        <div class="lbl"><div><b id="sN">EX-PRO Зима Юрта</b><span id="sD">до 5 человек · 3 входа · 17 отзывов ★ 5,0</span></div><span class="pr" id="sP">55 000 ₽</span></div>
+        <div class="thermo"><div class="row"><span>За бортом</span><b id="tV">−32°</b><span id="tS">зима</span></div><input type="range" id="tR" min="-40" max="50" value="-32" aria-label="Температура"><div class="row" style="font-size:11px;color:#b3bdb9"><span>−40°</span><span>EX-PRO: от −40° до +50°</span><span>+50°</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">ЛИСТАЙТЕ<i></i></div>
+</section>
+
+<div class="facts"><div class="wrap">
+  <div><b data-c="12">0</b><span>месяцев гарантии</span></div>
+  <div><b>2 мин</b><span>на установку</span></div>
+  <div><b>0%</b><span>рассрочка на 4 месяца</span></div>
+  <div><b data-c="1">0</b><span>день до отгрузки</span></div>
+  <div><b>РФ + СНГ</b><span>доставка до двери</span></div>
+</div></div>
+
+<!-- HORIZONTAL CATEGORIES -->
+<section class="hz" id="cats">
+  <div class="pin">
+    <div class="wrap head"><div class="mono">Каталог</div><h2 class="serif" style="font-size:clamp(40px,5.2vw,76px);margin-top:12px">Выберите <em>свою</em> экспедицию</h2></div>
+    <div class="track" id="track">
+      <a class="hc v" href="#shop" data-f="winter"><video muted loop playsinline preload="none" poster="media/snow-yurta.jpg" data-src="media/snow-yurta.mp4"></video><span class="num">01 · 6 моделей</span><h3>Зимние <em>палатки</em></h3><div class="meta"><b>от 29 000 ₽</b>до 10 человек, −40°</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="hc v" href="#shop" data-f="summer"><video muted loop playsinline preload="none" poster="media/offsite-up.jpg" data-src="media/offsite-up.mp4"></video><span class="num">02 · 9 моделей</span><h3>Летние <em>палатки</em></h3><div class="meta"><b>от 6 500 ₽</b>автомат off-site и юрты</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="hc v" href="#shop" data-f="banya"><video muted loop playsinline preload="none" poster="media/warm-in.jpg" data-src="media/warm-in.mp4"></video><span class="num">03 · 6 моделей</span><h3>Мобильные <em>бани</em></h3><div class="meta"><b>от 26 700 ₽</b>разделка под трубу в комплекте</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="hc warm" href="#shop" data-f="gear"><div class="fl"></div><img class="cut" src="img/pech.webp" alt="Печь Intent" style="width:46%"><span class="num">04 · печи и отопители</span><h3>Тепло <em>внутри</em></h3><div class="meta"><b>от 22 900 ₽</b>Intent, «Пичуга», дизельные</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="hc" href="#shop" data-f="gear"><div class="fl"></div><img class="cut" src="img/kovrik.webp" alt="Коврик EX-PRO" style="width:64%"><span class="num">05 · для путешествий</span><h3>Сон <em>в тепле</em></h3><div class="meta"><b>от 3 000 ₽</b>спальники, коврики, одежда</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="hc v" href="#custom"><video muted loop playsinline preload="none" poster="media/ice-kub.jpg" data-src="media/ice-kub.mp4"></video><span class="num">06 · свой цех</span><h3>Палатка <em>на заказ</em></h3><div class="meta"><b>по вашему чертежу</b>любой размер, до 20 человек</div><span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+    <div class="prog"><i id="hzP"></i></div>
+  </div>
+</section>
+
+<!-- INSIDE ZOOM -->
+<section class="zoom" id="zoom">
+  <div class="pin">
+    <div class="frame" id="zf"><video muted loop playsinline preload="none" poster="media/warm-in.jpg" data-src="media/warm-in.mp4"></video></div>
+    <div class="t1" id="zt"><div class="mono" style="justify-content:center;display:inline-block">Изнутри</div><h2 class="serif">Снаружи метель.<br><em>Внутри - дом.</em></h2><p>Три слоя стенки, печь и тёплый пол - зайдите внутрь</p></div>
+    <div class="hs" style="left:22%;top:34%" data-k=".25"><i></i><span>Oxford 300D + синтепон 150 г/м² + таффета</span></div>
+    <div class="hs" style="left:56%;top:24%" data-k=".45"><i></i><span>Разделка под печную трубу</span></div>
+    <div class="hs" style="left:64%;top:62%" data-k=".6"><i></i><span>Морозостойкие окна на липучке</span></div>
+    <div class="hs" style="left:18%;top:70%" data-k=".75"><i></i><span>Юбка снаружи и внутри - не дует</span></div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="inst">
+  <div class="wrap">
+    <div class="phone rv" id="phone"><video muted loop playsinline preload="none" poster="media/install.jpg" data-src="media/install.mp4" id="instV"></video>
+      <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="rgba(13,18,17,.8)" stroke="rgba(255,255,255,.15)" stroke-width="6"/><circle id="iArc" cx="60" cy="60" r="52" fill="none" stroke="#f0761b" stroke-width="6" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><b id="iT">0:00</b></div>
+    </div>
+    <div>
+      <div class="mono rv">Установка</div>
+      <h2 class="serif rv" style="font-size:clamp(40px,5vw,72px);margin:14px 0 6px">Раскрыли - <em>и живёте</em></h2>
+      <p class="rv" style="color:var(--mute);max-width:520px">Настоящее видео с поляны: каркас-куб раскрывается за грани, без сборки дуг. Зимние палатки ставятся до 2-4 минут даже на льду.</p>
+      <div class="steps" id="steps">
+        <div><em>01</em><div><b>Достали из чехла</b><span>ПВХ-чехол, палатка сложена «гармошкой»</span></div></div>
+        <div><em>02</em><div><b>Потянули грани</b><span>Каркас из стекловолокна раскрывается сам</span></div></div>
+        <div><em>03</em><div><b>Закрепили ввертышами</b><span>Колышки в комплекте - для земли и льда</span></div></div>
+        <div><em>04</em><div><b>Поставили печь</b><span>Съёмный клапан под дымоход уже есть</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="wrap">
+    <div class="sh"><div><div class="mono">Хиты сезона</div><h2 class="serif">Всё, что <em>проверено</em> нами</h2></div><p>Цены и наличие - как на сайте. За отзыв о покупке вернём 10% кешбэком.</p></div>
+    <div class="chips" id="chips"><button class="chip on" data-f="all">Все</button><button class="chip" data-f="winter">Зимние</button><button class="chip" data-f="summer">Летние</button><button class="chip" data-f="banya">Бани</button><button class="chip" data-f="gear">Печи и снаряжение</button></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- PICK -->
+<section id="pick" style="padding-top:0">
+  <div class="wrap">
+    <div class="pick rv">
+      <div class="vbg"><video muted loop playsinline preload="none" poster="media/blizzard.jpg" data-src="media/blizzard.mp4"></video></div>
+      <div class="q">
+        <div class="mono">Подбор за 20 секунд</div>
+        <h2 class="serif">Какая палатка <em>нужна вам?</em></h2>
+        <div class="qrow"><p>Когда поедете</p><div class="opts" data-q="s"><button class="opt on" data-v="w">Зимой</button><button class="opt" data-v="s">Летом</button><button class="opt" data-v="b">Нужна баня</button></div></div>
+        <div class="qrow"><p>Сколько вас</p><div class="opts" data-q="p"><button class="opt" data-v="2">1-2</button><button class="opt" data-v="3">3</button><button class="opt on" data-v="4">до 4</button><button class="opt" data-v="5">до 5</button><button class="opt" data-v="8">до 8</button><button class="opt" data-v="10">до 10</button></div></div>
+        <div class="ans" id="ans"><img id="aI" src="img/iglu.webp" alt=""><div><b id="aN"></b><span id="aD"></span></div><strong id="aP"></strong></div>
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn btn-or" id="aBuy">В корзину</button><button class="btn btn-gl" id="aCall">Обсудить с мастером</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh"><div><div class="mono">Видеоотзывы</div><h2 class="serif">От Тулы <em>до Камчатки</em></h2></div><p>5,0 по 47 отзывам на зимние палатки. Наведите на видео - оно оживёт.</p></div>
+    <div class="vr">
+      <a class="vt" href="https://rutube.ru/video/b80a507949790d7aff3f214b8eba814a/" target="_blank" rel="noopener"><img src="media/blizzard.jpg" alt=""><video muted loop playsinline preload="none" data-src="media/blizzard.mp4"></video><div><b>Александр, Якутия</b><span>Куб EX-PRO Winter 2 в метель</span></div></a>
+      <a class="vt" href="https://rutube.ru/video/04402148eb2328ba9bc868a2de0674ed/" target="_blank" rel="noopener"><img src="media/ice-man.jpg" alt=""><video muted loop playsinline preload="none" data-src="media/ice-man.mp4"></video><div><b>Куб EX-PRO Winter 4</b><span>Установка на льду</span></div></a>
+      <a class="vt" href="https://rutube.ru/video/6633936ae9aa0525accad1b20b7ea2fa/" target="_blank" rel="noopener"><img src="media/yurta-peg.jpg" alt=""><video muted loop playsinline preload="none" data-src="media/yurta-peg.mp4"></video><div><b>Зимняя Юрта от команды</b><span>Удобно, надёжно, тепло</span></div></a>
+      <a class="vt" href="https://rutube.ru/video/19d8f695df4f372750c25eb1189ab16e/" target="_blank" rel="noopener"><img src="media/altai-air.jpg" alt=""><video muted loop playsinline preload="none" data-src="media/altai-air.mp4"></video><div><b>Off-site в горах Алтая</b><span>Обзор и установка</span></div></a>
+      <a class="vt" href="https://rutube.ru/video/e9922cb2e5325be3905be1a342486766/" target="_blank" rel="noopener"><img src="media/warm-in.jpg" alt=""><video muted loop playsinline preload="none" data-src="media/warm-in.mp4"></video><div><b>Winter 2 как баня на льду</b><span>Видео от владельца</span></div></a>
+    </div>
+    <div class="cities"><span>Норильск</span><span>Якутия</span><span>Петропавловск-Камчатский</span><span>Братск</span><span>Благовещенск</span><span>Алматы</span><span>Новосибирск</span><span>Тюмень</span><span>Челябинск</span><span>Санкт-Петербург</span><span>Тула</span><span>Стерлитамак</span></div>
+  </div>
+</section>
+
+<!-- CUSTOM -->
+<section id="custom" style="padding-top:0">
+  <div class="wrap bp">
+    <svg viewBox="0 0 600 420" id="bpSvg" aria-label="Чертёж модульной палатки">
+      <g class="d"><path d="M40 300 L170 240 L300 300 L170 360 Z"/><path d="M40 300 V180 L170 120 L300 180 V300"/><path d="M170 120 V240"/><path d="M170 360 V240"/></g>
+      <g class="d"><path d="M300 300 L430 240 L560 300 L430 360 Z"/><path d="M300 180 L430 120 L560 180 V300"/><path d="M430 120 V240"/></g>
+      <g class="d o"><path d="M255 225 h90 v55 h-90 z"/><path d="M300 225 v55"/></g>
+      <g class="d" style="stroke-dasharray:4 6;stroke:#6f8b93"><path d="M40 390 H560"/><path d="M40 382 v16 M300 382 v16 M560 382 v16"/></g>
+      <text x="150" y="410">3 600</text><text x="410" y="410">3 600</text><text x="262" y="214" style="fill:#ffb072">переход</text><text x="70" y="100">спальня</text><text x="440" y="100">кухня</text>
+    </svg>
+    <div class="card rv">
+      <div class="mono">Палатка на заказ</div>
+      <h2 class="serif" style="font-size:clamp(36px,4vw,58px);margin-top:12px">Сошьём <em>под вашу задачу</em></h2>
+      <ul><li>Жилой модуль из трёх палаток на 20 человек - переход без выхода на мороз</li><li>«Панорама»: три стены из морозостойкого прозрачного пластика</li><li>Скрадок для охоты, кают-компания, штаб - по вашему чертежу</li></ul>
+      <button class="btn btn-or" data-call="Палатка на заказ">Рассчитать свою палатку</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<div class="final rv" id="final">
+  <video muted loop playsinline preload="none" poster="media/offsite-up.jpg" data-src="media/offsite-up.mp4"></video>
+  <div class="wrap">
+    <div><div class="mono" style="color:#cfd7d4">Консультация</div><h2 class="serif" style="margin-top:12px">Спросите у тех, <em>кто в них живёт</em></h2><p style="color:#d5dcda;margin-top:16px;max-width:480px">Перезвоним в рабочее время, спросим, где и как отдыхаете, - и подберём палатку, печь и пол без лишнего. Рассрочка 0% на 4 месяца, доставка по России и СНГ.</p></div>
+    <form class="form" id="fForm" novalidate>
+      <div class="fm"><h4>Бесплатная консультация</h4><div class="s">Ежедневно 8:00-21:00 по Барнаулу</div>
+        <div class="fld"><input id="fN" placeholder=" "><label for="fN">Ваше имя</label></div>
+        <div class="fld"><input id="fP" type="tel" placeholder=" "><label for="fP">Телефон</label></div>
+        <button class="btn btn-or" type="submit">Жду звонка</button>
+        <div class="ms"><a href="#">Telegram</a><a href="#">WhatsApp</a><a href="#">MAX</a></div></div>
+      <div class="ok-msg"><div class="ck"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Скоро перезвоним</div></div>
+    </form>
+  </div>
+</div>
+
+<footer><div class="wrap">
+  <div class="grid4">
+    <div><div class="logo"><div class="mk"><span>EX</span>PRO</div></div><div class="big">8 800 600-52-29</div><div>по России бесплатно</div><p style="margin-top:12px">Барнаул, пр. Калинина 116/10, офис 119/1<br>Ежедневно с 8:00 до 21:00</p></div>
+    <div><h5>Каталог</h5><a href="#">Зимние палатки</a><a href="#">Летние палатки</a><a href="#">Мобильные бани</a><a href="#">Пол для палаток</a><a href="#">Сопутствующие</a><a href="#">Для путешествий</a></div>
+    <div><h5>Покупателям</h5><a href="#">Гарантия</a><a href="#">Оплата</a><a href="#">Доставка</a><a href="#">Видео-обзоры</a><a href="#">Отзывы</a><a href="#">Галерея</a></div>
+    <div><h5>EX-PRO</h5><a href="#">О компании</a><a href="#">Статьи</a><a href="#">Партнёрам</a><a href="#">Туры по Алтаю и Монголии</a><a href="#">Тюнинг внедорожников</a></div>
+  </div>
+  <div class="bot"><span>© EX-PRO · демо-концепт, вариант 2</span><span>Видео, фото и цены - с ex-equip.ru и канала EX-PRO</span></div>
+</div></footer>
+
+<div class="mbar" id="mbar"><a href="tel:78006005229">Позвонить</a><button id="mCart">Корзина</button><a class="o" href="#pick">Подобрать</a></div>
+<div class="cur" id="cur">СМОТРЕТЬ</div>
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer"><div class="dh"><b>Корзина</b><button class="x" data-close>✕</button></div><div class="items" id="items"></div><div class="df"><div class="sum"><span>Итого</span><b id="sum">0 ₽</b></div><div class="ins" id="ins"></div><button class="btn btn-or" data-call="Корзина">Оформить заказ</button></div></aside>
+<div class="modal" id="modal"><form class="form" id="mForm" novalidate><button type="button" class="x" data-close>✕</button>
+  <div class="fm"><h4 id="mT">Перезвоним и подскажем</h4><div class="s" id="mS">Модель, комплектация и доставка</div><div class="fld"><input id="mN" placeholder=" "><label for="mN">Ваше имя</label></div><div class="fld"><input id="mP" type="tel" placeholder=" "><label for="mP">Телефон</label></div><button class="btn btn-or" type="submit">Жду звонка</button><div class="s" style="margin-top:10px">Это демо: заявка никуда не отправляется</div></div>
+  <div class="ok-msg"><div class="ck"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Менеджер скоро перезвонит</div></div></form></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches, MOB=matchMedia('(max-width:720px)').matches;
+const rub=n=>n.toLocaleString('ru-RU').replace(/ /g,' ')+' ₽';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+/* ---------- data (prices from ex-equip.ru) ---------- */
+const P=[
+ {k:'k4',n:'Палатка Куб EX-PRO Зима 4',p:78000,o:93400,f:'winter',img:'../img/kub4.webp',ph:1,s:'до 8 человек · 12,96 м²',t:'Хит'},
+ {k:'yu',n:'Палатка EX-PRO Зима Юрта',p:55000,o:63800,f:'winter',img:'img/yurta.webp',s:'до 5 человек · 3 входа',t:'17 отзывов'},
+ {k:'ig',n:'Палатка EX-PRO Зима Иглу',p:39000,o:48100,f:'winter',img:'img/iglu.webp',s:'до 3 человек · 5,57 м²'},
+ {k:'k2',n:'Палатка Куб EX-PRO Зима 2',p:48000,o:56400,f:'winter',img:'../img/hero.webp',ph:1,s:'до 4 человек · 6,48 м²'},
+ {k:'os',n:'Автоматическая палатка off-site',p:6500,o:9000,f:'summer',img:'img/offsite.webp',s:'раскладывается сама · 3 цвета',t:'−28%'},
+ {k:'sy',n:'Летняя палатка EX-PRO Юрта',p:46800,o:51500,f:'summer',img:'img/yurta.webp',s:'лето · 3 входа'},
+ {k:'b2',n:'Мобильная баня на базе Куба Зима 2',p:48000,o:56400,f:'banya',img:'../img/banya.webp',ph:1,s:'разделка под трубу'},
+ {k:'bi',n:'Мобильная баня на базе Иглу',p:39000,o:48100,f:'banya',img:'img/iglu.webp',s:'до 3 человек'},
+ {k:'pech',n:'Печь Intent',p:22900,o:0,f:'gear',img:'img/pech.webp',s:'для палаток и бань'},
+ {k:'kov',n:'Самонадувающийся коврик EX-PRO Комфорт',p:12000,o:12500,f:'gear',img:'img/kovrik.webp',s:'новинка',t:'Новинка'},
+ {k:'cl',n:'Дождевик EX-PRO',p:3000,o:3500,f:'gear',img:'img/cloak.webp',s:'мембрана'},
+ {k:'pg',n:'Ввертыши для палатки',p:500,o:750,f:'gear',img:'img/pegs.webp',s:'адаптер для вкручивания'}
+];
+const byK=Object.fromEntries(P.map(x=>[x.k,x]));
+
+/* ---------- preloader ---------- */
+const vids=['snow-yurta','ice-man','blizzard','yurta-peg'],vidsS=['altai-air','offsite-up'];
+let prog=0;const preB=$('#preB');
+function bump(v){prog=Math.max(prog,v);preB.style.transform=`scaleX(${prog})`}
+function ready(){bump(1);setTimeout(()=>{$('#pre').classList.add('out');document.body.classList.add('ready');startHero()},RM?0:350)}
+setTimeout(()=>bump(.4),200);
+window.addEventListener('load',()=>setTimeout(ready,300));
+setTimeout(ready,4500);
+
+/* ---------- header ---------- */
+addEventListener('scroll',()=>{$('#hd').classList.toggle('sc',scrollY>40);$('#mbar').classList.toggle('on',scrollY>innerHeight)},{passive:true});
+$('#sBtn').onclick=()=>{$('#srch').classList.add('on');setTimeout(()=>$('#q').focus(),200)};
+$('#srch').addEventListener('click',e=>{if(e.target.id==='srch')$('#srch').classList.remove('on')});
+$('#q').addEventListener('input',e=>{const v=e.target.value.trim().toLowerCase();$('#qres').innerHTML=v.length<2?'':(P.filter(x=>x.n.toLowerCase().includes(v)).map(x=>`<a href="#shop"><span>${x.n}</span><b>${rub(x.p)}</b></a>`).join('')||'<a href="#final"><span>Не нашли - позвоните, подскажем</span></a>')});
+$('#qres').addEventListener('click',()=>$('#srch').classList.remove('on'));
+
+/* ---------- HERO video playlist with wipe ---------- */
+const hv=$('#hv');let list=vids,ci=0,timer=null,summer=false;
+function buildHero(){hv.innerHTML='';$('#chap').innerHTML='';
+  const names={'snow-yurta':'Юрта · снег','ice-man':'Куб · лёд','blizzard':'Якутия','yurta-peg':'Установка','altai-air':'Алтай','offsite-up':'Off-site'};
+  list.forEach((n,i)=>{const v=document.createElement('video');v.muted=true;v.playsInline=true;v.setAttribute('playsinline','');v.preload=i<2?'auto':'metadata';v.poster='media/'+n+'.jpg';v.src='media/'+n+'.mp4';hv.appendChild(v);
+    const b=document.createElement('button');b.innerHTML=`0${i+1} · ${names[n]}<i></i>`;b.onclick=()=>go(i);$('#chap').appendChild(b)});
+  ci=-1;go(0)}
+function go(i){const vs=$$('#hv video'),bs=$$('#chap button');if(!vs.length)return;
+  vs.forEach(v=>v.classList.remove('prev'));if(ci>=0&&vs[ci]){vs[ci].classList.remove('on');vs[ci].classList.add('prev')}
+  ci=i;const v=vs[i];v.currentTime=0;v.play().catch(()=>{});void v.offsetWidth;v.classList.add('on');
+  bs.forEach((b,k)=>{b.classList.toggle('on',k===i);b.querySelector('i').style.width=k<i?'100%':'0'});
+  clearTimeout(timer);const D=RM?9000:5600,t0=performance.now();
+  (function f(t){if(ci!==i)return;const k=Math.min(1,(t-t0)/D);bs[i].querySelector('i').style.width=k*100+'%';if(k<1)requestAnimationFrame(f)})(t0);
+  timer=setTimeout(()=>go((i+1)%vs.length),D)}
+function startHero(){buildHero()}
+
+/* ---------- FX: snow (winter) / pollen + dust (summer) ---------- */
+function fxCanvas(cv,count){const cx=cv.getContext('2d');let W,H,parts=[];
+  function rs(){const d=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+  rs();addEventListener('resize',rs);
+  for(let i=0;i<count;i++)parts.push({x:Math.random(),y:Math.random(),r:Math.random()*2+.6,s:Math.random()*.6+.3,w:Math.random()*6.28,z:Math.random()});
+  return{draw(mode,k){cx.clearRect(0,0,W,H);const n=Math.floor(parts.length*k);
+    for(let i=0;i<n;i++){const p=parts[i];
+      if(mode==='w'){p.y+=p.s*(.0012+k*.003);p.w+=.02;p.x+=Math.sin(p.w)*.0006+k*.0012;if(p.y>1.02){p.y=-.02;p.x=Math.random()}if(p.x>1.02)p.x=-.02;
+        cx.fillStyle=`rgba(255,255,255,${.5+p.z*.5})`;cx.beginPath();cx.arc(p.x*W,p.y*H,p.r*(.7+k*.6),0,7);cx.fill()}
+      else{p.y-=p.s*.0007;p.w+=.012;p.x+=Math.sin(p.w)*.0009;if(p.y<-.02){p.y=1.02;p.x=Math.random()}
+        const a=(.35+.5*Math.abs(Math.sin(p.w*2)))*k;cx.fillStyle=`rgba(255,${200+p.z*40|0},${120+p.z*60|0},${a})`;cx.shadowColor='rgba(255,200,120,.9)';cx.shadowBlur=8;cx.beginPath();cx.arc(p.x*W,p.y*H,p.r*.9+.4,0,7);cx.fill();cx.shadowBlur=0}}}}}
+const big=fxCanvas($('#fx'),MOB?120:240),small=fxCanvas($('#sfx'),90);
+let temp=-32;
+(function loop(){const w=temp<=5,k=w?clamp((-temp+8)/48,.15,1):clamp((temp-2)/48,.25,1);
+  if(!RM){big.draw(w?'w':'s',w?k:k*.6);small.draw(w?'w':'s',k)}requestAnimationFrame(loop)})();
+const tR=$('#tR'),fmt=t=>(t>0?'+':t<0?'−':'')+Math.abs(t)+'°';
+function setT(t){temp=t;$('#tV').textContent=fmt(t);const s=t>5;$('#tS').textContent=s?'лето':'зима';
+  if(s!==summer){summer=s;document.body.classList.toggle('summer',s);$('#prodW').classList.toggle('hide',s);$('#prodS').classList.toggle('hide',!s);
+    $('#sN').textContent=s?'Автоматическая off-site':'EX-PRO Зима Юрта';$('#sD').textContent=s?'раскладывается сама · 3 цвета · ★ 5,0':'до 5 человек · 3 входа · 17 отзывов ★ 5,0';$('#sP').textContent=s?'6 500 ₽':'55 000 ₽';
+    list=s?vidsS:vids;if(document.body.classList.contains('ready'))buildHero()}}
+tR.addEventListener('input',()=>setT(+tR.value));
+
+/* ---------- reveal + counters + lazy videos ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv,.wipe').forEach(el=>io.observe(el));
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.play().catch(()=>{})}else v.pause()}),{threshold:.1});
+$$('video[data-src]').forEach(v=>{if(!v.closest('.vt'))vio.observe(v)});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,to=+el.dataset.c,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0);cio.unobserve(el)}),{threshold:.6});
+$$('[data-c]').forEach(e=>cio.observe(e));
+
+/* ---------- scroll-driven: horizontal + zoom ---------- */
+const hz=$('#cats'),track=$('#track'),zoom=$('#zoom'),zf=$('#zf'),zt=$('#zt'),hs=$$('.hs');
+function onScroll(){
+  if(!MOB){const r=hz.getBoundingClientRect(),tot=hz.offsetHeight-innerHeight,k=clamp(-r.top/tot,0,1);
+    const max=track.scrollWidth-innerWidth+Math.max(16,(innerWidth-1320)/2);track.style.transform=`translate3d(${-k*max}px,0,0)`;$('#hzP').style.width=k*100+'%'}
+  const z=zoom.getBoundingClientRect(),zt2=zoom.offsetHeight-innerHeight,k2=clamp(-z.top/zt2,0,1);
+  const e=Math.min(1,k2/.45),ins=(1-e)*(MOB?14:22),rad=(1-e)*32;
+  zf.style.clipPath=`inset(${ins}% ${ins*1.4}% ${ins}% ${ins*1.4}% round ${rad}px)`;
+  zt.style.opacity=k2<.5?1-clamp((k2-.3)/.2,0,1):0;zt.style.transform=`translate(-50%,calc(-50% - ${k2*80}px))`;
+  hs.forEach(h=>h.classList.toggle('on',k2>+h.dataset.k));
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+/* ---------- install video ring + steps ---------- */
+const iv=$('#instV'),st=$$('#steps>div');
+iv.addEventListener('timeupdate',()=>{const k=iv.currentTime/(iv.duration||20);$('#iArc').style.strokeDashoffset=326.7*(1-k);const s=Math.floor(iv.currentTime);$('#iT').textContent='0:'+String(s).padStart(2,'0');st.forEach((d,i)=>d.classList.toggle('on',k>=i/4))});
+
+/* ---------- catalog ---------- */
+function card(x){const d=x.o?Math.round((1-x.p/x.o)*100):0,sum=x.f==='summer';
+  return `<article class="pc ${sum?'sum':''}" data-f="${x.f}" data-k="${x.k}"><div class="st">${x.ph?`<img class="p" src="${x.img}" alt="${x.n}" loading="lazy">`:`<div class="fl"></div><img class="c" src="${x.img}" alt="${x.n}" loading="lazy">`}<div class="tags">${d?`<span class="o">−${d}%</span>`:''}${x.t&&x.t[0]!=='−'?`<span>${x.t}</span>`:''}</div></div>
+  <div class="bd"><small>● в наличии · ${x.s}</small><h3>${x.n}</h3><div class="row"><div><b>${rub(x.p)}</b>${x.o?`<s>${rub(x.o)}</s>`:''}</div><button class="add" data-add="${x.k}" aria-label="В корзину"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></button></div></div></article>`}
+$('#grid').innerHTML=P.map(card).join('');
+function filt(f){const cards=$$('#grid .pc'),first=new Map(cards.map(c=>[c,c.getBoundingClientRect()]));
+  cards.forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.f!==f));
+  cards.forEach(c=>{if(c.classList.contains('hide'))return;const a=first.get(c),b=c.getBoundingClientRect();
+    if(RM)return;if(!a.width){c.animate([{opacity:0,transform:'scale(.92)'},{opacity:1,transform:'none'}],{duration:500,easing:'cubic-bezier(.2,.7,.2,1)'});return}
+    c.animate([{transform:`translate(${a.left-b.left}px,${a.top-b.top}px)`},{transform:'none'}],{duration:650,easing:'cubic-bezier(.2,.7,.2,1)'})});
+  $$('#chips .chip').forEach(c=>c.classList.toggle('on',c.dataset.f===f))}
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)filt(b.dataset.f)});
+$$('.hc[data-f]').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>filt(a.dataset.f),400)));
+
+/* ---------- cart ---------- */
+let cart=[],cmp=0;
+function renderCart(){const n=cart.length,s=cart.reduce((a,k)=>a+byK[k].p,0);$('#cartN').textContent=n;$('#cartN').classList.toggle('on',n>0);$('#mCart').textContent=n?'Корзина · '+n:'Корзина';
+  $('#items').innerHTML=n?cart.map((k,i)=>`<div class="it"><img src="${byK[k].img}" alt=""><div><b>${byK[k].n}</b><span>${rub(byK[k].p)}</span></div><button data-rm="${i}">×</button></div>`).join(''):'<div class="empty">Пока пусто</div>';
+  $('#sum').textContent=rub(s);$('#ins').textContent=s>=10000?'Рассрочка 0%: '+rub(Math.ceil(s/4/100)*100)+' × 4 месяца':''}
+$('#items').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(b){cart.splice(+b.dataset.rm,1);renderCart()}});
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),2200)}
+function add(k,img){const go2=()=>{cart.push(k);renderCart();const b=$('#cartBtn');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');toast('Добавили: '+byK[k].n)};
+  if(RM||!img){go2();return}const a=img.getBoundingClientRect(),t=$('#cartBtn').getBoundingClientRect(),f=document.createElement('img');f.src=img.src;f.className='fly';document.body.appendChild(f);
+  const x0=a.left+a.width/2-35,y0=a.top+a.height/2-30,x1=t.left+t.width/2-35,y1=t.top+t.height/2-30;
+  f.animate([{transform:`translate(${x0}px,${y0}px) scale(1.6) rotate(0)`},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-140}px) scale(1) rotate(-12deg)`,offset:.55},{transform:`translate(${x1}px,${y1}px) scale(.2) rotate(-20deg)`,opacity:.4}],{duration:900,easing:'cubic-bezier(.5,0,.3,1)'}).onfinish=()=>{f.remove();go2()}}
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b)add(b.dataset.add,b.closest('.pc').querySelector('img'))});
+const ov=$('#ov');function openD(){$('#drawer').classList.add('on');ov.classList.add('on')}
+function closeAll(){$('#drawer').classList.remove('on');$('#modal').classList.remove('on');ov.classList.remove('on')}
+$('#cartBtn').onclick=openD;$('#mCart').onclick=openD;ov.onclick=closeAll;$$('[data-close]').forEach(b=>b.onclick=closeAll);
+$('#cmpBtn').onclick=()=>toast('Добавляйте модели к сравнению в каталоге');
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();$('#srch').classList.remove('on')}});
+function openCall(t,s){closeAll();$('#mForm').classList.remove('done');$('#mT').textContent=t||'Перезвоним и подскажем';$('#mS').textContent=s||'Модель, комплектация и доставка';$('#modal').classList.add('on');ov.classList.add('on')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-call]');if(b){e.preventDefault();openCall()}});
+function sub(f,p){f.addEventListener('submit',e=>{e.preventDefault();const ph=$(p);if(ph.value.replace(/\D/g,'').length<10){ph.focus();ph.parentElement.animate([{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'none'}],{duration:300});return}f.classList.add('done')})}
+sub($('#mForm'),'#mP');sub($('#fForm'),'#fP');
+$$('input[type=tel]').forEach(i=>i.addEventListener('input',()=>{let d=i.value.replace(/\D/g,'');if(d[0]==='8')d='7'+d.slice(1);if(d&&d[0]!=='7')d='7'+d;d=d.slice(0,11);let s='+7';if(d.length>1)s+=' ('+d.slice(1,4);if(d.length>=4)s+=') '+d.slice(4,7);if(d.length>=7)s+='-'+d.slice(7,9);if(d.length>=9)s+='-'+d.slice(9,11);i.value=d?s:''}));
+renderCart();
+
+/* ---------- picker ---------- */
+const qs={s:'w',p:'4'};
+const W={2:['Палатка Куб EX-PRO Зима 1',29000,'до 2 человек · 3,24 м²','../img/kub1.webp'],3:['Палатка EX-PRO Зима Иглу',39000,'до 3 человек · 5,57 м²','img/iglu.webp','ig'],4:['Палатка Куб EX-PRO Зима 2',48000,'до 4 человек · 6,48 м²','../img/hero.webp','k2'],5:['Палатка EX-PRO Зима Юрта',55000,'до 5 человек · 3 входа','img/yurta.webp','yu'],8:['Палатка Куб EX-PRO Зима 4',78000,'до 8 человек · 12,96 м²','../img/kub4.webp','k4'],10:['Палатка EX-PRO Зима Гранд Юрта',115300,'до 10 человек · 15,6 м²','../img/grand-in.webp']};
+let curA='k2';
+function ans(){let r;const p=+qs.p;
+  if(qs.s==='s')r=p<=3?['Автоматическая палатка off-site',6500,'ставится за секунды','img/offsite.webp','os']:['Летняя палатка EX-PRO Юрта',46800,'лето · 3 входа','img/yurta.webp','sy'];
+  else if(qs.s==='b')r=p<=3?['Мобильная баня на базе Иглу',39000,'разделка под трубу','img/iglu.webp','bi']:['Мобильная баня на базе Куба Зима 2',48000,'разделка под трубу','../img/banya.webp','b2'];
+  else r=W[[2,3,4,5,8,10].find(v=>v>=p)];
+  const a=$('#ans');a.animate([{opacity:.2,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:450,easing:'ease-out'});
+  $('#aN').textContent=r[0];$('#aD').textContent=r[2]+' · рассрочка '+rub(Math.ceil(r[1]/4/100)*100)+'/мес';$('#aP').textContent=rub(r[1]);$('#aI').src=r[3];curA=r[4]||null}
+$$('.pick .opts').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;g.querySelectorAll('.opt').forEach(o=>o.classList.remove('on'));b.classList.add('on');qs[g.dataset.q]=b.dataset.v;ans()}));ans();
+$('#aBuy').onclick=()=>curA?add(curA,$('#aI')):openCall($('#aN').textContent);
+$('#aCall').onclick=()=>openCall($('#aN').textContent,'Расскажем про комплектацию и доставку');
+
+/* ---------- review tiles: hover video + cursor ---------- */
+const cur=$('#cur');
+$$('.vt').forEach(t=>{const v=t.querySelector('video');t.addEventListener('mouseenter',()=>{if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{});cur.classList.add('on')});t.addEventListener('mouseleave',()=>{v.pause();cur.classList.remove('on')})});
+addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'},{passive:true});
+
+/* ---------- blueprint draw ---------- */
+const paths=$$('#bpSvg .d path');paths.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=p.closest('g').style.strokeDasharray||L;if(!p.closest('g').style.strokeDasharray){p.style.strokeDashoffset=L;p.dataset.L=L}});
+const bio=new IntersectionObserver(es=>{if(es[0].isIntersecting){paths.forEach((p,i)=>{if(p.dataset.L)p.animate([{strokeDashoffset:p.dataset.L},{strokeDashoffset:0}],{duration:RM?1:1400,delay:i*120,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'})});bio.disconnect()}},{threshold:.35});bio.observe($('#bpSvg'));
+</script>
+</body>
+</html>
