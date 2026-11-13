@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>EX-PRO · палатки, в которых тепло при −40°</title>
+<meta name="description" content="Демо-концепт главной страницы EX-PRO: зимние и летние палатки собственного производства, Барнаул.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171a; --ink2:#2a2e33; --mute:#6b7178; --line:#e4e1db;
+  --snow:#f5f3ef; --paper:#fffdfa; --ice:#dfe9ee; --ice2:#a9c3cf;
+  --or:#f0761b; --or2:#ff9442; --orSoft:#fdeadb; --green:#1f9d55;
+  --r:22px; --r2:14px;
+  --sh:0 1px 2px rgba(20,22,26,.06),0 12px 32px -12px rgba(20,22,26,.18);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Onest,system-ui,sans-serif;color:var(--ink);background:var(--snow);line-height:1.5;font-size:16px;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1280px,100% - 32px);margin-inline:auto}
+.h-disp{font-family:Unbounded,Onest,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.02}
+.h2{font-family:Unbounded,Onest,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,48px);letter-spacing:-.02em;line-height:1.05}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--or)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;transition:transform .25s var(--ease),background .25s,box-shadow .25s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-or{background:var(--or);color:#fff;box-shadow:0 10px 24px -10px rgba(240,118,27,.7)}
+.btn-or:hover{background:#e0650c}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000}
+.btn svg{width:18px;height:18px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* demo ribbon */
+.demo{background:var(--ink);color:#c9cdd2;font-size:13px;text-align:center;padding:7px 16px}
+.demo b{color:#fff;font-weight:600}
+
+/* top bar */
+.top{background:#fff;border-bottom:1px solid var(--line);font-size:14px}
+.top .wrap{display:flex;align-items:center;gap:22px;height:44px}
+.top .city{display:flex;gap:6px;align-items:center;color:var(--mute)}
+.top .soc{display:flex;gap:6px;margin-left:auto}
+.top .soc a{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--snow);font-size:11px;font-weight:700;color:var(--ink2);transition:background .2s,color .2s}
+.top .soc a:hover{background:var(--or);color:#fff}
+.top .tel{font-weight:700;font-size:15px}
+.top .tel small{display:block;font-weight:400;font-size:11px;color:var(--mute);line-height:1}
+.top .open{color:var(--green);display:flex;align-items:center;gap:6px}
+.top .open i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,157,85,.5);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(31,157,85,0)}100%{box-shadow:0 0 0 0 rgba(31,157,85,0)}}
+
+/* header */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+header.hd.sc{border-color:var(--line);box-shadow:0 8px 30px -20px rgba(0,0,0,.25)}
+.hd .wrap{display:flex;align-items:center;gap:14px;height:76px}
+.logo{display:flex;align-items:center;gap:10px;flex:none}
+.logo .mk{font-family:Unbounded;font-weight:700;font-size:22px;line-height:.85;letter-spacing:-.04em}
+.logo .mk span{color:var(--or);display:block}
+.logo small{font-size:10px;letter-spacing:.14em;font-weight:700;color:var(--mute);text-transform:uppercase;line-height:1.2}
+.cat-btn{height:46px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:10px;font-weight:600}
+.cat-btn i{width:16px;height:12px;position:relative;display:block}
+.cat-btn i::before,.cat-btn i::after,.cat-btn i b{content:"";position:absolute;left:0;right:0;height:2px;border-radius:2px;background:#fff;transition:transform .3s var(--ease),opacity .2s}
+.cat-btn i::before{top:0}.cat-btn i b{top:5px}.cat-btn i::after{top:10px}
+.cat-btn.on i::before{transform:translateY(5px) rotate(45deg)}.cat-btn.on i::after{transform:translateY(-5px) rotate(-45deg)}.cat-btn.on i b{opacity:0}
+.search{flex:1;position:relative;min-width:0}
+.search input{width:100%;height:46px;border-radius:999px;border:1.5px solid var(--line);background:#fff;padding:0 48px 0 20px;font:inherit;font-size:15px;outline:none;transition:border-color .2s}
+.search input:focus{border-color:var(--ink)}
+.search svg{position:absolute;right:16px;top:13px;width:20px;height:20px;color:var(--mute)}
+.search .sug{position:absolute;left:0;right:0;top:54px;background:#fff;border-radius:16px;box-shadow:var(--sh);padding:8px;display:none}
+.search.op .sug{display:block}
+.sug a{display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;font-size:14px}
+.sug a:hover{background:var(--snow)}
+.sug a b{font-weight:600}
+.hd-ic{display:flex;gap:6px}
+.ic{position:relative;height:46px;padding:0 14px;border-radius:999px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;transition:background .2s}
+.ic:hover{background:var(--snow)}
+.ic svg{width:22px;height:22px}
+.ic .n{position:absolute;top:4px;left:28px;min-width:18px;height:18px;border-radius:9px;background:var(--or);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.ic .n.on{transform:scale(1)}
+.ic.bump{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:scale(1.12)}}
+.hd .call{flex:none}
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.3);clip-path:inset(0 0 100% 0);transition:clip-path .45s var(--ease);pointer-events:none}
+.mega.on{clip-path:inset(0 0 0 0);pointer-events:auto}
+.mega .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:22px 0 28px;height:auto}
+.mega a{display:flex;gap:14px;align-items:center;padding:12px;border-radius:16px;transition:background .2s}
+.mega a:hover{background:var(--snow)}
+.mega img{width:64px;height:64px;object-fit:cover;border-radius:12px;background:var(--snow)}
+.mega b{display:block;font-weight:600}
+.mega span{font-size:13px;color:var(--mute)}
+nav.sub{border-top:1px solid var(--line)}
+nav.sub .wrap{height:44px;display:flex;gap:26px;font-size:14px;color:var(--ink2);overflow-x:auto;scrollbar-width:none}
+nav.sub a{white-space:nowrap;display:flex;align-items:center;transition:color .2s}
+nav.sub a:hover{color:var(--or)}
+nav.sub a.hot{color:var(--or);font-weight:600}
+
+/* HERO */
+.hero{padding:28px 0 0}
+.hero .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:stretch}
+.hero-l{padding:30px 0 10px;display:flex;flex-direction:column}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:13px;font-weight:500}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--or)}
+.hero h1{font-size:clamp(38px,4.7vw,66px)}
+.hero h1 .t{color:var(--or);display:inline-block;min-width:3.2ch;font-variant-numeric:tabular-nums}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:up .9s var(--ease) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.08s}.hero h1 .ln:nth-child(3)>span{animation-delay:.16s}
+@keyframes up{to{transform:none}}
+.lead{font-size:19px;color:var(--ink2);max-width:540px;margin:22px 0 30px}
+.lead b{font-weight:600;color:var(--ink)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.trust{margin-top:auto;padding-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:40px}
+.trust div{padding:18px 14px 0 0}
+.trust b{display:block;font-family:Unbounded;font-weight:600;font-size:22px;letter-spacing:-.02em}
+.trust span{font-size:13px;color:var(--mute);line-height:1.3;display:block;margin-top:4px}
+.stars{color:var(--or);letter-spacing:1px}
+
+.hero-r{position:relative;border-radius:28px;overflow:hidden;min-height:600px;background:#cfdde5;isolation:isolate}
+.hero-r .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1s var(--ease),transform 8s linear;transform:scale(1.06)}
+.hero-r .ph.sum{opacity:0}
+.hero-r.summer .ph.sum{opacity:1}
+.hero-r.summer .ph.win{opacity:0}
+.hero-r::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,18,0) 45%,rgba(10,14,18,.62));z-index:1;pointer-events:none}
+.frost{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(225,238,245,.9));opacity:0;transition:opacity .4s}
+#snow{position:absolute;inset:0;z-index:3;pointer-events:none}
+.thermo{position:absolute;left:20px;right:20px;bottom:20px;z-index:4;background:rgba(255,255,255,.14);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:18px 20px;color:#fff}
+.thermo .row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.thermo .lbl{font-size:13px;opacity:.85}
+.thermo .val{font-family:Unbounded;font-weight:600;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.thermo .mdl{text-align:right;font-size:14px;line-height:1.35}
+.thermo .mdl b{display:block;font-weight:600;font-size:16px}
+.thermo input{width:100%;margin:16px 0 6px;-webkit-appearance:none;appearance:none;height:8px;border-radius:8px;background:linear-gradient(90deg,#8fc6ec,#e6f2f8 50%,#ffb36b);outline:none}
+.thermo input::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:6px solid var(--or);box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:grab}
+.thermo input::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:6px solid var(--or);cursor:grab}
+.thermo .sc{display:flex;justify-content:space-between;font-size:12px;opacity:.75}
+.thermo .hint{font-size:12px;opacity:.8;margin-top:8px;display:flex;align-items:center;gap:8px}
+.hero-r .tag{position:absolute;top:18px;left:18px;z-index:4;background:var(--or);color:#fff;font-weight:600;font-size:13px;padding:8px 14px;border-radius:999px}
+.hero-r .tag2{position:absolute;top:18px;right:18px;z-index:4;background:#fff;color:var(--ink);font-weight:600;font-size:13px;padding:8px 14px;border-radius:999px;display:flex;gap:6px;align-items:center}
+
+/* marquee */
+.mq{margin-top:42px;border-block:1px solid var(--line);background:#fff;overflow:hidden;white-space:nowrap}
+.mq .tr{display:inline-flex;gap:42px;padding:16px 0;animation:mq 40s linear infinite}
+.mq span{font-size:15px;color:var(--ink2);display:inline-flex;gap:10px;align-items:center}
+.mq span b{font-weight:600;color:var(--ink)}
+.mq span i{width:6px;height:6px;border-radius:50%;background:var(--or)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{padding:96px 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px}
+.sh p{color:var(--mute);max-width:420px}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:16px}
+.cat{position:relative;border-radius:var(--r);overflow:hidden;background:#fff;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--sh);transition:transform .45s var(--ease),box-shadow .45s}
+.cat:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 26px 50px -20px rgba(0,0,0,.3)}
+.cat h3{font-family:Unbounded;font-weight:600;font-size:22px;letter-spacing:-.02em;position:relative;z-index:2;line-height:1.1}
+.cat .ct{font-size:14px;color:var(--mute);position:relative;z-index:2;margin-top:6px}
+.cat .go{position:relative;z-index:2;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:background .3s,transform .45s var(--ease)}
+.cat:hover .go{background:var(--or);transform:rotate(-45deg)}
+.cat img{position:absolute;transition:transform .9s var(--ease)}
+.cat:hover img{transform:scale(1.06)}
+.cat.big{grid-column:span 6;grid-row:span 2;color:#fff}
+.cat.big img{inset:0;width:100%;height:100%;object-fit:cover}
+.cat.big::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5),transparent 40%,transparent 60%,rgba(0,0,0,.45));z-index:1}
+.cat.big .ct{color:rgba(255,255,255,.85)}
+.cat.big .go{background:#fff;color:var(--ink)}
+.cat.mid{grid-column:span 6}.cat.q3{grid-column:span 3}
+.cat.mid img{right:-10px;bottom:-10px;width:56%;height:120%;object-fit:cover;border-radius:18px 0 0 0}
+.cat.sm{grid-column:span 4}
+.cat.q3 img{right:10px;bottom:10px;width:52%;height:auto;max-height:78%;object-fit:cover;border-radius:14px}
+.cat.sm img{right:8px;bottom:8px;width:48%;height:auto;max-height:80%;object-fit:contain}
+.cat.or{background:var(--or);color:#fff}.cat.or .ct{color:rgba(255,255,255,.85)}.cat.or .go{background:#fff;color:var(--ink)}
+.cat.dk{background:var(--ink);color:#fff}.cat.dk .ct{color:#aab}.cat.dk .go{background:var(--or)}
+
+/* layers */
+.layers{background:var(--ink);color:#fff;border-radius:36px;margin:0 16px;padding:110px 0;overflow:hidden;position:relative}
+.layers .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.layers .eyebrow{color:var(--or2)}
+.layers p.l{color:#b9bec4;font-size:18px;margin:20px 0 32px;max-width:480px}
+.lst{display:grid;gap:10px}
+.lst>div{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s}
+.lst>div.on{background:rgba(240,118,27,.12);border-color:rgba(240,118,27,.5)}
+.lst i{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-family:Unbounded;font-weight:600}
+.lst b{display:block;font-weight:600}
+.lst span{font-size:14px;color:#a5abb2}
+.stack{position:relative;height:520px;perspective:1400px}
+.stack .pl{position:absolute;left:50%;top:50%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:26px;transform-style:preserve-3d;transition:transform .2s linear;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.pl.p1{background:repeating-linear-gradient(45deg,#f0761b 0 3px,#e46a10 3px 6px);}
+.pl.p2{background:radial-gradient(circle at 30% 30%,#fff,#e9edf0 60%),#fff;background-image:radial-gradient(rgba(0,0,0,.06) 1px,transparent 1.5px),linear-gradient(#f7f8f9,#e8ecef);background-size:7px 7px,100% 100%}
+.pl.p3{background:repeating-linear-gradient(0deg,#3c4249 0 2px,#353a40 2px 4px),#3a3f45}
+.pl.p4{background:transparent;box-shadow:none;border:2px dashed rgba(255,255,255,.35)}
+.pl em{position:absolute;right:-12px;top:50%;transform:translate(100%,-50%);font-style:normal;font-size:13px;white-space:nowrap;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.wind{position:absolute;left:0;top:50%;width:100%;height:2px;pointer-events:none}
+
+/* stopwatch */
+.speed{position:relative;border-radius:36px;overflow:hidden;margin:16px;min-height:560px;color:#fff;display:flex;align-items:flex-end}
+.speed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.speed::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,14,20,.85),rgba(9,14,20,.2) 70%);z-index:1}
+.speed .wrap{position:relative;z-index:2;padding:80px 0;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+.watch{width:240px;height:240px;position:relative}
+.watch svg{width:100%;height:100%;transform:rotate(-90deg)}
+.watch .tm{position:absolute;inset:0;display:grid;place-items:center;font-family:Unbounded;font-weight:600;font-size:46px;font-variant-numeric:tabular-nums}
+.watch .tm small{display:block;font-size:13px;font-family:Onest;font-weight:500;opacity:.75;text-align:center;margin-top:-6px}
+.speed h2{font-size:clamp(30px,4vw,56px)}
+.speed p{color:#d5dbe0;font-size:18px;max-width:520px;margin-top:16px}
+.speed ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.speed li{padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:14px;backdrop-filter:blur(8px)}
+
+/* quiz */
+.quiz{background:#fff;border-radius:36px;padding:48px;box-shadow:var(--sh);display:grid;grid-template-columns:1.05fr .95fr;gap:48px}
+.qstep{margin-bottom:28px}
+.qstep h4{font-size:15px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.qstep h4 i{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{height:46px;padding:0 18px;border-radius:999px;background:var(--snow);font-weight:500;font-size:15px;transition:background .25s,color .25s,transform .25s var(--ease)}
+.opt:hover{background:#ece8e1}
+.opt.on{background:var(--ink);color:#fff}
+.res{background:var(--snow);border-radius:28px;padding:20px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.res .im{height:290px;border-radius:20px;overflow:hidden;position:relative;background:#e6ebee}
+.res .im img{width:100%;height:100%;object-fit:cover;transition:opacity .4s,transform .6s var(--ease)}
+.res .im img.sw{opacity:0;transform:scale(1.04)}
+.res .disc{position:absolute;top:14px;left:14px;background:var(--or);color:#fff;font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px}
+.res .stock{position:absolute;top:14px;right:14px;background:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--green);display:flex;gap:6px;align-items:center}
+.res .stock i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.res h3{font-family:Unbounded;font-weight:600;font-size:22px;margin:18px 4px 6px;letter-spacing:-.02em}
+.res .why{font-size:14px;color:var(--mute);margin:0 4px}
+.res .specs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 4px}
+.res .specs span{font-size:13px;background:#fff;padding:5px 10px;border-radius:8px}
+.res .pr{display:flex;align-items:baseline;gap:12px;margin:6px 4px 16px}
+.res .pr b{white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:30px;font-variant-numeric:tabular-nums}
+.res .pr s{color:var(--mute)}
+.res .pr em{font-style:normal;font-size:13px;color:var(--mute);margin-left:auto}
+.res .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res .acts .btn{justify-content:center;padding:0 14px}
+.qtrust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 18px}.qtrust div{background:var(--snow);border-radius:16px;padding:14px;font-size:13px;color:var(--mute)}.qtrust b{display:block;font-family:Unbounded;font-weight:600;font-size:20px;color:var(--ink)}
+.upsell{display:flex;align-items:center;gap:12px;margin:0 4px 14px;font-size:14px;cursor:pointer;user-select:none}
+.upsell input{display:none}
+.upsell .bx{width:22px;height:22px;border-radius:7px;border:1.5px solid #c9c4bb;display:grid;place-items:center;flex:none;transition:background .2s,border-color .2s}
+.upsell input:checked+.bx{background:var(--or);border-color:var(--or)}
+.upsell .bx svg{width:14px;height:14px;color:#fff;opacity:0;transition:opacity .2s}
+.upsell input:checked+.bx svg{opacity:1}
+.upsell b{color:var(--or)}
+
+/* products */
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pc{background:#fff;border-radius:var(--r);padding:12px;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .45s var(--ease),box-shadow .45s}
+.pc:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 26px 50px -24px rgba(0,0,0,.3)}
+.pc .im{aspect-ratio:1;border-radius:16px;overflow:hidden;position:relative;background:var(--snow)}
+.pc .im img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.pc:hover .im img{transform:scale(1.05)}
+.pc .lb{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.pc .lb span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:#fff}
+.pc .lb span.o{background:var(--or);color:#fff}
+.pc .cmp{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:background .2s,color .2s}
+.pc .cmp.on{background:var(--ink);color:#fff}
+.pc .cmp svg{width:18px;height:18px}
+.pc .meta{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--mute);margin:14px 6px 6px}
+.pc .meta .ok{color:var(--green);font-weight:600}
+.pc h3{font-size:16px;font-weight:600;line-height:1.3;margin:0 6px;min-height:42px}
+.pc .pr{display:flex;align-items:baseline;gap:4px 10px;margin:12px 6px;flex-wrap:wrap}.pc .pr b,.pc .pr s,.promo .pp b{white-space:nowrap}
+.pc .pr b{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.pc .pr s{font-size:14px;color:var(--mute)}
+.pc .inst{font-size:12px;color:var(--mute);margin:-6px 6px 12px}
+.pc .bt{margin-top:auto;display:grid;grid-template-columns:1fr auto;gap:8px}
+.pc .bt .btn{height:46px;font-size:15px;justify-content:center;padding:0 16px}
+.pc .bt .add{width:46px;padding:0;justify-content:center}
+
+/* promo */
+.promo{border-radius:36px;background:var(--orSoft);display:grid;grid-template-columns:1.2fr .8fr;overflow:hidden;position:relative}
+.promo .tx{padding:56px}
+.promo h2{font-size:clamp(28px,3.4vw,46px)}
+.promo h2 b{color:var(--or)}
+.promo p{margin:18px 0 26px;color:var(--ink2);max-width:520px}
+.promo .pp{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.promo .pp b{font-family:Unbounded;font-size:40px;font-weight:600}
+.promo .pp s{font-size:18px;color:var(--mute)}
+.promo .im{position:relative;background:var(--ink)}
+.promo .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.95}
+.promo .pct{position:absolute;left:-60px;top:50%;transform:translateY(-50%) rotate(-8deg);width:150px;height:150px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;font-family:Unbounded;font-weight:700;font-size:38px;z-index:2;box-shadow:0 20px 40px -10px rgba(240,118,27,.6);animation:wob 6s ease-in-out infinite}
+@keyframes wob{50%{transform:translateY(-50%) rotate(6deg) scale(1.04)}}
+
+/* custom */
+.custom{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch}
+.cu-l{background:var(--ink);color:#fff;border-radius:36px;padding:48px;display:flex;flex-direction:column}
+.cu-l .eyebrow{color:var(--or2)}
+.cu-l p{color:#b9bec4;margin:18px 0 26px}
+.feat{display:grid;gap:10px;margin-bottom:30px}
+.feat span{display:flex;gap:12px;align-items:center}
+.feat span i{width:28px;height:28px;border-radius:50%;background:rgba(240,118,27,.18);color:var(--or2);display:grid;place-items:center;font-style:normal;font-size:14px}
+.steps{margin-top:auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:20px}
+.steps .q{font-size:14px;color:#b9bec4;margin-bottom:10px}
+.steps .opts .opt{background:rgba(255,255,255,.08);color:#fff}
+.steps .opts .opt.on{background:var(--or)}
+.steps .bar{height:4px;border-radius:4px;background:rgba(255,255,255,.12);margin-bottom:16px;overflow:hidden}
+.steps .bar i{display:block;height:100%;width:20%;background:var(--or);transition:width .5s var(--ease)}
+.cu-r{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ex{background:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--sh);display:flex;flex-direction:column;transition:transform .45s var(--ease)}
+.ex:hover{transform:translateY(-4px)}
+.ex .tg{font-size:12px;font-weight:600;color:var(--or);text-transform:uppercase;letter-spacing:.06em}
+.ex h4{font-family:Unbounded;font-weight:600;font-size:19px;margin:10px 0 8px;letter-spacing:-.01em}
+.ex p{font-size:14px;color:var(--mute)}
+.ex .nm{display:flex;gap:18px;margin-top:auto;padding-top:18px}
+.ex .nm b{display:block;font-family:Unbounded;font-size:22px;font-weight:600}
+.ex .nm span{font-size:12px;color:var(--mute)}
+.ex.ph{padding:0;overflow:hidden;position:relative;min-height:220px;color:#fff}
+.ex.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ex.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7))}
+.ex.ph div{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}
+.ex.ph h4{margin:6px 0 0}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+.score{background:#fff;border-radius:36px;padding:44px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.score .big{font-family:Unbounded;font-weight:700;font-size:110px;line-height:.9;letter-spacing:-.04em}
+.score .big small{font-size:34px;color:var(--mute)}
+.score .bars{margin:24px 0;display:grid;gap:8px}
+.score .bars div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;font-size:14px}
+.score .bars i{height:8px;border-radius:8px;background:var(--snow);overflow:hidden;display:block}
+.score .bars i b{display:block;height:100%;width:0;background:var(--or);border-radius:8px;transition:width 1.4s var(--ease)}
+.map{position:relative;height:250px;margin-top:10px}
+.map svg{width:100%;height:100%}
+.map .pt{fill:var(--or)}
+.map .rt{fill:none;stroke:var(--or);stroke-width:1.4;stroke-dasharray:4 5;opacity:.55}
+.map .rt.go{animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-18}}
+.map .pt-r{fill:none;stroke:var(--or);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:ring 2.6s var(--ease) infinite}
+@keyframes ring{0%{transform:scale(.6);opacity:1}100%{transform:scale(3);opacity:0}}
+.map text{font-size:11px;fill:var(--ink2);font-family:Onest}
+.rlist{display:grid;gap:12px;align-content:start}
+.rc{background:#fff;border-radius:20px;padding:18px 20px;box-shadow:var(--sh);display:grid;grid-template-columns:48px 1fr auto;gap:14px;align-items:center;transition:transform .4s var(--ease)}
+.rc:hover{transform:translateX(6px)}
+.rc .av{width:48px;height:48px;border-radius:50%;background:var(--orSoft);color:var(--or);display:grid;place-items:center;font-weight:700;font-family:Unbounded}
+.rc b{display:block;font-weight:600}
+.rc span{font-size:13px;color:var(--mute)}
+.rc .play{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:background .2s}
+.rc:hover .play{background:var(--or)}
+.cash{margin-top:6px;background:var(--ink);color:#fff;border-radius:20px;padding:18px 20px;display:flex;gap:14px;align-items:center;font-size:15px}
+.cash b{color:var(--or2);font-family:Unbounded;font-size:22px}
+
+/* guarantees */
+.gs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g{background:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.g .n{font-family:Unbounded;font-weight:600;font-size:40px;letter-spacing:-.03em;color:var(--or);line-height:1}
+.g h4{font-size:18px;font-weight:600;margin:14px 0 6px}
+.g p{font-size:14px;color:var(--mute)}
+.g.sber{background:#edf8f1}
+.g.sber .n{color:#1a9f4b}
+
+/* team */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.team .ph{border-radius:36px;overflow:hidden;position:relative;aspect-ratio:740/527}
+.team .ph img{width:100%;height:100%;object-fit:cover}
+.team blockquote{font-family:Unbounded;font-weight:600;font-size:clamp(24px,2.6vw,36px);letter-spacing:-.02em;line-height:1.15;margin:16px 0 22px}
+.team blockquote b{color:var(--or)}
+.team p{color:var(--ink2);margin-bottom:14px}
+.who{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.who div{background:#fff;border-radius:16px;padding:14px 18px;box-shadow:var(--sh);font-size:14px}
+.who b{display:block}
+
+/* final */
+.final{background:var(--or);color:#fff;border-radius:36px;margin:0 16px;padding:80px 0;position:relative;overflow:hidden}
+.final .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.final h2{font-size:clamp(32px,4.4vw,62px)}
+.final p{font-size:18px;opacity:.9;margin-top:16px;max-width:520px}
+.form{background:#fff;color:var(--ink);border-radius:28px;padding:30px;box-shadow:0 30px 60px -20px rgba(120,40,0,.45)}
+.form h4{font-weight:600;font-size:20px}
+.form .s{font-size:14px;color:var(--mute);margin:4px 0 18px}
+.fld{position:relative;margin-bottom:10px}
+.fld input{width:100%;height:56px;border-radius:16px;border:1.5px solid var(--line);padding:18px 16px 0;font:inherit;outline:none;transition:border-color .2s;background:#fff}
+.fld label{position:absolute;left:17px;top:17px;color:var(--mute);font-size:15px;transition:all .2s var(--ease);pointer-events:none}
+.fld input:focus{border-color:var(--ink)}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label{top:8px;font-size:12px}
+.form .btn{width:100%;justify-content:center;margin-top:6px}
+.form .ms{display:flex;gap:8px;margin-top:14px}
+.form .ms a{flex:1;height:44px;border-radius:12px;background:var(--snow);display:grid;place-items:center;font-size:14px;font-weight:600;transition:background .2s}
+.form .ms a:hover{background:#ece8e1}
+.form .pol{font-size:12px;color:var(--mute);margin-top:12px}
+.ok-msg{display:none;text-align:center;padding:30px 0}
+.form.done .ok-msg{display:block}
+.form.done .fm{display:none}
+.ok-msg .ck{width:70px;height:70px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 16px;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(0)}}
+.final .rings{position:absolute;right:-200px;top:-200px;width:700px;height:700px;border-radius:50%;border:1px solid rgba(255,255,255,.25);pointer-events:none}
+.final .rings::before,.final .rings::after{content:"";position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(255,255,255,.2)}
+.final .rings::after{inset:170px}
+
+footer{padding:70px 0 110px;font-size:14px;color:var(--ink2)}
+footer .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px}
+footer h5{font-size:13px;color:var(--mute);font-weight:500;margin-bottom:12px}
+footer a{display:block;padding:4px 0;transition:color .2s}
+footer a:hover{color:var(--or)}
+footer .tel{font-family:Unbounded;font-weight:600;font-size:22px;margin:8px 0 2px}
+footer .bot{margin-top:46px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--mute);font-size:13px;flex-wrap:wrap}
+
+/* drawer & modal */
+.ov{position:fixed;inset:0;background:rgba(10,12,15,.45);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:opacity .35s}
+.ov.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);z-index:100;transform:translateX(100%);transition:transform .5s var(--ease);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.drawer .dh{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.drawer .dh b{font-family:Unbounded;font-weight:600;font-size:20px}
+.x{width:42px;height:42px;border-radius:50%;background:var(--snow);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.x:hover{transform:rotate(90deg)}
+.items{flex:1;overflow:auto;padding:16px 24px;display:grid;gap:12px;align-content:start}
+.it{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;background:#fff;border-radius:16px;padding:10px;animation:slin .45s var(--ease)}
+@keyframes slin{from{opacity:0;transform:translateX(30px)}}
+.it img{width:72px;height:72px;object-fit:cover;border-radius:12px}
+.it b{font-size:14px;font-weight:600;display:block;line-height:1.25}
+.it span{font-size:14px;color:var(--mute)}
+.it button{color:var(--mute);font-size:20px;width:30px}
+.empty{color:var(--mute);text-align:center;padding:60px 0}
+.df{padding:20px 24px;border-top:1px solid var(--line);background:#fff}
+.df .sum{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}
+.df .sum b{font-family:Unbounded;font-size:22px}
+.df .ins{font-size:13px;color:var(--green);margin-bottom:14px}
+.df .btn{width:100%;justify-content:center}
+.modal{position:fixed;left:50%;top:50%;z-index:100;width:min(440px,100% - 32px);transform:translate(-50%,-46%) scale(.96);opacity:0;pointer-events:none;transition:all .4s var(--ease)}
+.modal.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+.modal .form{position:relative}
+.modal .x{position:absolute;right:16px;top:16px}
+.fly{position:fixed;z-index:120;width:60px;height:60px;border-radius:14px;object-fit:cover;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,200%);visibility:hidden;background:var(--ink);color:#fff;padding:14px 20px;border-radius:14px;z-index:130;font-size:14px;transition:transform .45s var(--ease);display:flex;gap:10px;align-items:center}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+.mbar{display:none}
+
+/* responsive */
+@media (max-width:1100px){
+  .hd .call,.ic .t{display:none}
+  .hero .grid,.layers .grid,.quiz,.custom,.revs,.team,.final .grid,.promo{grid-template-columns:1fr}
+  .hero-r{min-height:520px}
+  .cats{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .cat.big{grid-column:span 2;grid-row:span 2}.cat.mid{grid-column:span 2}.cat.sm,.cat.q3{grid-column:span 1}
+  .prods{grid-template-columns:repeat(2,1fr)}
+  .gs{grid-template-columns:1fr 1fr}
+  .promo .im{min-height:280px}.promo .pct{left:auto;right:20px;top:20px;transform:rotate(-8deg);width:110px;height:110px;font-size:28px}
+  @keyframes wob{50%{transform:rotate(6deg) scale(1.04)}}
+  footer .grid{grid-template-columns:1fr 1fr}
+  .mega .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .top .city span.lg,.top .open,.top .soc{display:none}
+  .top .wrap{justify-content:space-between}
+  .hd .wrap{height:64px;gap:8px}
+  .logo small{display:none}
+  .search{display:none}
+  .cat-btn{padding:0 14px;height:42px;margin-left:auto}
+  .cat-btn .t{display:none}
+  .hd-ic .ic.cmp-i{display:none}
+  nav.sub{display:none}
+  .hero{padding-top:16px}
+  .hero-l{padding-top:10px}
+  .lead{font-size:17px}
+  .cta-row .btn{flex:1;justify-content:center}
+  .trust{grid-template-columns:1fr 1fr}
+  .hero-r{min-height:480px;border-radius:24px}
+  .thermo .val{font-size:28px}
+  section{padding:68px 0}
+  .sh{flex-direction:column;align-items:flex-start}
+  .cats{grid-template-columns:1fr;grid-auto-rows:170px}
+  .cat.big,.cat.mid,.cat.sm,.cat.q3{grid-column:1/-1}.cat.big{grid-row:span 2}
+  .layers,.final{margin:0 8px;border-radius:28px;padding:70px 0}
+  .stack{height:360px}
+  .stack .pl{width:200px;height:200px;margin:-100px 0 0 -130px}
+  .pl em{font-size:11px;padding:5px 9px}
+  .speed{margin:8px;border-radius:28px}
+  .speed .wrap{grid-template-columns:1fr;gap:28px;padding:56px 0}
+  .watch{width:170px;height:170px}.watch .tm{font-size:34px}
+  .quiz,.cu-l,.score{padding:24px;border-radius:28px}
+  .res .acts{grid-template-columns:1fr}
+  .prods{grid-template-columns:1fr 1fr;gap:10px}
+  .pc{padding:8px}.pc h3{font-size:14px}.pc .pr b{font-size:17px}.pc .pr s{font-size:12px}.pc .meta{flex-wrap:wrap;gap:2px 8px;font-size:12px}.res .pr{flex-wrap:wrap}.res .pr b{font-size:26px}.promo .pp b{font-size:32px}.thermo{left:12px;right:12px;bottom:12px;padding:14px}.thermo .hint{display:none}.thermo .mdl{font-size:12px}.thermo .mdl b{font-size:14px}.pc .bt{grid-template-columns:1fr}.pc .bt .add{display:none}.pc .inst{display:none}
+  .promo .tx{padding:28px}
+  .cu-r{grid-template-columns:1fr}
+  .gs{grid-template-columns:1fr}
+  .score .big{font-size:80px}
+  footer .grid{grid-template-columns:1fr}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:8px;right:8px;bottom:8px;z-index:60;background:rgba(21,23,26,.92);backdrop-filter:blur(12px);border-radius:20px;padding:8px;transform:translateY(130%);transition:transform .45s var(--ease)}
+  .mbar.on{transform:none}
+  .mbar a,.mbar button{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:14px;font-weight:600;background:rgba(255,255,255,.08)}
+  .mbar .o{background:var(--or)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo"><b>Демо-концепт главной EX-PRO</b> · механика сайта сохранена, новая подача и усиленное УТП</div>
+
+<div class="top">
+  <div class="wrap">
+    <div class="city"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Барнаул</span><span class="lg">· доставка по России и СНГ</span></div>
+    <div class="open"><i></i>Ежедневно 8:00-21:00</div>
+    <div class="soc"><a href="#" title="ВКонтакте">VK</a><a href="#" title="Telegram">TG</a><a href="#" title="WhatsApp">WA</a><a href="#" title="MAX">MAX</a></div>
+    <a class="tel" href="tel:78006005229">+7 800 600-52-29<small>звонок по России бесплатный</small></a>
+  </div>
+</div>
+
+<header class="hd" id="hd">
+  <div class="wrap">
+    <a class="logo" href="#"><div class="mk"><span>EX</span>PRO</div><small>снаряжение<br>Барнаул</small></a>
+    <button class="cat-btn" id="catBtn"><i><b></b></i><span class="t">Каталог</span></button>
+    <div class="search" id="search">
+      <input id="q" type="text" placeholder="Палатка куб, печь, пол 5 см…" autocomplete="off">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <div class="sug" id="sug"></div>
+    </div>
+    <div class="hd-ic">
+      <button class="ic cmp-i" id="cmpBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span class="n" id="cmpN">0</span><span class="t">Сравнение</span></button>
+      <button class="ic" id="cartBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="n" id="cartN">0</span><span class="t" id="cartT">Корзина</span></button>
+    </div>
+    <button class="btn btn-or call" data-call="Шапка сайта" style="height:46px">Заказать звонок</button>
+  </div>
+  <nav class="sub"><div class="wrap">
+    <a class="hot" href="#promo">Акции</a><a href="#custom">Палатка на заказ</a><a href="#pick">Подбор палатки</a><a href="#reviews">Отзывы</a><a href="#">Галерея</a><a href="#">Статьи</a><a href="#guar">Оплата и доставка</a><a href="#">Партнёрам</a><a href="#">Туры по Алтаю и Монголии</a><a href="#">Контакты</a>
+  </div></nav>
+  <div class="mega" id="mega"><div class="wrap">
+    <a href="#"><img src="img/kub4.webp" alt=""><div><b>Зимние палатки</b><span>6 моделей · 29 000-115 300 ₽</span></div></a>
+    <a href="#"><img src="img/summer.webp" alt=""><div><b>Летние палатки</b><span>9 моделей · от 6 500 ₽</span></div></a>
+    <a href="#"><img src="img/banya.webp" alt=""><div><b>Мобильные бани</b><span>6 моделей · от 26 700 ₽</span></div></a>
+    <a href="#custom"><img src="img/panorama.webp" alt=""><div><b>Палатка на заказ</b><span>по вашему чертежу</span></div></a>
+    <a href="#"><img src="img/pech.webp" alt="" style="object-fit:contain;background:#fff"><div><b>Печи и отопители</b><span>Intent, «Пичуга», дизельные</span></div></a>
+    <a href="#"><img src="img/floor.webp" alt=""><div><b>Пол для палаток</b><span>1 см и 5 см, в ПВХ-чехле</span></div></a>
+    <a href="#"><img src="img/pegs.webp" alt="" style="object-fit:contain;background:#fff"><div><b>Сопутствующие</b><span>дуги, ввертыши, накидки</span></div></a>
+    <a href="#"><img src="img/cloak.webp" alt="" style="object-fit:contain;background:#fff"><div><b>Для путешествий</b><span>спальники, коврики, одежда</span></div></a>
+  </div></div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap grid">
+    <div class="hero-l">
+      <div class="badge-row">
+        <span class="chip"><span class="dot"></span>Собственное производство в Барнауле</span>
+        <span class="chip"><span class="stars">★★★★★</span>5,0 · 47 отзывов</span>
+      </div>
+      <h1 class="h-disp"><span class="ln"><span>Палатка,</span></span><span class="ln"><span>в которой тепло</span></span><span class="ln"><span>при <span class="t" id="hT">−40°</span></span></span></h1>
+      <p class="lead">Шьём зимние палатки сами и <b>сначала проверяем их на себе</b> - на рыбалке, охоте и в экспедициях. Ставится за 2 минуты, в наличии - <b>отгрузим завтра</b>.</p>
+      <div class="cta-row">
+        <a class="btn btn-or" href="#pick">Подобрать палатку за 30 секунд <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="btn btn-ghost" data-call="Первый экран">Перезвоните мне</button>
+      </div>
+      <div class="trust">
+        <div><b data-count="12">0</b><span>месяцев гарантии на каждую палатку</span></div>
+        <div><b>0%</b><span>рассрочка на 4 месяца со Сбером</span></div>
+        <div><b data-count="1">0</b><span>день до отгрузки товара в наличии</span></div>
+        <div><b>РФ+СНГ</b><span>доставка, по Барнаулу курьер бесплатно</span></div>
+      </div>
+    </div>
+    <div class="hero-r" id="heroR">
+      <img class="ph win" src="img/hero.webp" alt="Зимняя палатка Куб EX-PRO Зима 2 в горах" fetchpriority="high">
+      <img class="ph sum" src="img/summer.webp" alt="Летняя автоматическая палатка EX-PRO off-site">
+      <div class="frost" id="frost"></div>
+      <canvas id="snow"></canvas>
+      <span class="tag">Хит зимы · −15%</span>
+      <span class="tag2"><span class="stars">★</span> 5,0 · 6 отзывов</span>
+      <div class="thermo">
+        <div class="row">
+          <div><div class="lbl">Температура за бортом</div><div class="val" id="tVal">−40°</div></div>
+          <div class="mdl" id="tMdl"><b>Куб EX-PRO Зима 2</b>3 слоя · до 4 человек · 48 000 ₽</div>
+        </div>
+        <input type="range" id="tRange" min="-40" max="50" value="-40" step="1" aria-label="Температура за бортом">
+        <div class="sc"><span>−40°</span><span>0°</span><span>+50°</span></div>
+        <div class="hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h8M12 8l4 4-4 4"/></svg>Потяните - покажем палатку под вашу погоду. Диапазон EX-PRO: от +50° до −40°</div>
+      </div>
+    </div>
+  </div>
+  <div class="mq"><div class="tr" id="mqTr">
+    <span><i></i>Палатки EX-PRO уже стоят:</span><span><b>Норильск</b> · Куб Зима 4</span><span><b>Якутия</b> · Зима Юрта</span><span><b>Петропавловск-Камчатский</b> · Зима Юрта</span><span><b>Братск</b> · Зима Юрта</span><span><b>Благовещенск</b> · Куб Зима 4</span><span><b>Алматы</b> · Куб Зима 4</span><span><b>Новосибирск</b> · Куб Зима 4</span><span><b>Тюмень</b> · Куб Зима 4</span><span><b>Челябинск</b> · Куб Зима 4</span><span><b>Санкт-Петербург</b> · Зима Юрта</span><span><b>Тула</b> · Куб Зима 4</span><span><b>Стерлитамак</b> · Зима Юрта</span>
+  </div></div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="cats">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Каталог</div><h2 class="h2" style="margin-top:10px">Всё для зимы и лета<br>в одном месте</h2></div><p>Палатки, бани, печи и снаряжение, которое мы сами берём в поездки. Всё в наличии в Барнауле.</p></div>
+    <div class="cats">
+      <a class="cat big rv" href="#"><img src="img/kub4.webp" alt="Зимняя палатка Куб Зима 4"><div><h3>Зимние палатки</h3><div class="ct">6 моделей · от 29 000 ₽ · до 10 человек</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="cat mid rv" href="#"><img src="img/summer.webp" alt="Летняя палатка"><div><h3>Летние<br>палатки</h3><div class="ct">автомат off-site от 6 500 ₽</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="cat q3 or rv" href="#"><img src="img/banya.webp" alt="Мобильная баня" style="border-radius:14px"><div><h3>Бани</h3><div class="ct">от 26 700 ₽</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="cat q3 dk rv" href="#custom"><img src="img/grand-in.webp" alt="Палатка на заказ" style="border-radius:14px;object-fit:cover;height:70%"><div><h3>На заказ</h3><div class="ct">по вашему чертежу</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    
+      <a class="cat sm dk rv" href="#"><img src="img/pech.webp" alt="Печь для палатки"><div><h3>Печи</h3><div class="ct">от 22 900 ₽</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="cat sm rv" href="#"><img src="img/pegs.webp" alt="Ввертыши"><div><h3>Дуги,<br>ввертыши</h3><div class="ct">от 420 ₽</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="cat sm rv" href="#"><img src="img/cloak.webp" alt="Дождевик"><div><h3>Для<br>путешествий</h3><div class="ct">спальники, коврики</div></div><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- LAYERS -->
+<div class="layers" id="layers">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">Почему внутри тепло</div>
+      <h2 class="h2" style="margin-top:12px">Три слоя между вами<br>и метелью</h2>
+      <p class="l">Шьём на своём производстве по авторским разработкам. Каждая стенка - многослойный «пирог», а каркас держит ветер на открытом льду.</p>
+      <div class="lst" id="lst">
+        <div data-i="0"><i style="background:#f0761b">1</i><div><b>Oxford 300D</b><span>верх, водонепроницаемость от 2000 мм</span></div></div>
+        <div data-i="1"><i style="background:#eef1f3;color:#15171a">2</i><div><b>Синтепон 150 г/м²</b><span>утеплитель - держит тепло от печи</span></div></div>
+        <div data-i="2"><i style="background:#3a3f45">3</i><div><b>Таффета 190T</b><span>внутренний слой с пропиткой</span></div></div>
+        <div data-i="3"><i style="border:2px dashed #888">⌀</i><div><b>Каркас из стекловолокна 9,5 мм</b><span>+ широкая юбка снаружи и внутри от ветра</span></div></div>
+      </div>
+    </div>
+    <div class="stack" id="stack">
+      <div class="pl p4" style="z-index:1"><em>каркас ⌀9,5 мм</em></div>
+      <div class="pl p3" style="z-index:2"><em>таффета 190T</em></div>
+      <div class="pl p2" style="z-index:3"><em>синтепон 150 г/м²</em></div>
+      <div class="pl p1" style="z-index:4"><em>Oxford 300D</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- SPEED -->
+<div class="speed" id="speed">
+  <img src="img/yurta.webp" alt="Палатка EX-PRO Зима Юрта" loading="lazy" style="object-position:50% 70%">
+  <div class="wrap">
+    <div class="watch"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="6"/><circle id="wArc" cx="60" cy="60" r="54" fill="none" stroke="#f0761b" stroke-width="6" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"/></svg><div class="tm"><div><span id="wT">0:00</span><small>и палатка стоит</small></div></div></div>
+    <div>
+      <div class="eyebrow" style="color:var(--or2)">Установка</div>
+      <h2 class="h-disp" style="margin-top:10px">2 минуты<br>на установку</h2>
+      <p>Конструкция собирается в самое короткое время и в любую погоду: раскрыли, закрепили ввертышами - и можно ставить печь. Всё нужное уже в комплекте.</p>
+      <ul><li>Ввертыши в комплекте</li><li>Съёмный клапан под дымоход</li><li>Приточная вентиляция</li><li>ПВХ-чехол для перевозки</li><li>Светоотражатели с каждой стороны</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<section id="pick">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Подбор за 30 секунд</div><h2 class="h2" style="margin-top:10px">Ответьте на 3 вопроса -<br>покажем вашу палатку</h2></div><p>Не нужно разбираться в размерах и слоях. Если сомневаетесь - позвоним и подскажем, это бесплатно.</p></div>
+    <div class="quiz rv">
+      <div>
+        <div class="qstep"><h4><i>1</i>Когда поедете?</h4><div class="opts" data-q="s"><button class="opt on" data-v="w">Зимой</button><button class="opt" data-v="s">Летом</button><button class="opt" data-v="b">Нужна баня</button></div></div>
+        <div class="qstep"><h4><i>2</i>Сколько вас будет?</h4><div class="opts" data-q="p"><button class="opt" data-v="2">1-2</button><button class="opt" data-v="3">3</button><button class="opt on" data-v="4">до 4</button><button class="opt" data-v="5">до 5</button><button class="opt" data-v="8">до 8</button><button class="opt" data-v="10">до 10</button></div></div>
+        <div class="qstep"><h4><i>3</i>Для чего?</h4><div class="opts" data-q="g"><button class="opt on" data-v="fish">Рыбалка</button><button class="opt" data-v="hunt">Охота</button><button class="opt" data-v="rest">Отдых с семьёй</button><button class="opt" data-v="team">Большая компания</button></div></div>
+        <div class="qtrust"><div><b>12 мес</b>гарантия</div><div><b>0%</b>рассрочка на 4 мес</div><div><b>1 день</b>до отгрузки</div></div>
+        <p style="font-size:14px;color:var(--mute);margin-top:6px">Под любую задачу можем сшить палатку по вашим размерам - <a href="#custom" style="color:var(--or);font-weight:600">посмотреть, как это работает</a></p>
+      </div>
+      <div class="res" id="res">
+        <div class="im"><img id="rImg" src="img/kub4.webp" alt=""><span class="disc" id="rDisc">−15%</span><span class="stock"><i></i>в наличии · отгрузка завтра</span></div>
+        <h3 id="rName">Палатка Куб EX-PRO Зима 2</h3>
+        <p class="why" id="rWhy">Для рыбалки вчетвером: 4 входа не нужны, а места хватит и на печь, и на лунки.</p>
+        <div class="specs" id="rSpecs"></div>
+        <div class="pr"><b id="rPr">48 000 ₽</b><s id="rOld">56 400 ₽</s><em id="rMon">или 12 000 ₽/мес</em></div>
+        <label class="upsell"><input type="checkbox" id="rFloor"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></span><span>Добавить толстый пол 5 см <b>со скидкой 40%</b></span></label>
+        <div class="acts"><button class="btn btn-or" id="rBuy">Купить</button><button class="btn btn-ghost" id="rCall">Обсудить по телефону</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Хиты сезона</div><h2 class="h2" style="margin-top:10px">Берут чаще всего</h2></div><p>За каждый отзыв о покупке вернём <b style="color:var(--or)">10% кешбэком</b>.</p></div>
+    <div class="prods" id="prods"></div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<section id="promo" style="padding-top:0">
+  <div class="wrap">
+    <div class="promo rv">
+      <div class="tx">
+        <div class="eyebrow">Акция</div>
+        <h2 class="h2" style="margin-top:10px">Купите палатку&nbsp;-<br>толстый пол <b>за −40%</b></h2>
+        <p>Толстый пол 5 см отделяет вас от льда и снега - внутри теплее и уютнее. При покупке любой палатки - со скидкой 40%.</p>
+        <div class="pp"><b>от 6 900 ₽</b><s>11 500 ₽</s></div>
+        <a class="btn btn-dark" href="#pick">Выбрать палатку</a>
+      </div>
+      <div class="im"><span class="pct">−40%</span><img src="img/inside.webp" alt="Внутри палатки EX-PRO" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM -->
+<section id="custom" style="padding-top:0">
+  <div class="wrap custom">
+    <div class="cu-l rv">
+      <div class="eyebrow">Палатка на заказ</div>
+      <h2 class="h2" style="margin-top:12px">Сошьём под вашу задачу</h2>
+      <p>Своё производство позволяет то, чего нет в магазинах: любой размер, окна, переходы между секциями, цвет и комплектация.</p>
+      <div class="feat"><span><i>✓</i>По вашему чертежу или нашему</span><span><i>✓</i>Только нужная комплектация - не переплачиваете</span><span><i>✓</i>Индивидуальный размер - хоть жилой модуль на 20 человек</span></div>
+      <div class="steps" id="steps">
+        <div class="bar"><i id="stBar"></i></div>
+        <div class="q" id="stQ">Шаг 1 из 3 · Когда будете использовать?</div>
+        <div class="opts" id="stO"></div>
+      </div>
+    </div>
+    <div class="cu-r">
+      <div class="ex ph rv"><img src="img/panorama.webp" alt="Палатка Панорама" loading="lazy"><div><span class="tg" style="color:#ffb072">Зима · 5 человек</span><h4>Панорама 180°</h4></div></div>
+      <div class="ex rv"><span class="tg">Зима</span><h4>Жилой модуль из трёх палаток</h4><p>Раздельные спальни и общая кухня - проход между секциями без выхода на мороз.</p><div class="nm"><div><b>29,8</b><span>м²</span></div><div><b>20</b><span>человек</span></div></div></div>
+      <div class="ex rv"><span class="tg">Лето</span><h4>Кают-компания</h4><p>Общая палатка для еды, занятий и вечеров у стола для туристических групп.</p><div class="nm"><div><b>25,2</b><span>м²</span></div><div><b>20</b><span>человек</span></div></div></div>
+      <div class="ex ph rv" style="background:#2a2e33"><img src="img/skradok.webp" alt="Палатка-скрадок" loading="lazy" style="object-fit:contain;padding:20px 40px 70px"><div><span class="tg" style="color:#ffb072">Охота · 2-3 человека</span><h4>Скрадок с большими окнами</h4></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Отзывы</div><h2 class="h2" style="margin-top:10px">От Тулы до Камчатки</h2></div><p>Отзывы и видеообзоры от людей, которые ставят наши палатки на Севере, в Сибири и на Дальнем Востоке.</p></div>
+    <div class="revs">
+      <div class="score rv">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+          <div><div class="big">5,0<small>/5</small></div><div class="stars" style="font-size:22px;margin-top:8px">★★★★★</div><div style="color:var(--mute);font-size:14px;margin-top:4px">47 отзывов на зимние палатки</div></div>
+          <div class="bars" id="bars" style="flex:1;min-width:220px;margin:0">
+            <div><span>Куб Зима 4</span><i><b data-w="100"></b></i><span>21</span></div>
+            <div><span>Зима Юрта</span><i><b data-w="81"></b></i><span>17</span></div>
+            <div><span>Куб Зима 2</span><i><b data-w="29"></b></i><span>6</span></div>
+            <div><span>Куб Зима 1</span><i><b data-w="10"></b></i><span>2</span></div>
+            <div><span>Зима Иглу</span><i><b data-w="5"></b></i><span>1</span></div>
+          </div>
+        </div>
+        <div class="map">
+          <svg viewBox="0 0 600 250" id="mapSvg" preserveAspectRatio="xMidYMid meet">
+            <defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#e2ddd4"/></pattern></defs><rect width="600" height="250" fill="url(#dots)" rx="16"/>
+          </svg>
+        </div>
+      </div>
+      <div class="rlist">
+        <a class="rc rv" href="#"><span class="av">А</span><div><b>Александр, Якутия</b><span>Видеоотзыв · Куб EX-PRO Winter 2</span></div><span class="play">▶</span></a>
+        <a class="rc rv" href="#"><span class="av">А</span><div><b>Андрей, Петропавловск-Камчатский</b><span>Видеоотзыв · зимняя палатка</span></div><span class="play">▶</span></a>
+        <a class="rc rv" href="#"><span class="av">К</span><div><b>Константин, Новосибирск</b><span>Обзор · EX-PRO Winter Юрта</span></div><span class="play">▶</span></a>
+        <a class="rc rv" href="#"><span class="av">Ю</span><div><b>Юрий, Камень-на-Оби</b><span>Видеоотзыв · Куб EX-PRO Winter 4</span></div><span class="play">▶</span></a>
+        <a class="rc rv" href="#"><span class="av">W2</span><div><b>Winter 2 как баня на льду</b><span>Видео от владельца палатки</span></div><span class="play">▶</span></a>
+        <div class="cash rv"><b>10%</b>Купили у нас? Оставьте отзыв - вернём 10% кешбэком.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section id="guar" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Без риска</div><h2 class="h2" style="margin-top:10px">Покупать у нас спокойно</h2></div></div>
+    <div class="gs">
+      <div class="g rv"><div class="n">12 мес</div><h4>Гарантия на палатки</h4><p>Уверены в каждом шве и молнии. Ремкомплект уже в комплекте.</p></div>
+      <div class="g sber rv"><div class="n">0%</div><h4>Рассрочка на 4 месяца</h4><p>Со Сбербанком, без комиссий и переплат. Куб Зима 2 - 12 000 ₽ в месяц.</p></div>
+      <div class="g rv"><div class="n">1 день</div><h4>Отгрузка товара в наличии</h4><p>Отправим Почтой России, ПЭК, Деловыми линиями, «Энергией» и GTD.</p></div>
+      <div class="g rv"><div class="n">0 ₽</div><h4>Курьер по Барнаулу</h4><p>Привезём в удобное время. Или заберите сами на пр. Калинина, 116/10.</p></div>
+      <div class="g rv"><div class="n">РФ+СНГ</div><h4>Доставка до двери</h4><p>По всей России, в Казахстан и Беларусь. Точную цену назовёт менеджер.</p></div>
+      <div class="g rv"><div class="n">14 дней</div><h4>На возврат</h4><p>Не подошла палатка - вернём деньги по закону о защите прав потребителей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section style="padding-top:0">
+  <div class="wrap team">
+    <div class="ph rv"><img src="img/panorama.webp" alt="Команда EX-PRO тестирует палатку" loading="lazy"></div>
+    <div class="rv">
+      <div class="eyebrow">О нас</div>
+      <blockquote>«Не бывает плохой погоды - бывает <b>плохое снаряжение</b>»</blockquote>
+      <p>EX-PRO - это охотники, рыболовы и путешественники. Прежде чем продать палатку, мы живём в ней сами: в метель, на льду, в сорокаградусный мороз.</p>
+      <p>Возим туристов по Алтаю и Монголии - и они тоже живут в палатках EX-PRO.</p>
+      <div class="who"><div><b>Александр</b>основатель, охотник</div><div><b>Михаил</b>основатель, отвечает за уют</div><div><b>Свой цех</b>в Барнауле</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<div class="final" id="final">
+  <div class="rings"></div>
+  <div class="wrap grid">
+    <div>
+      <h2 class="h-disp">Не знаете, какую выбрать?<br>Спросите у тех, кто в них живёт</h2>
+      <p>Перезвоним в рабочее время, спросим, где и как будете отдыхать, - и подберём палатку, печь и пол без лишнего.</p>
+    </div>
+    <form class="form" id="fForm" novalidate>
+      <div class="fm">
+        <h4>Бесплатная консультация</h4>
+        <div class="s">Ежедневно с 8:00 до 21:00 по Барнаулу</div>
+        <div class="fld"><input id="fN" placeholder=" " required><label for="fN">Ваше имя</label></div>
+        <div class="fld"><input id="fP" type="tel" placeholder=" " required><label for="fP">Телефон</label></div>
+        <button class="btn btn-or" type="submit">Жду звонка</button>
+        <div class="ms"><a href="#">Telegram</a><a href="#">WhatsApp</a><a href="#">MAX</a></div>
+        <div class="pol">Нажимая кнопку, вы принимаете правила сайта и политику конфиденциальности</div>
+      </div>
+      <div class="ok-msg"><div class="ck"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Скоро перезвоним</div></div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div><a class="logo" href="#"><div class="mk"><span>EX</span>PRO</div><small>снаряжение</small></a><div class="tel">+7 800 600-52-29</div><div style="color:var(--mute)">по России звонок бесплатный</div><p style="margin-top:12px">г. Барнаул, пр. Калинина 116/10, офис 119/1<br>Ежедневно с 8:00 до 21:00</p></div>
+      <div><h5>Каталог</h5><a href="#">Зимние палатки</a><a href="#">Летние палатки</a><a href="#">Мобильные бани</a><a href="#">Пол для палаток</a><a href="#">Сопутствующие товары</a><a href="#">Товары для путешествий</a></div>
+      <div><h5>Покупателям</h5><a href="#">Гарантия</a><a href="#">Способы оплаты</a><a href="#">Доставка</a><a href="#">Видео-обзоры</a><a href="#">Отзывы</a><a href="#">Галерея</a></div>
+      <div><h5>Компания</h5><a href="#">О компании</a><a href="#">Статьи</a><a href="#">Партнёрам</a><a href="#">Туры по Алтаю и Монголии</a><a href="#">Тюнинг внедорожников</a><a href="#">Контакты</a></div>
+    </div>
+    <div class="bot"><span>© EX-PRO · демо-концепт главной страницы</span><span>Фото и цены - с сайта ex-equip.ru</span></div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar"><a href="tel:78006005229">Позвонить</a><button id="mCart">Корзина <span id="mCartN"></span></button><a class="o" href="#pick">Подобрать</a></div>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="Корзина">
+  <div class="dh"><b>Корзина</b><button class="x" data-close>✕</button></div>
+  <div class="items" id="items"></div>
+  <div class="df"><div class="sum"><span>Итого</span><b id="sum">0 ₽</b></div><div class="ins" id="ins"></div><button class="btn btn-or" data-call="Корзина">Оформить заказ</button></div>
+</aside>
+<div class="modal" id="modal">
+  <form class="form" id="mForm" novalidate>
+    <button type="button" class="x" data-close>✕</button>
+    <div class="fm">
+      <h4 id="mTitle">Перезвоним и подскажем</h4>
+      <div class="s" id="mSub">Подскажем модель, комплектацию и доставку</div>
+      <div class="fld"><input id="mN" placeholder=" "><label for="mN">Ваше имя</label></div>
+      <div class="fld"><input id="mP" type="tel" placeholder=" "><label for="mP">Телефон</label></div>
+      <button class="btn btn-or" type="submit">Жду звонка</button>
+      <div class="pol">Это демо: заявка никуда не отправляется</div>
+    </div>
+    <div class="ok-msg"><div class="ck"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div><h4>Заявка принята</h4><div class="s">Менеджер скоро перезвонит</div></div>
+  </form>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rub=n=>n.toLocaleString('ru-RU').replace(/ /g,' ')+' ₽';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- catalog data (real prices from ex-equip.ru) ---------- */
+const P={
+  k1:{n:'Палатка Куб EX-PRO Зима 1',p:29000,o:34800,img:'img/kub1.webp',r:2,cap:2,s:['до 2 человек','1,8×1,8×2,0 м','3,24 м²']},
+  ig:{n:'Палатка EX-PRO Зима Иглу',p:39000,o:48100,img:'img/iglu.webp',r:1,cap:3,s:['до 3 человек','1,8×2,7×2,1 м','5,57 м²']},
+  k2:{n:'Палатка Куб EX-PRO Зима 2',p:48000,o:56400,img:'img/hero.webp',r:6,cap:4,s:['до 4 человек','3,6×1,8×2,0 м','6,48 м²']},
+  yu:{n:'Палатка EX-PRO Зима Юрта',p:55000,o:63800,img:'img/yurta.webp',r:17,cap:5,s:['до 5 человек','3 входа','установка до 2 мин']},
+  k4:{n:'Палатка Куб EX-PRO Зима 4',p:78000,o:93400,img:'img/kub4.webp',r:21,cap:8,s:['до 8 человек','12,96 м²','4 входа · 8 окон']},
+  gy:{n:'Палатка EX-PRO Зима Гранд Юрта',p:115300,o:126900,img:'img/grand-in.webp',r:0,cap:10,s:['до 10 человек','15,6 м²','высота 2,4 м']},
+  os:{n:'Палатка автоматическая EX-PRO off-site',p:6500,o:9000,img:'img/summer.webp',r:2,cap:3,s:['раскладывается сама','3 цвета','летняя']},
+  s1:{n:'Летняя палатка EX-PRO 1',p:26700,o:29400,img:'img/iglu-w.webp',r:2,cap:2,s:['лето','каркас-автомат','можно как баню']},
+  si:{n:'Летняя палатка EX-PRO Иглу',p:33900,o:37300,img:'img/iglu-w.webp',r:2,cap:3,s:['лето','каркас-автомат']},
+  s2:{n:'Летняя палатка EX-PRO 2',p:39600,o:43600,img:'img/iglu-w.webp',r:1,cap:4,s:['лето','каркас-автомат']},
+  sy:{n:'Летняя палатка EX-PRO Юрта',p:46800,o:51500,img:'img/yurta-w.webp',r:0,cap:5,s:['лето','3 входа']},
+  s4:{n:'Летняя палатка EX-PRO 4',p:66700,o:73400,img:'img/iglu-w.webp',r:0,cap:8,s:['лето','большая компания']},
+  b1:{n:'Мобильная баня (Куб EX-PRO Зима 1)',p:29000,o:34800,img:'img/banya.webp',r:0,cap:2,s:['разделка под трубу','на 1-2 человек']},
+  bi:{n:'Мобильная баня (EX-PRO Зима Иглу)',p:39000,o:48100,img:'img/banya.webp',r:0,cap:3,s:['разделка под трубу','до 3 человек']},
+  b2:{n:'Мобильная баня (Куб EX-PRO Зима 2)',p:48000,o:56400,img:'img/banya.webp',r:0,cap:4,s:['разделка под трубу','до 4 человек']},
+  pech:{n:'Печь Intent',p:22900,o:0,img:'img/pech.webp',r:0},
+  kov:{n:'Самонадувающийся коврик EX-PRO Комфорт',p:12000,o:12500,img:'img/kovrik.webp',r:0},
+  floor:{n:'Толстый пол 5 см (скидка 40% с палаткой)',p:6900,o:11500,img:'img/floor.webp',r:0}
+};
+
+/* ---------- header ---------- */
+const hd=$('#hd');addEventListener('scroll',()=>{hd.classList.toggle('sc',scrollY>60);$('#mbar').classList.toggle('on',scrollY>700)},{passive:true});
+$('#catBtn').onclick=()=>{$('#catBtn').classList.toggle('on');$('#mega').classList.toggle('on')};
+document.addEventListener('click',e=>{if(!e.target.closest('#mega,#catBtn')){$('#catBtn').classList.remove('on');$('#mega').classList.remove('on')}});
+const q=$('#q'),sug=$('#sug');
+q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();if(v.length<2){$('#search').classList.remove('op');return}
+  const r=Object.values(P).filter(x=>x.n.toLowerCase().includes(v)).slice(0,5);
+  sug.innerHTML=r.length?r.map(x=>`<a href="#"><span>${x.n}</span><b>${rub(x.p)}</b></a>`).join(''):'<a href="#"><span>Ничего не нашли - позвоните, подскажем</span></a>';
+  $('#search').classList.add('op')});
+q.addEventListener('blur',()=>setTimeout(()=>$('#search').classList.remove('op'),150));
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+
+/* count-up */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,to=+el.dataset.count,t0=performance.now();
+  (function f(t){const k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0);cio.unobserve(el)}),{threshold:.6});
+$$('[data-count]').forEach(e=>cio.observe(e));
+
+/* marquee duplicate */
+$('#mqTr').innerHTML+=$('#mqTr').innerHTML;
+
+/* ---------- HERO: thermometer + snow ---------- */
+const heroR=$('#heroR'),cv=$('#snow'),cx=cv.getContext('2d');let flakes=[],temp=-40,W=0,H=0;
+function rs(){const d=Math.min(2,devicePixelRatio||1);W=heroR.clientWidth;H=heroR.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+rs();addEventListener('resize',rs);
+for(let i=0;i<260;i++)flakes.push({x:Math.random(),y:Math.random(),r:Math.random()*2.2+.6,s:Math.random()*.6+.25,w:Math.random()*Math.PI*2});
+function snow(){cx.clearRect(0,0,W,H);
+  const k=temp<=0?Math.min(1,(-temp+4)/44):0, n=Math.floor(flakes.length*k), wind=k*1.6;
+  cx.fillStyle='rgba(255,255,255,.9)';
+  for(let i=0;i<n;i++){const f=flakes[i];f.y+=f.s*(.0016+k*.0028);f.w+=.02;f.x+=(Math.sin(f.w)*.0006)+wind*.0009;
+    if(f.y>1.02){f.y=-.02;f.x=Math.random()}if(f.x>1.02)f.x=-.02;
+    cx.beginPath();cx.arc(f.x*W,f.y*H,f.r*(.7+k*.5),0,7);cx.fill()}
+  if(!RM)requestAnimationFrame(snow)}
+snow();
+const tR=$('#tRange'),tV=$('#tVal'),hT=$('#hT'),tM=$('#tMdl'),fr=$('#frost');
+const fmt=t=>(t>0?'+':t<0?'−':'')+Math.abs(t)+'°';
+function setT(t){temp=t;tV.textContent=fmt(t);hT.textContent=fmt(t);
+  heroR.classList.toggle('summer',t>5);
+  fr.style.opacity=t<0?Math.min(.85,(-t)/45):0;
+  let m;
+  if(t>5)m=['Автоматическая палатка off-site','раскладывается сама · '+rub(6500)];
+  else if(t>-15)m=['Летняя палатка EX-PRO Иглу','для межсезонья · '+rub(33900)];
+  else m=['Куб EX-PRO Зима 2','3 слоя · до 4 человек · '+rub(48000)];
+  tM.innerHTML='<b>'+m[0]+'</b>'+m[1];
+  if(RM)snow();}
+tR.addEventListener('input',()=>setT(+tR.value));
+/* intro: sweep from +18 to -40 */
+if(!RM){let a=18;tR.value=a;setT(a);setTimeout(()=>{const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/2200),e=1-Math.pow(1-k,3),v=Math.round(18-58*e);tR.value=v;setT(v);if(k<1)requestAnimationFrame(f)})(t0)},700)}else setT(-40);
+/* parallax */
+addEventListener('scroll',()=>{const y=scrollY;if(y<900)$$('.hero-r .ph').forEach(i=>i.style.transform=`scale(1.06) translateY(${y*.06}px)`)},{passive:true});
+
+/* ---------- layers exploded on scroll ---------- */
+const pls=$$('#stack .pl'),lst=$$('#lst div');
+function layers(){const r=$('#stack').getBoundingClientRect(),vh=innerHeight;
+  let k=1-(r.top+r.height/2-vh*.35)/(vh*.8);k=Math.max(0,Math.min(1,k));
+  const mob=innerWidth<720,g=mob?46:80;
+  pls.forEach((p,i)=>{const j=pls.length-1-i;const z=(j-1.5)*g*k;
+    p.style.transform=`rotateX(58deg) rotateZ(-38deg) translateZ(${z}px)`});
+  const act=Math.min(3,Math.floor(k*4.2));lst.forEach((d,i)=>d.classList.toggle('on',i===act&&k>.05));}
+addEventListener('scroll',layers,{passive:true});layers();
+lst.forEach(d=>d.addEventListener('mouseenter',()=>{const i=+d.dataset.i;pls.forEach(p=>p.style.filter='');pls[3-i].style.filter='brightness(1.25) drop-shadow(0 0 18px rgba(240,118,27,.8))'}));
+$('#lst').addEventListener('mouseleave',()=>pls.forEach(p=>p.style.filter=''));
+
+/* ---------- stopwatch ---------- */
+let ran=false;const wio=new IntersectionObserver(es=>{if(es[0].isIntersecting&&!ran){ran=true;const t0=performance.now(),D=RM?1:2600;
+  (function f(t){const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,2),s=Math.round(120*e);
+    $('#wT').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');$('#wArc').style.strokeDashoffset=339.3*(1-e);if(k<1)requestAnimationFrame(f)})(t0)}},{threshold:.5});
+wio.observe($('#speed'));
+
+/* ---------- cart ---------- */
+let cart=[],cmp=new Set();
+function renderCart(){const n=cart.length,s=cart.reduce((a,b)=>a+P[b].p,0);
+  ['#cartN'].forEach(id=>{$(id).textContent=n;$(id).classList.toggle('on',n>0)});
+  $('#mCartN').textContent=n?'· '+n:'';
+  $('#cartT').textContent=n?rub(s):'Корзина';
+  $('#items').innerHTML=n?cart.map((k,i)=>`<div class="it"><img src="${P[k].img}" alt=""><div><b>${P[k].n}</b><span>${rub(P[k].p)}</span></div><button data-rm="${i}" aria-label="Удалить">×</button></div>`).join(''):'<div class="empty">Пока пусто.<br>Подберите палатку за 30 секунд.</div>';
+  $('#sum').textContent=rub(s);$('#ins').textContent=s?'Рассрочка 0%: '+rub(Math.ceil(s/4/100)*100)+' × 4 месяца':'';}
+$('#items').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(b){cart.splice(+b.dataset.rm,1);renderCart()}});
+function fly(img,cb){if(RM||!img){cb();return}const a=img.getBoundingClientRect(),t=$('#cartBtn').getBoundingClientRect(),f=document.createElement('img');f.src=img.src;f.className='fly';document.body.appendChild(f);
+  const x0=a.left+a.width/2-30,y0=a.top+a.height/2-30,x1=t.left+t.width/2-30,y1=t.top+t.height/2-30;
+  f.animate([{transform:`translate(${x0}px,${y0}px) scale(1.4)`,opacity:1},{transform:`translate(${(x0+x1)/2}px,${Math.min(y0,y1)-120}px) scale(.9)`,opacity:1,offset:.55},{transform:`translate(${x1}px,${y1}px) scale(.25)`,opacity:.3}],{duration:850,easing:'cubic-bezier(.5,0,.3,1)'}).onfinish=()=>{f.remove();cb()}}
+function add(k,img,open){fly(img,()=>{cart.push(k);renderCart();const b=$('#cartBtn');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');toast('Добавили: '+P[k].n);if(open)openDrawer()})}
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),2400)}
+const ov=$('#ov');
+function openDrawer(){$('#drawer').classList.add('on');ov.classList.add('on')}
+function closeAll(){$('#drawer').classList.remove('on');$('#modal').classList.remove('on');ov.classList.remove('on')}
+$('#cartBtn').onclick=openDrawer;$('#mCart').onclick=openDrawer;ov.onclick=closeAll;$$('[data-close]').forEach(b=>b.onclick=closeAll);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+function openCall(src,title,sub){closeAll();$('#mForm').classList.remove('done');$('#mTitle').textContent=title||'Перезвоним и подскажем';$('#mSub').textContent=sub||'Подскажем модель, комплектацию и доставку';$('#modal').classList.add('on');ov.classList.add('on');setTimeout(()=>$('#mN').focus(),300)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-call]');if(b){e.preventDefault();openCall(b.dataset.call)}});
+function sub(f,n,p){f.addEventListener('submit',e=>{e.preventDefault();const ph=$(p);if(ph.value.replace(/\D/g,'').length<10){ph.focus();ph.parentElement.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:300});return}f.classList.add('done')})}
+sub($('#mForm'),'#mN','#mP');sub($('#fForm'),'#fN','#fP');
+$$('input[type=tel]').forEach(i=>i.addEventListener('input',()=>{let d=i.value.replace(/\D/g,'');if(d[0]==='8')d='7'+d.slice(1);if(d&&d[0]!=='7')d='7'+d;d=d.slice(0,11);let s='+7';if(d.length>1)s+=' ('+d.slice(1,4);if(d.length>=4)s+=') '+d.slice(4,7);if(d.length>=7)s+='-'+d.slice(7,9);if(d.length>=9)s+='-'+d.slice(9,11);i.value=d?s:''}));
+
+/* ---------- products ---------- */
+const hits=['k4','yu','k2','os','k1','ig','pech','kov'];
+$('#prods').innerHTML=hits.map(k=>{const x=P[k],d=x.o?Math.round((1-x.p/x.o)*100):0;return `<article class="pc rv"><div class="im"><img src="${x.img}" alt="${x.n}" loading="lazy" ${k==='pech'?'style="object-fit:contain;padding:18px"':''}><div class="lb">${d?`<span class="o">−${d}%</span>`:''}${x.r>=10?'<span>Хит продаж</span>':''}${k==='kov'?'<span>Новинка</span>':''}</div><button class="cmp" data-cmp="${k}" aria-label="Сравнить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></button></div>
+<div class="meta"><span class="ok">● в наличии</span>${x.r?`<span><span class="stars">★</span> 5,0 · ${x.r}</span>`:''}</div><h3>${x.n}</h3><div class="pr"><b>${rub(x.p)}</b>${x.o?`<s>${rub(x.o)}</s>`:''}</div><div class="inst">${x.p>=10000?'от '+rub(Math.ceil(x.p/4/100)*100)+'/мес · рассрочка 0%':'&nbsp;'}</div>
+<div class="bt"><button class="btn btn-or" data-buy="${k}">Купить</button><button class="btn btn-ghost add" data-add="${k}" aria-label="В корзину"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></article>`}).join('');
+$$('#prods .rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+$('#prods').addEventListener('click',e=>{const b=e.target.closest('[data-buy],[data-add],[data-cmp]');if(!b)return;const card=b.closest('.pc'),img=card.querySelector('img');
+  if(b.dataset.cmp){const k=b.dataset.cmp;cmp.has(k)?cmp.delete(k):cmp.add(k);b.classList.toggle('on');$('#cmpN').textContent=cmp.size;$('#cmpN').classList.toggle('on',cmp.size>0);toast(cmp.has(k)?'Добавили к сравнению':'Убрали из сравнения');return}
+  add(b.dataset.buy||b.dataset.add,img,!!b.dataset.buy)});
+
+/* ---------- quiz ---------- */
+const st={s:'w',p:'4',g:'fish'};
+const why={fish:'для рыбалки',hunt:'для охоты',rest:'для отдыха с семьёй',team:'для большой компании'};
+function pick(){const p=+st.p;let k;
+  if(st.s==='b')k=p<=2?'b1':p<=3?'bi':'b2';
+  else if(st.s==='s')k=p<=2?'s1':p<=3?'si':p<=4?'s2':p<=5?'sy':'s4';
+  else k=p<=2?'k1':p<=3?'ig':p<=4?'k2':p<=5?'yu':p<=8?'k4':'gy';
+  if(st.s==='s'&&st.g==='rest'&&p<=3)k='os';
+  return k}
+let curK='k2';
+function showRes(){const k=pick();curK=k;const x=P[k],d=x.o?Math.round((1-x.p/x.o)*100):0;
+  const img=$('#rImg');img.classList.add('sw');setTimeout(()=>{img.src=x.img;img.onload=()=>img.classList.remove('sw');if(img.complete)img.classList.remove('sw')},200);
+  $('#rName').textContent=x.n;$('#rDisc').textContent='−'+d+'%';$('#rDisc').style.display=d?'':'none';
+  let w=(st.s==='b'?'Баня на льду или на берегу: ':'Лучший выбор '+why[st.g]+': ')+(x.cap>=+st.p?'места хватит всем, ':'')+(st.s==='w'?'тёплая трёхслойная стенка и разделка под печь.':st.s==='b'?'печь ставится внутрь, клапан под трубу уже есть.':'ставится за пару минут, лёгкая в перевозке.');
+  $('#rWhy').textContent=w;
+  $('#rSpecs').innerHTML=x.s.map(s=>`<span>${s}</span>`).join('')+(x.r?`<span><span class="stars">★</span> 5,0 · ${x.r} отзывов</span>`:'');
+  animNum($('#rPr'),x.p);$('#rOld').textContent=x.o?rub(x.o):'';$('#rMon').textContent='или '+rub(Math.ceil(x.p/4/100)*100)+'/мес';
+  $('.upsell').style.display=st.s==='s'?'none':'';}
+function animNum(el,to){const from=+(el.dataset.v||to);el.dataset.v=to;if(RM||from===to){el.textContent=rub(to);return}const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/600),e=1-Math.pow(1-k,3);el.textContent=rub(Math.round((from+(to-from)*e)/100)*100);if(k<1)requestAnimationFrame(f)})(t0)}
+$$('.quiz .opts').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;g.querySelectorAll('.opt').forEach(o=>o.classList.remove('on'));b.classList.add('on');st[g.dataset.q]=b.dataset.v;showRes()}));
+$('#rPr').dataset.v=48000;showRes();
+$('#rBuy').onclick=()=>{add(curK,$('#rImg'),true);if($('#rFloor').checked&&$('.upsell').style.display!=='none')setTimeout(()=>{cart.push('floor');renderCart()},900)};
+$('#rCall').onclick=()=>openCall('Подбор',P[curK].n,'Расскажем про комплектацию, печь и доставку именно этой модели');
+
+/* ---------- custom tent steps ---------- */
+const S=[{q:'Когда будете использовать?',o:['Зима','Лето','Круглый год']},{q:'Сколько человек?',o:['до 5','6-10','11-20','больше 20']},{q:'Что важно?',o:['Панорамные окна','Раздельные спальни','Баня внутри','Для охоты']}];let si=0;const ans=[];
+function stDraw(){if(si>=S.length){$('#stBar').style.width='100%';$('#stQ').textContent='Готово: '+ans.join(' · ');$('#stO').innerHTML='<button class="btn btn-or" data-call="Палатка на заказ" style="height:48px">Получить расчёт</button>';return}
+  $('#stBar').style.width=((si+1)/(S.length+1)*100)+'%';$('#stQ').textContent='Шаг '+(si+1)+' из '+S.length+' · '+S[si].q;$('#stO').innerHTML=S[si].o.map(o=>`<button class="opt">${o}</button>`).join('')}
+$('#stO').addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;b.classList.add('on');ans.push(b.textContent);setTimeout(()=>{si++;stDraw()},260)});stDraw();
+
+/* ---------- reviews: bars + map ---------- */
+const bio=new IntersectionObserver(es=>{if(es[0].isIntersecting){$$('#bars b').forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*120));bio.disconnect()}},{threshold:.4});bio.observe($('#bars'));
+const cities=[['Санкт-Петербург',62,128],['Тула',84,152],['Стерлитамак',122,172],['Челябинск',166,156],['Тюмень',198,124],['Новосибирск',268,160],['Барнаул',275,180,1],['Алматы',236,206],['Норильск',300,72],['Братск',356,140],['Якутия',420,104],['Благовещенск',452,166],['Камчатка',548,104]];
+const hb=cities.find(c=>c[3]);$('#mapSvg').insertAdjacentHTML('beforeend',cities.filter(c=>!c[3]).map(([n,x,y])=>{const mx=(hb[1]+x)/2,my=Math.min(hb[2],y)-40;return `<path class="rt go" d="M${hb[1]} ${hb[2]} Q${mx} ${my} ${x} ${y}"/>`}).join(''));
+$('#mapSvg').insertAdjacentHTML('beforeend',cities.map(([n,x,y,h],i)=>`<g><circle class="pt-r" cx="${x}" cy="${y}" r="5" style="animation-delay:${i*.2}s"/><circle class="pt" cx="${x}" cy="${y}" r="${h?6:4}" ${h?'style="fill:#15171a"':''}/><text x="${x+8}" y="${y+4}" ${h?'font-weight="700"':''}>${n}</text></g>`).join(''));
+renderCart();
+</script>
+</body>
+</html>
