@@ -352,6 +352,30 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
 .toast button{color:#ffb27a;font-weight:600}
 .cook{position:fixed;z-index:80;left:24px;bottom:24px;max-width:380px;background:#fff;border-radius:16px;padding:16px 18px;font-size:13px;color:var(--mute);box-shadow:0 20px 40px -20px rgba(0,0,0,.4);display:flex;gap:14px;align-items:center}
 .cook button{flex:none;height:38px;padding:0 14px;border-radius:10px;background:var(--ink);color:#fff;font-weight:600}
+
+/* мессенджеры */
+.fab{position:fixed;z-index:85;right:24px;bottom:24px;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.fab .lst{display:flex;flex-direction:column;gap:8px;align-items:flex-end;pointer-events:none}
+.fab .lst a{display:flex;align-items:center;gap:10px;height:46px;padding:0 16px 0 8px;border-radius:23px;background:#fff;box-shadow:0 10px 30px -12px rgba(0,0,0,.4);font-weight:600;font-size:15px;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .25s,transform .35s var(--ease)}
+.fab .lst a i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-size:12px;font-weight:800}
+.fab.on .lst{pointer-events:auto}
+.fab.on .lst a{opacity:1;transform:none}
+.fab.on .lst a:nth-last-child(2){transition-delay:.04s}.fab.on .lst a:nth-last-child(3){transition-delay:.08s}.fab.on .lst a:nth-last-child(4){transition-delay:.12s}.fab.on .lst a:nth-last-child(5){transition-delay:.16s}
+.fab .main{width:62px;height:62px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(179,75,6,.7);position:relative}
+.fab .main::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--or);animation:ping 2.4s var(--ease) infinite}
+.fab.on .main::before{animation:none;opacity:0}
+@keyframes ping{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(1.55);opacity:0}}
+.fab .main svg{width:28px;height:28px;transition:transform .3s var(--ease)}
+.fab.on .main svg{transform:rotate(90deg)}
+.fab .hint{position:absolute;right:74px;bottom:14px;background:var(--ink);color:#fff;font-size:14px;padding:8px 12px;border-radius:10px;white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s}
+.fab .hint.on{opacity:1;transform:none}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.soc a{height:38px;padding:0 14px;border-radius:10px;background:#1f2422;color:#fff;display:inline-flex;align-items:center;font-size:14px;font-weight:600}
+.soc a:hover{background:var(--or)}
+.fin .msgr{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.fin .msgr a{height:44px;padding:0 16px;border-radius:12px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);display:inline-flex;align-items:center;font-weight:600;font-size:15px}
+.fin .msgr a:hover{background:#fff;color:var(--or)}
+@media (max-width:900px){.fab{right:14px;bottom:82px}.fab .main{width:56px;height:56px}.fab .hint{display:none}}
 .mbar{display:none}
 .ham{display:none}
 
@@ -409,7 +433,7 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
   .fin .fm{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr 1fr;gap:28px}
   .fgrid>div:first-child{grid-column:1/-1}
-  .cook{left:12px;right:12px;bottom:84px;max-width:none}
+  .cook{left:12px;right:82px;bottom:84px;max-width:none}
   .mbar{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;position:fixed;z-index:70;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease)}
   .mbar.on{transform:none}
   .mbar a,.mbar button{height:48px;border-radius:12px;display:grid;place-items:center;font-weight:600;font-size:15px;background:var(--soft)}
@@ -626,7 +650,7 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
 <section><div class="wrap">
   <div class="fin rv">
     <div><h2 class="h2">Не уверены, какую выбрать?</h2><p>Перезвоним за 15 минут в рабочее время, спросим, где и как отдыхаете, и подберём палатку и пол без лишних трат.</p>
-      <div class="mng"><span class="av">EX</span>Консультируют те, кто сам ездит на лёд и в горы Алтая</div></div>
+      <div class="mng"><span class="av">EX</span>Консультируют те, кто сам ездит на лёд и в горы Алтая</div><div class="msgr"><a href="https://max.ru/u/f9LHodD0cOIaZmX5PJWblovr63jVH_NXpuZb1nKjP1pdw1wi9KetFnnHGJE" target="_blank" rel="noopener">Написать в MAX</a><a href="http://t.me/+79059835976" target="_blank" rel="noopener">Telegram</a><a href="https://wa.me/79059835976" target="_blank" rel="noopener">WhatsApp</a></div></div>
     <form class="fm" data-form="call"><input required placeholder="Имя" autocomplete="name"><input required type="tel" placeholder="Телефон" autocomplete="tel"><label class="agree"><input type="checkbox" required checked>Я прочитал(а) и принимаю Правила и условия сайта</label><button class="btn">Заказать звонок</button></form>
   </div>
 </div></section>
@@ -636,7 +660,7 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
   <div class="fgrid">
     <div><span class="logo"><span class="mk" style="color:#fff">EX<span>PRO</span></span></span><p style="margin:16px 0 18px;max-width:300px">Палатки и мобильные бани собственного производства. Барнаул, с доставкой по России и СНГ.</p>
       <a class="tl" href="tel:+78006005229">+7 800 600-52-29</a><div style="font-size:13px">по России звонок бесплатный</div>
-      <div class="sbr"><b>Покупайте со Сбербанком</b>Рассрочка на 4 месяца без комиссий и переплат</div></div>
+      <div class="sbr"><b>Покупайте со Сбербанком</b>Рассрочка на 4 месяца без комиссий и переплат</div><div class="soc"><a href="https://max.ru/u/f9LHodD0cOIaZmX5PJWblovr63jVH_NXpuZb1nKjP1pdw1wi9KetFnnHGJE" target="_blank" rel="noopener">MAX</a><a href="http://t.me/+79059835976" target="_blank" rel="noopener">Telegram</a><a href="https://wa.me/79059835976" target="_blank" rel="noopener">WhatsApp</a><a href="https://vk.com/exproequipment" target="_blank" rel="noopener">ВКонтакте</a><a href="https://rutube.ru/channel/43542476/videos/" target="_blank" rel="noopener">Rutube</a><a href="https://m.ok.ru/profile/560297242363" target="_blank" rel="noopener">OK</a></div></div>
     <div><h4>Каталог</h4><ul><li><a href="#sale">Зимние палатки</a></li><li><a href="#sale">Летние палатки</a></li><li><a href="#sale">Мобильные бани</a></li><li><a href="#sale">Пол для палаток</a></li><li><a href="#sale">Сопутствующие товары</a></li><li><a href="#sale">Товары для путешествий</a></li><li><a href="#sale">Акции</a></li></ul></div>
     <div><h4>Покупателям</h4><ul><li><a href="#">О компании</a></li><li><a href="#">Статьи</a></li><li><a href="#goal">Гарантия</a></li><li><a href="#inst">Способы оплаты</a></li><li><a href="#svc">Доставка</a></li><li><a href="#vid">Видео-обзоры</a></li><li><a href="#vid">Отзывы</a></li><li><a href="#">Галерея</a></li><li><a href="#">Партнёрам</a></li></ul></div>
     <div><h4>Контакты</h4><ul><li>г. Барнаул, пр. Калинина 116/10, офис 119/1</li><li>Ежедневно с 8:00 до 21:00</li><li><a href="mailto:expro.equipment@gmail.com">expro.equipment@gmail.com</a></li></ul>
@@ -645,6 +669,13 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
   <div class="cp"><span>© EX-PRO, ex-equip.ru</span><span>Политика конфиденциальности · Пользовательское соглашение · Cookies</span></div>
 </div></footer>
 
+<div class="fab" id="fab"><div class="lst">
+ <a href="https://max.ru/u/f9LHodD0cOIaZmX5PJWblovr63jVH_NXpuZb1nKjP1pdw1wi9KetFnnHGJE" target="_blank" rel="noopener"><i style="background:#5b3df5">MAX</i>MAX</a>
+ <a href="http://t.me/+79059835976" target="_blank" rel="noopener"><i style="background:#2aa3df">TG</i>Telegram</a>
+ <a href="https://wa.me/79059835976" target="_blank" rel="noopener"><i style="background:#25b04f">WA</i>WhatsApp</a>
+ <a href="https://vk.com/exproequipment" target="_blank" rel="noopener"><i style="background:#2b70e0">VK</i>Группа ВКонтакте</a>
+ <a href="tel:+78006005229"><i style="background:var(--ink)">☎</i>8 800 600-52-29</a>
+</div><span class="hint" id="fabH">Подберём палатку за 5 минут - напишите</span><button class="main" id="fabB" aria-label="Написать нам"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="3" stroke-linecap="round"/></svg></button></div>
 <div class="mbar" id="mbar"><a href="tel:+78006005229">Позвонить</a><a class="m" href="#goal">Подобрать</a><button id="mCart">Корзина</button></div>
 
 <!-- overlays -->
@@ -652,7 +683,7 @@ footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display
 <nav class="mnav" id="mnav"><button class="x" data-close aria-label="Закрыть">×</button>
   <h4>Каталог</h4><a href="#sale">Зимние палатки</a><a href="#sale">Летние палатки</a><a href="#sale">Мобильные бани</a><a href="#sale">Пол для палаток</a><a href="#sale">Сопутствующие товары</a><a href="#sale">Товары для путешествий</a>
   <h4>Магазин</h4><a href="#sale">Акции</a><a href="#custom">Палатка на заказ</a><a href="#vid">Видео-обзоры</a><a href="#inst">Способы оплаты</a><a href="#svc">Доставка</a><a href="#ft">Контакты</a>
-  <a href="tel:+78006005229" style="font-weight:700;margin-top:14px">+7 800 600-52-29</a>
+  <h4>Написать</h4><a href="https://max.ru/u/f9LHodD0cOIaZmX5PJWblovr63jVH_NXpuZb1nKjP1pdw1wi9KetFnnHGJE" target="_blank" rel="noopener">MAX</a><a href="http://t.me/+79059835976" target="_blank" rel="noopener">Telegram</a><a href="https://wa.me/79059835976" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+78006005229" style="font-weight:700;margin-top:14px">+7 800 600-52-29</a>
 </nav>
 <aside class="dr" id="cart"><div class="h"><h3>Корзина</h3><button class="x" data-close aria-label="Закрыть">×</button></div><div class="ls" id="cartL"></div>
   <div class="f"><div class="t"><span>Итого</span><b id="cartT">0 ₽</b></div><div class="up" id="cartU"></div><button class="btn btn-or" data-open="order">Оформить заказ</button></div></aside>
@@ -812,6 +843,11 @@ $$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)
 /* cookies */
 if(store.get('ex3cook',0))$('#cook').remove();else $('#cookB').onclick=()=>{store.set('ex3cook',1);$('#cook').remove()};
 
+
+/* мессенджеры: кнопка + подсказка через 8 с */
+const fab=$('#fab');$('#fabB').onclick=e=>{e.stopPropagation();fab.classList.toggle('on');$('#fabH').classList.remove('on')};
+document.addEventListener('click',e=>{if(!e.target.closest('#fab'))fab.classList.remove('on')});
+setTimeout(()=>{if(!fab.classList.contains('on')){$('#fabH').classList.add('on');setTimeout(()=>$('#fabH').classList.remove('on'),5000)}},8000);
 renderCart();renderCmp();
 </script>
 </body>
