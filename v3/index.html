@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>EX-PRO - палатки и мобильные бани собственного производства</title>
+<meta name="description" content="Демо редизайна главной ex-equip.ru: структура и механика сайта сохранены, обновлён дизайн и путь к покупке.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f4f1;--paper:#fff;--ink:#121513;--ink2:#3b413e;--mute:#68706c;--line:#e2e4e0;--soft:#ebece8;
+  --or:#b34b06;--or-h:#953e04;--or-s:#fbeee4;--ok:#2f7a4b;--dark:#141716;
+  --ease:cubic-bezier(.2,.7,.2,1);--r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Onest,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:700}
+.h2{font-size:clamp(30px,4vw,52px)}
+.lbl{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--or)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 26px;border-radius:14px;font-weight:600;white-space:nowrap;transition:background .25s,color .25s,transform .25s var(--ease),border-color .25s}
+.btn:active{transform:scale(.97)}
+.btn-or{background:var(--or);color:#fff}.btn-or:hover{background:var(--or-h)}
+.btn-dk{background:var(--ink);color:#fff}.btn-dk:hover{background:#2a2f2c}
+.btn-ln{border:1.5px solid var(--line);background:#fff}.btn-ln:hover{border-color:var(--ink)}
+.btn-wh{background:#fff;color:var(--ink)}.btn-wh:hover{background:var(--soft)}
+.btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}.btn:hover svg{transform:translateX(3px)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{animation:none!important;transition-duration:.01ms!important}}
+
+/* demo strip + topbar */
+.demo{background:var(--dark);color:#aeb6b1;font-size:13px;text-align:center;padding:8px 16px}
+.demo b{color:#fff;font-weight:600}
+.top{background:#fff;border-bottom:1px solid var(--line);font-size:14px;color:var(--mute)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:40px}
+.top .sp{flex:1}
+.top a:hover{color:var(--ink)}
+.top .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3fae66;margin-right:7px;box-shadow:0 0 0 3px #3fae6630}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+header.sc{border-color:var(--line);box-shadow:0 8px 30px -22px rgba(0,0,0,.4)}
+.hd{display:flex;align-items:center;gap:8px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;margin-right:18px}
+.logo .mk{font:800 21px/.86 Onest;letter-spacing:-.05em}.logo .mk span{display:block;color:var(--or)}
+.logo small{font-size:11px;line-height:1.3;color:var(--mute);max-width:120px}
+.catbtn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 18px;border-radius:12px;background:var(--ink);color:#fff;font-weight:600}
+.catbtn i{width:16px;height:10px;position:relative;display:block;border-block:2px solid #fff}
+.catbtn i::after{content:"";position:absolute;left:0;right:0;top:2px;height:2px;background:#fff}
+nav.mn{display:flex;gap:2px;margin-left:8px}
+nav.mn>a,nav.mn>div>button{padding:10px 13px;border-radius:10px;font-size:15px;color:var(--ink2);transition:background .2s}
+nav.mn>a:hover,nav.mn>div>button:hover{background:var(--soft);color:var(--ink)}
+nav.mn .hot{color:var(--or);font-weight:600}
+.dd{position:relative}
+.dd .pn{position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;min-width:230px;box-shadow:0 24px 50px -24px rgba(0,0,0,.35);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .25s var(--ease)}
+.dd:hover .pn,.dd:focus-within .pn{opacity:1;transform:none;pointer-events:auto}
+.dd .pn a{display:block;padding:9px 12px;border-radius:9px;font-size:15px}
+.dd .pn a:hover{background:var(--soft)}
+.hd .sp{flex:1}
+.ic{position:relative;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;transition:background .2s}
+.ic:hover{background:var(--soft)}
+.ic svg{width:22px;height:22px}
+.ic .n{position:absolute;top:4px;right:3px;min-width:18px;height:18px;border-radius:9px;background:var(--or);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.ic .n.on{transform:scale(1)}
+.ic.bump{animation:bump .45s var(--ease)}
+@keyframes bump{40%{transform:scale(1.18)}}
+.tel{font-weight:700;margin:0 6px 0 10px;white-space:nowrap;line-height:1.2}
+.tel small{display:block;font-size:11px;font-weight:500;color:var(--mute)}
+
+/* mega catalog */
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 30px 50px -30px rgba(0,0,0,.35);opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .25s,transform .3s var(--ease)}
+.mega.on{opacity:1;transform:none;pointer-events:auto}
+.mega .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding-block:22px}
+.mega a{border-radius:16px;background:var(--bg);padding:14px;transition:background .2s,transform .3s var(--ease)}
+.mega a:hover{background:var(--or-s);transform:translateY(-3px)}
+.mega img{width:100%;aspect-ratio:4/3;object-fit:contain;margin-bottom:10px}
+.mega b{display:block;font-size:15px;line-height:1.25}
+.mega span{font-size:13px;color:var(--mute)}
+.srch{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:16px 0;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .25s,transform .3s var(--ease)}
+.srch.on{opacity:1;transform:none;pointer-events:auto}
+.srch input{width:100%;height:54px;border:1.5px solid var(--line);border-radius:14px;padding:0 18px;font-size:17px;outline:none}
+.srch input:focus{border-color:var(--ink)}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line)}
+
+/* hero slider */
+.hero{padding-top:22px}
+.sl{position:relative;border-radius:28px;overflow:hidden;background:var(--dark);height:min(640px,78vh);min-height:520px;isolation:isolate}
+.sd{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--ease);pointer-events:none}
+.sd.on{opacity:1;pointer-events:auto}
+.sd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s linear}
+.sd.on img{transform:scale(1)}
+.sd::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,11,.82) 0%,rgba(10,12,11,.5) 45%,rgba(10,12,11,0) 75%)}
+.sd .tx{position:absolute;z-index:2;left:56px;bottom:96px;max-width:620px;color:#fff}
+.sd .tx>*{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.sd.on .tx>*{opacity:1;transform:none}
+.sd.on .tx>*:nth-child(2){transition-delay:.1s}.sd.on .tx>*:nth-child(3){transition-delay:.2s}.sd.on .tx>*:nth-child(4){transition-delay:.3s}
+.sd .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);padding:7px 14px;border-radius:99px;font-size:14px;margin-bottom:22px}
+.sd h1,.sd h2{font-size:clamp(38px,5.4vw,74px);margin-bottom:18px}
+.sd h1 span,.sd h2 span{color:#ffb27a}
+.sd p{font-size:19px;color:#d6dbd8;max-width:520px;margin-bottom:30px}
+.sd .cta{display:flex;gap:12px;flex-wrap:wrap}
+.sd .btn-gl{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.sd .btn-gl:hover{background:rgba(255,255,255,.22)}
+.sd .price{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.sd .price b{font-size:44px;letter-spacing:-.03em}.sd .price s{color:#aab2ad;font-size:20px}
+.sd .price em{font-style:normal;background:var(--or);padding:4px 10px;border-radius:8px;font-weight:700;font-size:16px}
+.sdn{position:absolute;z-index:5;left:56px;right:56px;bottom:34px;display:flex;gap:10px}
+.sdn button{flex:1;text-align:left;color:#cfd5d1;font-size:14px;padding-top:14px;position:relative}
+.sdn button::before,.sdn button i{content:"";position:absolute;left:0;top:0;height:3px;border-radius:2px}
+.sdn button::before{right:0;background:rgba(255,255,255,.25)}
+.sdn button i{width:0;background:#fff}
+.sdn button.on{color:#fff}
+.sdn button.on i{animation:prog 7s linear forwards}
+.sl.pause .sdn button.on i{animation-play-state:paused}
+@keyframes prog{to{width:100%}}
+
+/* trust row */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.trust>div{background:#fff;border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:center}
+.trust>div>i{flex:none;width:44px;height:44px;border-radius:12px;background:var(--or-s);color:var(--or);display:grid;place-items:center}
+.trust i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.trust b{display:block;font-size:16px;line-height:1.25}.trust span{font-size:14px;color:var(--mute)}
+
+section{padding:96px 0 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:36px}
+.sh p{max-width:420px;color:var(--mute)}
+.sh .lbl{margin-bottom:12px}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:250px;gap:14px}
+.cat{position:relative;border-radius:var(--r);overflow:hidden;background:#fff;padding:26px;display:flex;flex-direction:column;isolation:isolate;transition:box-shadow .4s}
+.cat:hover{box-shadow:0 30px 50px -30px rgba(0,0,0,.4)}
+.cat img{position:absolute;z-index:-1;transition:transform 1s var(--ease)}
+.cat:hover img{transform:scale(1.05)}
+.cat h3{font-size:28px;margin-bottom:12px}
+.cat .sub{display:flex;flex-wrap:wrap;gap:6px}
+.cat .sub .sa{font-size:14px;padding:6px 12px;border-radius:99px;background:var(--soft);transition:background .2s,color .2s}
+.cat .sub .sa:hover{background:var(--ink);color:#fff}
+.cat .ft{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
+.cat .ft b{font-size:16px}
+.go{width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:background .25s,transform .35s var(--ease)}
+.cat:hover .go{background:var(--or);transform:rotate(-45deg)}
+.cat.big{grid-column:span 7;grid-row:span 2;color:#fff;background:#1d211f}
+.cat.big img{inset:0;width:100%;height:100%;object-fit:cover}
+.cat.big::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 45%,rgba(0,0,0,.55))}
+.cat.big h3{font-size:44px}
+.cat.big .sub .sa{background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff}
+.cat.big .sub .sa:hover{background:#fff;color:var(--ink)}
+.cat.big .go{background:#fff;color:var(--ink)}
+.cat.cm{grid-column:span 5}
+.cat.sm{grid-column:span 6}
+.cat.cm img,.cat.sm img{right:-4%;bottom:-6%;width:58%;height:78%;object-fit:contain}
+.cat.ph img{right:0;bottom:0;width:52%;height:100%;object-fit:cover;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}
+
+/* promo strip */
+.promo{margin-top:14px;border-radius:var(--r);background:var(--or);color:#fff;display:flex;align-items:center;gap:26px;padding:22px 28px;overflow:hidden;position:relative}
+.promo .fl{width:84px;height:84px;border-radius:16px;background:#fff;flex:none;display:grid;place-items:center}
+.promo .fl img{width:70px}
+.promo p{flex:1;font-size:19px;line-height:1.35}.promo p b{font-weight:700}
+.promo .pr{text-align:right;white-space:nowrap}.promo .pr b{font-size:30px;display:block;letter-spacing:-.03em}.promo .pr s{opacity:.7}
+.promo .btn{background:#fff;color:var(--ink)}
+
+/* products */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{height:42px;padding:0 16px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:15px;transition:background .2s,color .2s,border-color .2s}
+.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rail{position:relative}
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 42px)/4);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.pc{scroll-snap-align:start;background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .35s,opacity .3s}
+.pc:hover{box-shadow:0 26px 40px -28px rgba(0,0,0,.45)}
+.pc.hide{display:none}
+.pc .im{position:relative;aspect-ratio:1/0.86;background:#f0f1ed;overflow:hidden}
+.pc .im img{width:100%;height:100%;object-fit:contain;padding:18px;transition:transform .8s var(--ease)}
+.pc .im img.ph{object-fit:cover;padding:0}
+.pc:hover .im img{transform:scale(1.05)}
+.pc .tg{position:absolute;left:12px;top:12px;display:flex;gap:6px}
+.pc .tg span{background:#fff;font-size:12px;font-weight:600;padding:5px 9px;border-radius:8px}
+.pc .tg .o{background:var(--or);color:#fff}
+.pc .cmp{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:10px;background:#fff;display:grid;place-items:center;transition:background .2s,color .2s}
+.pc .cmp svg{width:18px;height:18px}
+.pc .cmp.on{background:var(--ink);color:#fff}
+.pc .bd{padding:18px 18px 18px;display:flex;flex-direction:column;flex:1}
+.pc .mt{font-size:13px;color:var(--mute);margin-bottom:6px}.pc .mt i{font-style:normal;color:var(--ok)}
+.pc h3{font-size:18px;letter-spacing:-.02em;line-height:1.25;margin-bottom:14px}
+.pc .pr{margin-top:auto;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pc .pr b{font-size:23px;letter-spacing:-.02em}.pc .pr s{color:var(--mute);font-size:15px}
+.pc .inst{font-size:13px;color:var(--mute);margin:2px 0 14px}.pc .inst b{color:var(--ink)}
+.pc .bt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pc .bt button{height:46px;border-radius:12px;font-weight:600;font-size:15px;transition:background .2s,color .2s}
+.pc .b1{background:var(--or);color:#fff}.pc .b1:hover{background:var(--or-h)}
+.pc .b2{background:var(--soft)}.pc .b2:hover{background:var(--ink);color:#fff}
+.pc .b2.done{background:var(--ok);color:#fff}
+.arr{display:flex;gap:8px}
+.arr button{width:50px;height:50px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;transition:background .2s,color .2s}
+.arr button:hover{background:var(--ink);color:#fff}
+.arr svg{width:20px;height:20px}
+
+/* purpose (guarantee + goals) */
+.goal{display:grid;grid-template-columns:1fr 1.1fr;gap:14px}
+.gl{background:var(--dark);color:#fff;border-radius:var(--r);padding:44px;position:relative;overflow:hidden}
+.gl .lbl{color:#ffb27a;margin-bottom:14px}
+.gl h2{font-size:clamp(30px,3.6vw,48px);margin-bottom:16px}
+.gl p{color:#b7bfba;margin-bottom:28px;max-width:440px}
+.temp{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+.temp b{font-size:56px;letter-spacing:-.04em;font-variant-numeric:tabular-nums;min-width:150px}
+.temp .bar{flex:1;height:10px;border-radius:5px;background:linear-gradient(90deg,#5aa9ff,#e5f0ff 45%,#ffd08a 60%,#ff7a2e)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{height:44px;padding:0 16px;border-radius:99px;border:1.5px solid rgba(255,255,255,.22);color:#e9ecea;font-size:15px;transition:background .2s,color .2s,border-color .2s}
+.chips button.on,.chips button:hover{background:#fff;color:var(--ink);border-color:#fff}
+.gr{background:#fff;border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:1fr auto}
+.gr .vis{position:relative;min-height:320px;background:#ecede9}
+.gr .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s var(--ease),transform .9s var(--ease)}
+.gr .vis img.sw{opacity:0;transform:scale(1.04)}
+.gr .warr{position:absolute;left:18px;top:18px;background:#fff;border-radius:14px;padding:10px 14px;font-size:14px;line-height:1.3;box-shadow:0 10px 30px -14px rgba(0,0,0,.4)}
+.gr .warr b{display:block;font-size:20px;color:var(--or)}
+.gr .inf{padding:26px 28px;display:flex;align-items:center;gap:20px;justify-content:space-between}
+.gr .inf h3{font-size:24px;margin-bottom:6px}.gr .inf p{color:var(--mute);font-size:15px;max-width:380px}
+.gr .inf .r{text-align:right;white-space:nowrap}.gr .inf .r b{display:block;font-size:26px;letter-spacing:-.03em;margin-bottom:8px}
+
+/* custom tent */
+.cust{background:#fff;border-radius:28px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.cust .l{padding:52px}
+.cust .l h2{margin:12px 0 16px}
+.cust .l>p{color:var(--mute);margin-bottom:28px;max-width:470px}
+.cust ul{list-style:none;display:grid;gap:10px;margin-bottom:8px}
+.cust li{display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:14px;background:var(--bg);font-weight:500}
+.cust li i{width:30px;height:30px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:700;flex:none}
+.cust .r{position:relative;background:#1b1f1d;padding:44px;color:#fff;display:flex;flex-direction:column;justify-content:center;isolation:isolate}
+.cust .r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.45}
+.cust .r h3{font-size:26px;margin-bottom:6px}.cust .r>p{color:#cdd3cf;margin-bottom:22px}
+.steps{display:flex;gap:6px;margin-bottom:18px}.steps i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.25);transition:background .3s}.steps i.on{background:#ffb27a}
+.fm{display:grid;gap:10px}
+.fm input,.fm select,.fm textarea{width:100%;height:54px;border-radius:12px;border:1.5px solid transparent;background:rgba(255,255,255,.95);color:var(--ink);padding:0 16px;font-size:16px;outline:none;transition:border-color .2s}
+.fm textarea{height:90px;padding:14px 16px;resize:none}
+.fm input:focus,.fm select:focus,.fm textarea:focus{border-color:var(--or)}
+.agree{display:flex;gap:10px;font-size:13px;color:inherit;opacity:.8;align-items:flex-start;line-height:1.4}
+.agree input{width:18px;height:18px;flex:none;accent-color:var(--or);margin-top:1px}
+
+/* installment */
+.inst-b{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}.inst-b>*,.goal>*,.cust>*,.fin>*,.svc>*{min-width:0}
+.sber{background:#e9f6ee;border-radius:var(--r);padding:44px}
+.sber .lbl{color:#1b8a4b}
+.sber h2{margin:12px 0 14px}
+.sber p{color:var(--ink2);max-width:480px}
+.calc{background:#fff;border-radius:var(--r);padding:34px;display:flex;flex-direction:column}
+.calc label{font-size:14px;color:var(--mute);margin-bottom:8px}
+.calc select{width:100%;min-width:0;text-overflow:ellipsis;height:54px;border-radius:12px;border:1.5px solid var(--line);padding:0 14px;font-size:16px;background:#fff;margin-bottom:22px}
+.calc .mo{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
+.calc .mo div{background:var(--bg);border-radius:12px;padding:12px;text-align:center;font-size:13px;color:var(--mute)}
+.calc .mo b{display:block;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.calc .tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;font-size:15px;color:var(--mute)}
+.calc .tot b{font-size:30px;color:var(--ink);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.calc .btn{margin-top:auto;background:#1b8a4b;color:#fff}.calc .btn:hover{background:#156e3b}
+
+/* service row */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sv{background:#fff;border-radius:var(--r);padding:30px;display:flex;flex-direction:column;min-height:300px;position:relative;overflow:hidden}
+.sv h3{font-size:25px;margin:auto 0 10px}
+.sv p{color:var(--mute);font-size:15px}
+.sv .big{font-size:76px;font-weight:700;letter-spacing:-.05em;line-height:1;color:var(--or);font-variant-numeric:tabular-nums}
+.sv .big small{font-size:22px;color:var(--ink);letter-spacing:-.02em;margin-left:6px}
+.route{height:84px;position:relative}
+.route svg{width:100%;height:100%;overflow:visible}
+.route path{fill:none;stroke:var(--or);stroke-width:2.5;stroke-dasharray:6 7}
+.route circle{fill:var(--or)}
+.sv.dk{background:var(--dark);color:#fff}.sv.dk p{color:#b7bfba}.sv.dk .big{color:#fff}
+.sv .ring{position:absolute;right:26px;top:26px;width:96px;height:96px}
+.sv .ring circle{fill:none;stroke-width:6}
+.sv .ring .bg{stroke:rgba(255,255,255,.15)}.sv .ring .fg{stroke:#ffb27a;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;stroke-dasharray:264;stroke-dashoffset:264}
+
+/* videos */
+.vids{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 42px)/4);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.vids::-webkit-scrollbar{display:none}
+.vd{scroll-snap-align:start;text-align:left;display:block}
+.vd .th{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:#222;margin-bottom:14px}
+.vd .th img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.vd:hover .th img{transform:scale(1.06)}
+.vd .th::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.6))}
+.vd .pl{position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;transition:transform .3s var(--ease),background .3s}
+.vd:hover .pl{transform:scale(1.1);background:var(--or);color:#fff}
+.vd .pl svg{width:22px;height:22px;margin-left:3px}
+.vd .who{position:absolute;z-index:2;left:16px;bottom:14px;color:#fff;font-size:14px;font-weight:600}
+.vd p{font-size:15px;line-height:1.35;font-weight:500}
+
+/* final cta */
+.fin{background:var(--or);color:#fff;border-radius:28px;padding:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.fin h2{margin-bottom:14px}.fin p{color:#fff;max-width:460px}
+.fin .fm{grid-template-columns:1fr 1fr}
+.fin .fm .btn{grid-column:1/-1;background:var(--ink);color:#fff}
+.fin .fm .agree{grid-column:1/-1;opacity:.9}
+.fin .mng{display:flex;align-items:center;gap:12px;margin-top:24px;font-size:14px;color:#fff}
+.fin .mng span.av{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--or);display:grid;place-items:center;font-weight:700}
+
+/* footer */
+footer{margin-top:96px;background:var(--dark);color:#aeb6b1;padding:64px 0 120px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px}
+footer h4{color:#fff;font-size:15px;margin-bottom:16px}
+footer ul{list-style:none;display:grid;gap:9px}
+footer a:hover{color:#fff}
+footer .tl{font-size:24px;color:#fff;font-weight:700;letter-spacing:-.02em}
+footer .sbr{margin-top:20px;background:#1f2422;border-radius:14px;padding:16px;font-size:14px}
+footer .sbr b{color:#fff;display:block}
+footer .cp{border-top:1px solid #2a302d;margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px}
+
+/* drawers, modals */
+.ov{position:fixed;inset:0;z-index:90;background:rgba(10,12,11,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.ov.on{opacity:1;pointer-events:auto}
+.dr{position:fixed;z-index:100;top:0;right:0;bottom:0;width:min(440px,100%);background:#fff;transform:translateX(100%);transition:transform .45s var(--ease);display:flex;flex-direction:column}
+.dr.on{transform:none}
+.dr .h{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.dr .h h3{font-size:24px}
+.x{width:42px;height:42px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:22px;line-height:1}
+.dr .ls{flex:1;overflow:auto;padding:12px 24px}
+.ci{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.ci img{width:70px;height:70px;object-fit:contain;background:var(--bg);border-radius:12px;padding:6px}
+.ci b{font-size:15px;line-height:1.3;display:block}.ci span{font-size:14px;color:var(--mute)}
+.qty{display:flex;align-items:center;gap:6px}.qty button{width:30px;height:30px;border-radius:8px;background:var(--soft)}
+.dr .f{padding:20px 24px;border-top:1px solid var(--line)}
+.dr .f .t{display:flex;justify-content:space-between;font-size:18px;margin-bottom:6px}.dr .f .t b{font-size:24px}
+.dr .f .up{font-size:14px;color:var(--ok);margin-bottom:14px;min-height:20px}
+.dr .f .btn{width:100%}
+.emp{text-align:center;color:var(--mute);padding:60px 0}
+.cmpt{width:100%;border-collapse:collapse;font-size:14px}
+.cmpt td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmpt td:first-child{color:var(--mute);width:34%}
+.md{position:fixed;z-index:110;left:50%;top:50%;width:min(460px,calc(100% - 32px));background:#fff;border-radius:24px;padding:32px;transform:translate(-50%,-46%) scale(.97);opacity:0;pointer-events:none;transition:opacity .3s,transform .4s var(--ease)}
+.md.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+.md .x{position:absolute;right:16px;top:16px}
+.md h3{font-size:26px;margin-bottom:8px;padding-right:40px}
+.md>p{color:var(--mute);font-size:15px;margin-bottom:20px}
+.md .fm input{background:var(--bg)}
+.md .fm .agree{color:var(--mute);opacity:1}
+.md .pi{display:flex;gap:14px;align-items:center;background:var(--bg);border-radius:14px;padding:10px;margin-bottom:16px}
+.md .pi img{width:60px;height:60px;object-fit:contain}
+.md .pi b{display:block;font-size:15px;line-height:1.3}
+.md.ok{text-align:center}.md.ok .ck{width:72px;height:72px;border-radius:50%;background:#e9f6ee;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px}
+.vm{width:min(900px,calc(100% - 32px));padding:0;overflow:hidden;background:#000}
+.vm .fr{aspect-ratio:16/9}.vm iframe{width:100%;height:100%;border:0;display:block}
+.vm .x{z-index:2;background:#fff}
+.fly{position:fixed;z-index:200;width:70px;height:70px;object-fit:contain;border-radius:14px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.3);pointer-events:none}
+.toast{position:fixed;z-index:120;left:50%;bottom:28px;transform:translate(-50%,30px);opacity:0;visibility:hidden;transition:transform .45s var(--ease),opacity .3s,visibility .3s!important;background:var(--ink);color:#fff;padding:14px 20px;border-radius:14px;font-size:15px;transition:transform .45s var(--ease);display:flex;gap:14px;align-items:center;white-space:nowrap}
+.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
+.toast button{color:#ffb27a;font-weight:600}
+.cook{position:fixed;z-index:80;left:24px;bottom:24px;max-width:380px;background:#fff;border-radius:16px;padding:16px 18px;font-size:13px;color:var(--mute);box-shadow:0 20px 40px -20px rgba(0,0,0,.4);display:flex;gap:14px;align-items:center}
+.cook button{flex:none;height:38px;padding:0 14px;border-radius:10px;background:var(--ink);color:#fff;font-weight:600}
+.mbar{display:none}
+.ham{display:none}
+
+@media (max-width:1180px){
+  nav.mn>a.opt,.top .opt{display:none}
+  .track,.vids{grid-auto-columns:calc((100% - 28px)/3)}
+  .mega .wrap{grid-template-columns:repeat(3,1fr)}
+  .mega{visibility:hidden}.mega.on{visibility:visible}
+}
+@media (max-width:900px){
+  .mega .wrap{grid-template-columns:repeat(2,1fr);max-height:70vh;overflow:auto}
+  .wrap{padding:0 16px}
+  .top{display:none}
+  nav.mn,.tel,.logo small{display:none}
+  .ham{display:grid}
+  .hd{height:64px}
+  .catbtn{height:42px;padding:0 14px;font-size:15px}
+  .sl{height:auto;min-height:0;aspect-ratio:auto;border-radius:22px}
+  .sd{position:relative;display:none;min-height:560px}
+  .sd.on{display:block}
+  .sd::after{background:linear-gradient(180deg,rgba(10,12,11,.1) 0%,rgba(10,12,11,.55) 40%,rgba(10,12,11,.92) 100%)}
+  .sd .tx{left:20px;right:20px;bottom:70px}
+  .sd p{font-size:16px}
+  .sd .price{flex-wrap:wrap;gap:8px 12px}.sd .price b{font-size:32px;white-space:nowrap}.sd .price s{white-space:nowrap}.sd .price em{white-space:nowrap}
+  .calc .mo{grid-template-columns:1fr 1fr}.calc .mo b{white-space:nowrap}
+  .sv .ring{width:60px;height:60px;right:20px;top:20px}.sv .big{font-size:60px}
+  .cat.ph .ft b{background:#fff;padding:4px 10px;border-radius:8px}
+  .sdn{left:20px;right:20px;bottom:22px}
+  .sdn button{font-size:0;padding-top:4px}
+  .trust{grid-template-columns:1fr 1fr}
+  .trust>div{padding:14px;flex-direction:column;align-items:flex-start;gap:10px}
+  section{padding-top:68px}
+  .sh{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:24px}
+  .cats{grid-template-columns:1fr 1fr;grid-auto-rows:210px;gap:10px}
+  .cat{padding:18px}
+  .cat.big{grid-column:1/-1;grid-row:span 2}.cat.big h3{font-size:34px}
+  .cat.cm,.cat.sm{grid-column:span 1}
+  .cat h3{font-size:20px}
+  .cat .sub{display:none}.cat.big .sub{display:flex}
+  .cat.cm img,.cat.sm img{width:70%;height:55%}
+  .cat.ph img{width:100%;height:60%;top:auto;-webkit-mask:linear-gradient(180deg,transparent,#000 40%);mask:linear-gradient(180deg,transparent,#000 40%)}
+  .go{width:40px;height:40px}
+  .promo{flex-wrap:wrap;gap:14px;padding:20px}
+  .promo .fl{width:60px;height:60px}.promo .fl img{width:50px}
+  .promo p{font-size:16px;flex-basis:calc(100% - 80px)}
+  .promo .pr{text-align:left}
+  .promo .btn{flex:1}
+  .track,.vids{grid-auto-columns:78%}
+  .arr{display:none}
+  .goal,.cust,.inst-b,.svc,.fin{grid-template-columns:1fr}
+  .gl,.sber,.cust .l,.cust .r,.calc,.fin{padding:26px}
+  .temp b{font-size:42px;min-width:110px}
+  .gr .inf{flex-direction:column;align-items:flex-start}.gr .inf .r{text-align:left}
+  .sv{min-height:240px}
+  .fin .fm{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr;gap:28px}
+  .fgrid>div:first-child{grid-column:1/-1}
+  .cook{left:12px;right:12px;bottom:84px;max-width:none}
+  .mbar{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;position:fixed;z-index:70;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease)}
+  .mbar.on{transform:none}
+  .mbar a,.mbar button{height:48px;border-radius:12px;display:grid;place-items:center;font-weight:600;font-size:15px;background:var(--soft)}
+  .mbar .m{background:var(--or);color:#fff}
+  .toast{bottom:84px}
+  .md{padding:26px 20px}
+}
+.mnav{position:fixed;z-index:100;inset:0 25% 0 0;max-width:360px;background:#fff;transform:translateX(-100%);transition:transform .45s var(--ease);padding:22px;overflow:auto}
+.mnav.on{transform:none}
+.mnav h4{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;margin:22px 0 8px}
+.mnav a{display:block;padding:10px 0;font-size:17px;border-bottom:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<div class="demo"><b>Демо редизайна ex-equip.ru</b> · структура и механика сайта сохранены, обновлены дизайн и путь к заявке</div>
+
+<div class="top"><div class="wrap">
+  <span><span class="dot"></span>г. Барнаул · ежедневно 8:00-21:00</span>
+  <a class="opt" href="#svc">Доставка по России и СНГ</a>
+  <a class="opt" href="#inst">Рассрочка 0%</a>
+  <span class="sp"></span>
+  <a href="#" data-open="call">Заказать звонок</a>
+  <a href="tel:+78006005229"><b style="color:var(--ink)">+7 800 600-52-29</b></a>
+</div></div>
+
+<header id="hd">
+  <div class="wrap hd">
+    <button class="ic ham" id="hamB" aria-label="Меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a class="logo" href="#"><span class="mk">EX<span>PRO</span></span><small>палатки собственного производства</small></a>
+    <button class="catbtn" id="catB"><i></i>Каталог</button>
+    <nav class="mn">
+      <a class="hot" href="#sale">Акции</a>
+      <a href="#custom">Палатка на заказ</a>
+      <div class="dd"><button>Покупателям ▾</button>
+        <div class="pn"><a href="#">О компании</a><a href="#vid">Видео-обзоры</a><a href="#goal">Гарантия</a><a href="#">Партнерам</a><a href="#">Статьи</a><a href="#vid">Отзывы</a><a href="#">Галерея</a><a href="#inst">Способы оплаты</a><a href="#svc">Доставка</a><a href="#ft">Контакты</a></div>
+      </div>
+      <a class="opt" href="#vid">Отзывы</a>
+    </nav>
+    <span class="sp"></span>
+    <a class="tel" href="tel:+78006005229">+7 800 600-52-29<small>по России бесплатно</small></a>
+    <button class="ic" id="sBtn" aria-label="Поиск"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+    <button class="ic" id="cmpB" aria-label="Сравнение"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span class="n" id="cmpN">0</span></button>
+    <button class="ic" id="cartB" aria-label="Корзина"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="n" id="cartN">0</span></button>
+  </div>
+  <div class="mega" id="mega"><div class="wrap">
+    <a href="#sale" data-f="winter"><img src="img/kub2-700.webp" alt=""><b>Зимние палатки</b><span>Куб, Юрта, Иглу</span></a>
+    <a href="#sale" data-f="summer"><img src="img/offsite.webp" alt=""><b>Летние палатки</b><span>от 6 500 ₽</span></a>
+    <a href="#sale" data-f="banya"><img src="img/inside-700.webp" alt="" style="object-fit:cover;border-radius:10px"><b>Мобильные бани</b><span>на базе Куба и Иглу</span></a>
+    <a href="#sale" data-f="floor"><img src="img/floor.webp" alt=""><b>Пол для палаток</b><span>тонкий и толстый</span></a>
+    <a href="#sale" data-f="acc"><img src="img/pegs.webp" alt=""><b>Сопутствующие товары</b><span>дуги, ввертыши</span></a>
+    <a href="#sale" data-f="travel"><img src="img/kovrik.webp" alt=""><b>Товары для путешествий</b><span>спальники, коврики</span></a>
+  </div></div>
+  <div class="srch" id="srch"><div class="wrap"><input id="q" placeholder="Куб, юрта, пол, коврик…" autocomplete="off"><div class="res" id="qres"></div></div></div>
+</header>
+
+<main>
+<!-- 1. слайдер (как на сайте) -->
+<div class="wrap hero">
+  <div class="sl" id="sl">
+    <div class="sd on">
+      <img src="img/hero-1400.webp" srcset="img/hero-1000.webp 1000w,img/hero-1400.webp 1400w" sizes="100vw" alt="Палатка EX-PRO Куб на льду" fetchpriority="high">
+      <div class="tx">
+        <span class="tag">● Собственное производство · Барнаул</span>
+        <h1>Проверенные палатки для зимы <span>от +50 до −40</span></h1>
+        <p>Ставится за 2 минуты, держит тепло трёхслойной стенкой. В наличии - отгрузим завтра.</p>
+        <div class="cta"><a class="btn btn-or" href="#goal">Подобрать палатку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-gl" href="#sale">Смотреть акции</a></div>
+      </div>
+    </div>
+    <div class="sd">
+      <img src="img/iglu-photo.webp" alt="Палатка EX-PRO Иглу" loading="lazy">
+      <div class="tx">
+        <span class="tag">Новинка сезона</span>
+        <h2>Предзаказ <span>прозрачной</span> палатки</h2>
+        <p>Видно лёд, небо и снег - а внутри тепло. Первая партия ограничена: оставьте заявку, сообщим цену и дату раньше всех.</p>
+        <div class="cta"><button class="btn btn-or" data-open="pre">Оформить предзаказ</button><a class="btn btn-gl" href="#custom">Узнать подробнее</a></div>
+      </div>
+    </div>
+    <div class="sd">
+      <img src="img/inside-1200.webp" alt="Внутри палатки, пол" loading="lazy">
+      <div class="tx">
+        <span class="tag">Акция</span>
+        <h2>Толстый пол <span>−40%</span> к любой палатке</h2>
+        <div class="price"><b>6 900 ₽</b><s>11 500 ₽</s><em>−4 600 ₽</em></div>
+        <div class="cta"><a class="btn btn-or" href="#sale">Выбрать палатку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+    <div class="sdn" id="sdn"><button class="on"><i></i>Палатки EX-PRO</button><button><i></i>Прозрачная палатка</button><button><i></i>Пол −40%</button></div>
+  </div>
+  <div class="trust">
+    <div class="rv"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></i><div><b>Гарантия 12 месяцев</b><span>на все палатки</span></div></div>
+    <div class="rv"><i><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></i><div><b>Отгрузка за 1 день</b><span>всё в наличии в Барнауле</span></div></div>
+    <div class="rv"><i><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></i><div><b>Рассрочка 0%</b><span>4 месяца со Сбербанком</span></div></div>
+    <div class="rv"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2h4"/></svg></i><div><b>Установка 2 минуты</b><span>в любую погоду</span></div></div>
+  </div>
+</div>
+
+<!-- 2. категории (как на сайте, без печей) -->
+<section id="cat"><div class="wrap">
+  <div class="sh rv"><div><div class="lbl">Каталог</div><h2 class="h2">Всё для отдыха<br>на льду и у воды</h2></div><p>Палатки, бани и снаряжение, которые мы сами берём в поездки. Выберите раздел - или подберём за вас по телефону.</p></div>
+  <div class="cats">
+    <a class="cat big rv" href="#sale" data-f="winter"><img src="img/kub2-1600.webp" alt="Зимняя палатка Куб" loading="lazy">
+      <h3>Палатки</h3>
+      <div class="sub"><span class="sa" data-f="winter">Зимние</span><span class="sa" data-f="summer">Летние</span><span class="sa">На заказ</span></div>
+      <div class="ft"><b>от 6 500 ₽</b><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a class="cat cm ph rv" href="#sale" data-f="banya"><img src="img/inside-700.webp" alt="Мобильная баня" loading="lazy">
+      <h3>Мобильные<br>бани</h3><div class="sub"><span class="sa" data-f="banya">На базе Куба</span><span class="sa" data-f="banya">Иглу</span></div>
+      <div class="ft"><b>от 39 000 ₽</b><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a class="cat cm rv" href="#sale" data-f="floor"><img src="img/floor.webp" alt="Пол для палатки" loading="lazy" style="width:40%;height:60%;right:4%;bottom:14%">
+      <h3>Пол для<br>палаток</h3><div class="sub"><span class="sa" data-f="floor">Толстый −40%</span></div>
+      <div class="ft"><b>от 6 900 ₽</b><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a class="cat sm rv" href="#sale" data-f="acc"><img src="img/pegs.webp" alt="Ввертыши" loading="lazy">
+      <h3>Сопутствующие<br>товары</h3><div class="sub"><span class="sa" data-f="acc">Дуги</span><span class="sa" data-f="acc">Ввертыши</span><span class="sa" data-f="acc">Другое</span></div>
+      <div class="ft"><b>от 500 ₽</b><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a class="cat sm rv" href="#sale" data-f="travel"><img src="img/kovrik.webp" alt="Коврик" loading="lazy">
+      <h3>Товары для<br>путешествий</h3><div class="sub"><span class="sa" data-f="travel">Спальники</span><span class="sa" data-f="travel">Коврики</span><span class="sa" data-f="travel">Другое</span></div>
+      <div class="ft"><b>от 3 000 ₽</b><span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+  </div>
+</div></section>
+
+<!-- 3. акции (карусель как на сайте: сравнить / купить сейчас / в корзину) -->
+<section id="sale"><div class="wrap">
+  <div class="sh rv"><div><div class="lbl">Акции</div><h2 class="h2">Цены сезона</h2></div>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="tabs" id="tabs"><button class="on" data-f="all">Все</button><button data-f="winter">Зимние</button><button data-f="summer">Летние</button><button data-f="banya">Бани</button><button data-f="floor">Пол</button><button data-f="acc">Сопутствующие</button><button data-f="travel">Путешествия</button></div>
+    <div class="arr"><button id="pv" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button><button id="nx" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  </div>
+  <div class="rail"><div class="track" id="track"></div></div>
+  <div class="promo rv">
+    <div class="fl"><img src="img/floor.webp" alt=""></div>
+    <p><b>При покупке любой палатки - толстый пол со скидкой 40%.</b> Тепло снизу и сухо на льду: добавится в корзину автоматически.</p>
+    <div class="pr"><b>6 900 ₽</b><s>11 500 ₽</s></div>
+    <a class="btn" href="#goal">Выберите палатку</a>
+  </div>
+</div></section>
+
+<!-- 4. гарантия + палатки под цель -->
+<section id="goal"><div class="wrap">
+  <div class="goal">
+    <div class="gl rv">
+      <div class="lbl">Гарантия 12 месяцев</div>
+      <h2>Палатки от +50 до −40 под вашу цель</h2>
+      <p>Выберите, зачем нужна палатка, - покажем модель, которую чаще всего берут под эту задачу.</p>
+      <div class="temp"><b id="tv">−40°</b><div class="bar"></div></div>
+      <div class="chips" id="chips">
+        <button class="on" data-g="fish">для рыбалки</button><button data-g="hunt">для охоты</button><button data-g="tent">шатёр для большой компании</button><button data-g="adm">для административного назначения</button><button data-g="rest">для отдыха</button><button data-g="corp">для корпоративов</button>
+      </div>
+    </div>
+    <div class="gr rv">
+      <div class="vis"><img id="gImg" src="img/kub2-1600.webp" alt=""><div class="warr"><b>12 мес.</b>гарантия на палатку</div></div>
+      <div class="inf"><div><h3 id="gN">Куб EX-PRO Зима 4</h3><p id="gW">Места хватит на четверых, лунки и обогрев. Трёхслойная стенка держит тепло даже в −40.</p></div>
+        <div class="r"><b id="gP">78 000 ₽</b><button class="btn btn-or" id="gBuy">Купить сейчас</button></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5. палатка на заказ (форма как на сайте) -->
+<section id="custom"><div class="wrap">
+  <div class="cust rv">
+    <div class="l">
+      <div class="lbl">Палатка на заказ</div>
+      <h2 class="h2">Заказывай - сейчас лучшее время для мечты</h2>
+      <p>Шьём на своём производстве в Барнауле. Расскажите задачу - инженер посчитает стоимость и сроки.</p>
+      <ul><li><i>1</i>По собственному чертежу</li><li><i>2</i>Только нужная комплектация</li><li><i>3</i>Индивидуальный размер</li></ul>
+    </div>
+    <div class="r">
+      <img src="img/grand-in.webp" alt="" loading="lazy">
+      <h3>Заполните заявку</h3><p>Ответим в течение рабочего дня</p>
+      <div class="steps"><i class="on"></i><i></i><i></i></div>
+      <form class="fm" data-form="custom">
+        <select required><option value="">Для чего палатка?</option><option>Рыбалка / охота</option><option>Шатёр для мероприятий</option><option>Баня</option><option>Административное назначение</option><option>Другое</option></select>
+        <input required placeholder="Ваше имя" autocomplete="name">
+        <input required type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+        <label class="agree"><input type="checkbox" required checked>Я прочитал(а) и принимаю Правила и условия сайта</label>
+        <button class="btn btn-or">Заказать расчёт</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<!-- 6. рассрочка Сбербанк -->
+<section id="inst"><div class="wrap">
+  <div class="inst-b">
+    <div class="sber rv">
+      <div class="lbl">Покупайте со Сбербанком</div>
+      <h2 class="h2">Рассрочка на 4 месяца без комиссий и переплат</h2>
+      <p>Платите частями - палатку забираете сразу. Одобрение онлайн, без визита в банк.</p>
+    </div>
+    <div class="calc rv">
+      <label for="cSel">Посчитайте платёж</label>
+      <select id="cSel"></select>
+      <div class="mo" id="cMo"></div>
+      <div class="tot"><span>в месяц</span><b id="cTot">-</b></div>
+      <button class="btn" data-open="sber">Отправить запрос</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- 7. доставка / наличие / установка -->
+<section id="svc"><div class="wrap">
+  <div class="svc">
+    <div class="sv rv"><div class="route"><svg viewBox="0 0 300 84"><path id="rp" d="M10 70 C 80 10, 150 80, 290 18"/><circle r="6" cx="10" cy="70"/><circle r="6" cx="290" cy="18"/></svg></div><h3>Доставка по России и СНГ</h3><p>Транспортной компанией, расчёт при оформлении. Самовывоз из Барнаула.</p></div>
+    <div class="sv rv"><div class="big"><span data-c="1">0</span><small>день</small></div><h3>Товары в наличии</h3><p>Отгрузка на следующий день после оплаты - успеете к выходным.</p></div>
+    <div class="sv dk rv" id="clock"><svg class="ring" viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="ringFg" cx="50" cy="50" r="42"/></svg><div class="big" id="tm">0:00</div><h3>Установка палатки за 2 минуты</h3><p>Конструкция раскрывается как зонт - в любую погоду и в одиночку.</p></div>
+  </div>
+</div></section>
+
+<!-- 8. видео-обзоры -->
+<section id="vid"><div class="wrap">
+  <div class="sh rv"><div><div class="lbl">Видео-обзоры</div><h2 class="h2">Обзоры от владельцев<br>нашего снаряжения</h2></div><div class="arr"><button id="vpv" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button><button id="vnx" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  <div class="vids" id="vids"></div>
+</div></section>
+
+<!-- 9. финальная заявка -->
+<section><div class="wrap">
+  <div class="fin rv">
+    <div><h2 class="h2">Не уверены, какую выбрать?</h2><p>Перезвоним за 15 минут в рабочее время, спросим, где и как отдыхаете, и подберём палатку и пол без лишних трат.</p>
+      <div class="mng"><span class="av">EX</span>Консультируют те, кто сам ездит на лёд и в горы Алтая</div></div>
+    <form class="fm" data-form="call"><input required placeholder="Имя" autocomplete="name"><input required type="tel" placeholder="Телефон" autocomplete="tel"><label class="agree"><input type="checkbox" required checked>Я прочитал(а) и принимаю Правила и условия сайта</label><button class="btn">Заказать звонок</button></form>
+  </div>
+</div></section>
+</main>
+
+<footer id="ft"><div class="wrap">
+  <div class="fgrid">
+    <div><span class="logo"><span class="mk" style="color:#fff">EX<span>PRO</span></span></span><p style="margin:16px 0 18px;max-width:300px">Палатки и мобильные бани собственного производства. Барнаул, с доставкой по России и СНГ.</p>
+      <a class="tl" href="tel:+78006005229">+7 800 600-52-29</a><div style="font-size:13px">по России звонок бесплатный</div>
+      <div class="sbr"><b>Покупайте со Сбербанком</b>Рассрочка на 4 месяца без комиссий и переплат</div></div>
+    <div><h4>Каталог</h4><ul><li><a href="#sale">Зимние палатки</a></li><li><a href="#sale">Летние палатки</a></li><li><a href="#sale">Мобильные бани</a></li><li><a href="#sale">Пол для палаток</a></li><li><a href="#sale">Сопутствующие товары</a></li><li><a href="#sale">Товары для путешествий</a></li><li><a href="#sale">Акции</a></li></ul></div>
+    <div><h4>Покупателям</h4><ul><li><a href="#">О компании</a></li><li><a href="#">Статьи</a></li><li><a href="#goal">Гарантия</a></li><li><a href="#inst">Способы оплаты</a></li><li><a href="#svc">Доставка</a></li><li><a href="#vid">Видео-обзоры</a></li><li><a href="#vid">Отзывы</a></li><li><a href="#">Галерея</a></li><li><a href="#">Партнёрам</a></li></ul></div>
+    <div><h4>Контакты</h4><ul><li>г. Барнаул, пр. Калинина 116/10, офис 119/1</li><li>Ежедневно с 8:00 до 21:00</li><li><a href="mailto:expro.equipment@gmail.com">expro.equipment@gmail.com</a></li></ul>
+      <h4 style="margin-top:24px">Проекты EX-PRO</h4><ul><li><a href="https://ex-pro.ru" target="_blank" rel="noopener">Индивидуальные туры по Алтаю и Монголии</a></li><li><a href="https://ex4x4.ru/" target="_blank" rel="noopener">Тюнинг внедорожников</a></li></ul></div>
+  </div>
+  <div class="cp"><span>© EX-PRO, ex-equip.ru</span><span>Политика конфиденциальности · Пользовательское соглашение · Cookies</span></div>
+</div></footer>
+
+<div class="mbar" id="mbar"><a href="tel:+78006005229">Позвонить</a><a class="m" href="#goal">Подобрать</a><button id="mCart">Корзина</button></div>
+
+<!-- overlays -->
+<div class="ov" id="ov"></div>
+<nav class="mnav" id="mnav"><button class="x" data-close aria-label="Закрыть">×</button>
+  <h4>Каталог</h4><a href="#sale">Зимние палатки</a><a href="#sale">Летние палатки</a><a href="#sale">Мобильные бани</a><a href="#sale">Пол для палаток</a><a href="#sale">Сопутствующие товары</a><a href="#sale">Товары для путешествий</a>
+  <h4>Магазин</h4><a href="#sale">Акции</a><a href="#custom">Палатка на заказ</a><a href="#vid">Видео-обзоры</a><a href="#inst">Способы оплаты</a><a href="#svc">Доставка</a><a href="#ft">Контакты</a>
+  <a href="tel:+78006005229" style="font-weight:700;margin-top:14px">+7 800 600-52-29</a>
+</nav>
+<aside class="dr" id="cart"><div class="h"><h3>Корзина</h3><button class="x" data-close aria-label="Закрыть">×</button></div><div class="ls" id="cartL"></div>
+  <div class="f"><div class="t"><span>Итого</span><b id="cartT">0 ₽</b></div><div class="up" id="cartU"></div><button class="btn btn-or" data-open="order">Оформить заказ</button></div></aside>
+<aside class="dr" id="cmp"><div class="h"><h3>Сравнение</h3><button class="x" data-close aria-label="Закрыть">×</button></div><div class="ls" id="cmpL"></div></aside>
+
+<div class="md" id="mForm"><button class="x" data-close aria-label="Закрыть">×</button><h3 id="mfT">Заказать звонок</h3><p id="mfS">Перезвоним в рабочее время: ежедневно с 8:00 до 21:00 (МСК+4)</p><div id="mfP"></div>
+  <form class="fm" data-form="modal"><input required placeholder="Ваше имя" autocomplete="name"><input required type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"><label class="agree"><input type="checkbox" required checked>Я прочитал(а) и принимаю Правила и условия сайта</label><button class="btn btn-or" id="mfB">Отправить</button></form></div>
+<div class="md ok" id="mOk"><div class="ck"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg></div><h3 style="padding:0">Заявка успешно отправлена</h3><p>Скоро с вами свяжется специалист в рабочее время: ежедневно с 8:00 до 21:00 (+4 часа по МСК)</p><button class="btn btn-dk" data-close style="width:100%">Хорошо</button></div>
+<div class="md vm" id="mVid"><button class="x" data-close aria-label="Закрыть">×</button><div class="fr" id="vFr"></div></div>
+<div class="toast" id="toast"><span id="toastT"></span><button id="toastB">Корзина</button></div>
+<div class="cook" id="cook">Продолжая пользоваться сайтом, вы соглашаетесь на обработку файлов cookies.<button id="cookB">Хорошо</button></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rub=n=>Math.round(n).toLocaleString('ru-RU').replace(/ /g,' ')+' ₽';
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* товары (реальные цены с ex-equip.ru; печей нет) */
+const P=[
+ {k:'k4',n:'Палатка Куб EX-PRO Зима 4',p:78000,o:93400,f:'winter',img:'img/hero-700.webp',ph:1,s:'до 8 человек',t:'Хит',sp:{Вместимость:'до 8 человек',Сезон:'зима, до −40',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'yu',n:'Палатка EX-PRO Зима Юрта',p:55000,o:63800,f:'winter',img:'img/yurta.webp',s:'до 5 человек',sp:{Вместимость:'до 5 человек',Сезон:'зима, до −40',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'k2',n:'Палатка Куб EX-PRO Зима 2',p:48000,o:56400,f:'winter',img:'img/kub2-700.webp',ph:1,s:'до 4 человек',sp:{Вместимость:'до 4 человек',Сезон:'зима, до −40',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'ig',n:'Палатка EX-PRO Зима Иглу',p:39000,o:48100,f:'winter',img:'img/iglu.webp',s:'до 3 человек',sp:{Вместимость:'до 3 человек',Сезон:'зима, до −40',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'os',n:'Автоматическая палатка off-site',p:6500,o:9000,f:'summer',img:'img/offsite.webp',s:'раскладывается сама',sp:{Вместимость:'до 4 человек',Сезон:'лето',Стенка:'1 слой',Установка:'1 минута'}},
+ {k:'sy',n:'Летняя палатка EX-PRO Юрта',p:46800,o:51500,f:'summer',img:'img/yurta.webp',s:'3 входа',sp:{Вместимость:'до 5 человек',Сезон:'лето',Стенка:'1 слой',Установка:'2 минуты'}},
+ {k:'b2',n:'Мобильная баня на базе Куба Зима 2',p:48000,o:56400,f:'banya',img:'img/inside-700.webp',ph:1,s:'разделка под трубу',sp:{Вместимость:'до 4 человек',Сезон:'круглый год',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'bi',n:'Мобильная баня на базе Иглу',p:39000,o:48100,f:'banya',img:'img/iglu.webp',s:'до 3 человек',sp:{Вместимость:'до 3 человек',Сезон:'круглый год',Стенка:'3 слоя',Установка:'2 минуты'}},
+ {k:'fl',n:'Толстый пол для палатки',p:6900,o:11500,f:'floor',img:'img/floor.webp',s:'−40% к палатке',t:'Акция'},
+ {k:'pg',n:'Ввертыши для палатки',p:500,o:750,f:'acc',img:'img/pegs.webp',s:'для льда и земли'},
+ {k:'kov',n:'Самонадувающийся коврик EX-PRO Комфорт',p:12000,o:12500,f:'travel',img:'img/kovrik.webp',s:'для спальника',t:'Новинка'},
+ {k:'cl',n:'Дождевик EX-PRO',p:3000,o:3500,f:'travel',img:'img/cloak.webp',s:'мембрана'}
+];
+const byK=Object.fromEntries(P.map(x=>[x.k,x]));
+const arrow='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+/* header */
+let tick=false;addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{$('#hd').classList.toggle('sc',scrollY>10);$('#mbar').classList.toggle('on',scrollY>500);tick=false})},{passive:true});
+const mega=$('#mega'),srch=$('#srch');
+$('#catB').onclick=e=>{e.stopPropagation();srch.classList.remove('on');mega.classList.toggle('on')};
+$('#sBtn').onclick=e=>{e.stopPropagation();mega.classList.remove('on');srch.classList.toggle('on');setTimeout(()=>$('#q').focus(),150)};
+document.addEventListener('click',e=>{if(!e.target.closest('header')){mega.classList.remove('on');srch.classList.remove('on')}});
+$('#q').addEventListener('input',e=>{const v=e.target.value.trim().toLowerCase();$('#qres').innerHTML=v.length<2?'':(P.filter(x=>x.n.toLowerCase().includes(v)).map(x=>`<a href="#sale" data-f="${x.f}"><span>${x.n}</span><b>${rub(x.p)}</b></a>`).join('')||'<a href="#" data-open="call"><span>Не нашли - позвоните, подскажем</span></a>')});
+
+/* slider */
+const sds=$$('.sd'),dots=$$('#sdn button');let si=0,st;
+function go(i){sds[si].classList.remove('on');dots[si].classList.remove('on');si=(i+sds.length)%sds.length;sds[si].classList.add('on');const d=dots[si];d.classList.remove('on');void d.offsetWidth;d.classList.add('on');clearTimeout(st);if(!RM)st=setTimeout(()=>go(si+1),7000)}
+dots.forEach((d,i)=>d.onclick=()=>go(i));go(0);
+$('#sl').addEventListener('mouseenter',()=>{clearTimeout(st);$('#sl').classList.add('pause')});
+$('#sl').addEventListener('mouseleave',()=>{$('#sl').classList.remove('pause');go(si)});
+let tx0=null;$('#sl').addEventListener('touchstart',e=>tx0=e.touches[0].clientX,{passive:true});
+$('#sl').addEventListener('touchend',e=>{if(tx0==null)return;const dx=e.changedTouches[0].clientX-tx0;if(Math.abs(dx)>50)go(si+(dx<0?1:-1));tx0=null});
+
+/* products */
+const cart=store.get('ex3cart',{}),cmp=new Set(store.get('ex3cmp',[]));
+$('#track').innerHTML=P.map(x=>{const d=x.o?Math.round((1-x.p/x.o)*100):0;return `<article class="pc" data-f="${x.f}"><div class="im"><img class="${x.ph?'ph':''}" src="${x.img}" alt="${x.n}" loading="lazy"><div class="tg">${d?`<span class="o">−${d}%</span>`:''}${x.t?`<span>${x.t}</span>`:''}</div>${x.sp?`<button class="cmp" data-cmp="${x.k}" aria-label="Сравнить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></button>`:''}</div>
+<div class="bd"><div class="mt"><i>● в наличии</i> · ${x.s}</div><h3>${x.n}</h3><div class="pr"><b>${rub(x.p)}</b>${x.o?`<s>${rub(x.o)}</s>`:''}</div><div class="inst">${x.p>=10000?`или <b>${rub(x.p/4)}</b> × 4 мес. без переплат`:'&nbsp;'}</div>
+<div class="bt"><button class="b1" data-buy="${x.k}">Купить сейчас</button><button class="b2" data-add="${x.k}">В корзину</button></div></div></article>`}).join('');
+function filt(f){$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.f===f));$$('.pc').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.f!==f));$('#track').scrollTo({left:0})}
+$('#tabs').onclick=e=>{const b=e.target.closest('button');if(b)filt(b.dataset.f)};
+document.addEventListener('click',e=>{const a=e.target.closest('[data-f]');if(a&&!a.closest('#tabs')&&!a.classList.contains('pc')){filt(a.dataset.f);mega.classList.remove('on');srch.classList.remove('on')}});
+const step=()=>{const c=$('.pc:not(.hide)');return c?c.offsetWidth+14:300};
+$('#nx').onclick=()=>$('#track').scrollBy({left:step(),behavior:'smooth'});
+$('#pv').onclick=()=>$('#track').scrollBy({left:-step(),behavior:'smooth'});
+
+/* cart */
+const hasTent=()=>Object.keys(cart).some(k=>['winter','summer','banya'].includes(byK[k].f));
+function price(k){return byK[k].p}
+function renderCart(){const ks=Object.keys(cart),n=ks.reduce((s,k)=>s+cart[k],0);
+  const cn=$('#cartN');cn.textContent=n;cn.classList.toggle('on',n>0);$('#mCart').textContent=n?`Корзина · ${n}`:'Корзина';
+  $('#cartL').innerHTML=ks.length?ks.map(k=>`<div class="ci"><img src="${byK[k].img}" alt=""><div><b>${byK[k].n}</b><span>${rub(price(k))}</span></div><div class="qty"><button data-q="${k}" data-d="-1">−</button>${cart[k]}<button data-q="${k}" data-d="1">+</button></div></div>`).join(''):'<div class="emp">Корзина пуста.<br>Загляните в акции - там скидки до 28%.</div>';
+  const t=ks.reduce((s,k)=>s+price(k)*cart[k],0);$('#cartT').textContent=rub(t);
+  $('#cartU').textContent=hasTent()&&!cart.fl?'Добавьте толстый пол со скидкой 40% - 6 900 ₽ вместо 11 500 ₽':(t>=10000?`Рассрочка: ${rub(t/4)} × 4 мес. без переплат`:'');
+  $$('[data-add]').forEach(b=>{const on=!!cart[b.dataset.add];b.classList.toggle('done',on);b.textContent=on?'В корзине ✓':'В корзину'});
+  store.set('ex3cart',cart)}
+$('#cartL').onclick=e=>{const b=e.target.closest('[data-q]');if(!b)return;const k=b.dataset.q;cart[k]+= +b.dataset.d;if(cart[k]<=0)delete cart[k];renderCart()};
+function fly(img){if(RM||!img)return;const r=img.getBoundingClientRect(),c=$('#cartB').getBoundingClientRect(),f=img.cloneNode();f.className='fly';f.style.left=r.left+r.width/2-35+'px';f.style.top=r.top+r.height/2-35+'px';document.body.appendChild(f);
+  f.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${c.left-r.left-r.width/2+58}px,${c.top-r.top-r.height/2+58}px) scale(.25)`,opacity:.6}],{duration:700,easing:'cubic-bezier(.5,0,.2,1)'}).onfinish=()=>{f.remove();$('#cartB').classList.remove('bump');void $('#cartB').offsetWidth;$('#cartB').classList.add('bump')}}
+let tt;function toast(t){$('#toastT').textContent=t;$('#toast').classList.add('on');clearTimeout(tt);tt=setTimeout(()=>$('#toast').classList.remove('on'),3200)}
+$('#toastB').onclick=()=>openDr('cart');
+
+/* compare */
+function renderCmp(){const n=cmp.size,cn=$('#cmpN');cn.textContent=n;cn.classList.toggle('on',n>0);
+  $$('[data-cmp]').forEach(b=>b.classList.toggle('on',cmp.has(b.dataset.cmp)));
+  const ks=[...cmp];$('#cmpL').innerHTML=ks.length?`<table class="cmpt"><tr><td></td>${ks.map(k=>`<td><img src="${byK[k].img}" alt="" style="width:80px;height:60px;object-fit:contain"><b style="display:block;font-size:14px;line-height:1.3;margin-top:6px">${byK[k].n}</b></td>`).join('')}</tr><tr><td>Цена</td>${ks.map(k=>`<td><b>${rub(byK[k].p)}</b></td>`).join('')}</tr>${Object.keys(byK[ks[0]].sp).map(r=>`<tr><td>${r}</td>${ks.map(k=>`<td>${byK[k].sp[r]}</td>`).join('')}</tr>`).join('')}<tr><td></td>${ks.map(k=>`<td><button class="btn btn-or" style="height:40px;padding:0 12px;font-size:14px" data-buy="${k}">Купить</button></td>`).join('')}</tr></table>`:'<div class="emp">Нажмите значок сравнения на карточке палатки - здесь появится таблица.</div>';
+  store.set('ex3cmp',ks)}
+
+/* drawers & modals */
+const ov=$('#ov');let openEl=null;
+function closeAll(){$$('.dr.on,.md.on,.mnav.on').forEach(x=>x.classList.remove('on'));ov.classList.remove('on');$('#vFr').innerHTML='';openEl=null}
+function openDr(id){closeAll();$('#'+id).classList.add('on');ov.classList.add('on');openEl=id}
+function openMd(id){closeAll();$('#'+id).classList.add('on');ov.classList.add('on')}
+ov.onclick=closeAll;addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+$('#cartB').onclick=()=>openDr('cart');$('#mCart').onclick=()=>openDr('cart');$('#cmpB').onclick=()=>openDr('cmp');$('#hamB').onclick=()=>openDr('mnav');
+$$('#mnav a').forEach(a=>a.addEventListener('click',closeAll));
+const forms={call:['Заказать звонок','Перезвоним в рабочее время: ежедневно с 8:00 до 21:00 (МСК+4)','Заказать звонок'],
+ pre:['Предзаказ прозрачной палатки','Сообщим цену и дату поставки первой партии раньше всех','Оставить предзаказ'],
+ sber:['Рассрочка Сбербанка','Менеджер пришлёт ссылку на онлайн-заявку - одобрение за несколько минут','Отправить запрос'],
+ order:['Оформление заказа','Подтвердим наличие, рассчитаем доставку и пришлём ссылку на оплату','Оформить заказ']};
+function form(type,k){const f=forms[type]||forms.call;openMd('mForm');$('#mfT').textContent=f[0];$('#mfS').textContent=f[1];$('#mfB').textContent=f[2];
+  $('#mfP').innerHTML=k?`<div class="pi"><img src="${byK[k].img}" alt=""><div><b>${byK[k].n}</b>${rub(byK[k].p)}${byK[k].p>=10000?` · или ${rub(byK[k].p/4)} × 4 мес.`:''}</div></div>`:''}
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.closest('[data-close]')){closeAll();return}
+  const op=t.closest('[data-open]');if(op){e.preventDefault();form(op.dataset.open);return}
+  const by=t.closest('[data-buy]');if(by){const k=by.dataset.buy;forms.buy=['Купить в 1 клик','Оставьте телефон - менеджер подтвердит заказ и доставку','Купить'];form('buy',k);return}
+  const ad=t.closest('[data-add]');if(ad){const k=ad.dataset.add;if(cart[k]){openDr('cart');return}cart[k]=1;fly(ad.closest('.pc')?.querySelector('img'));renderCart();
+    toast(['winter','summer','banya'].includes(byK[k].f)&&!cart.fl?'Добавлено. Толстый пол к палатке - со скидкой 40%':'Товар добавлен в корзину');return}
+  const cm=t.closest('[data-cmp]');if(cm){const k=cm.dataset.cmp;cmp.has(k)?cmp.delete(k):cmp.add(k);renderCmp();if(cmp.size)toast(`В сравнении: ${cmp.size}`);return}
+});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;if(f.dataset.form==='modal'&&$('#mfT').textContent==='Оформление заказа'){Object.keys(cart).forEach(k=>delete cart[k]);renderCart()}f.reset();$$('.agree input').forEach(i=>i.checked=true);$$('.steps i').forEach(i=>i.classList.remove('on'));$('.steps i').classList.add('on');openMd('mOk')});
+/* шаги формы "на заказ" */
+const cf=$('[data-form="custom"]');cf.addEventListener('input',()=>{const fl=[...cf.querySelectorAll('select,input:not([type=checkbox])')].filter(i=>i.value.trim()).length;$$('.steps i').forEach((s,i)=>s.classList.toggle('on',i<Math.max(1,fl)))});
+
+/* палатки под цель */
+const G={fish:['k4','Места хватит на четверых, лунки и обогрев. Трёхслойная стенка держит тепло даже в −40.',-40,'img/kub2-1600.webp'],
+ hunt:['ig','Компактная и тихая: ставится одним человеком за 2 минуты, весит меньше всех в линейке.',-30,'img/iglu-photo.webp'],
+ tent:['yu','Высокий купол и простор для большой компании: стол, лавки и обогрев внутри.',-25,'img/yurta-photo.webp'],
+ adm:['k4','Пункт обогрева, штаб, медпункт: держит −40 и ставится без инструмента.',-40,'img/hero-1400.webp'],
+ rest:['os','Автоматическая летняя палатка: раскрывается сама, весь вечер у костра ваш.',28,'img/summer-scene.webp'],
+ corp:['b2','Баня на льду для команды - запоминается сильнее любого ресторана.',-20,'img/inside-1200.webp']};
+let gk='k4',tCur=-40,tAnim;
+function setG(g){const [k,w,tmp,img]=G[g];gk=k;$$('#chips button').forEach(b=>b.classList.toggle('on',b.dataset.g===g));
+  const im=$('#gImg');im.classList.add('sw');setTimeout(()=>{im.src=img;im.onload=()=>im.classList.remove('sw');if(im.complete)im.classList.remove('sw')},250);
+  $('#gN').textContent=byK[k].n.replace('Палатка ','');$('#gW').textContent=w;$('#gP').textContent=rub(byK[k].p);
+  cancelAnimationFrame(tAnim);const a=tCur,t0=performance.now();(function f(n){const q=Math.min(1,(n-t0)/700),v=Math.round(a+(tmp-a)*(1-Math.pow(1-q,3)));tCur=v;$('#tv').textContent=(v>0?'+':v<0?'−':'')+Math.abs(v)+'°';if(q<1)tAnim=requestAnimationFrame(f)})(t0)}
+$('#chips').onclick=e=>{const b=e.target.closest('button');if(b)setG(b.dataset.g)};
+$('#gBuy').onclick=()=>{forms.buy=['Купить в 1 клик','Оставьте телефон - менеджер подтвердит заказ и доставку','Купить'];form('buy',gk)};
+
+/* рассрочка */
+const cs=$('#cSel');cs.innerHTML=P.filter(x=>x.p>=10000).map(x=>`<option value="${x.k}">${x.n} - ${rub(x.p)}</option>`).join('');
+function calc(){const p=byK[cs.value].p,m=p/4;$('#cMo').innerHTML=[1,2,3,4].map(i=>`<div>${i}-й<b>${rub(m)}</b></div>`).join('');$('#cTot').textContent=rub(m)}
+cs.onchange=calc;calc();
+
+/* видео (реальные ролики Rutube с сайта) */
+const V=[['6633936ae9aa0525accad1b20b7ea2fa','Зимняя палатка Юрта от команды EX-PRO','img/yurta-photo.webp','EX-PRO'],
+ ['e9922cb2e5325be3905be1a342486766','Winter 2 в качестве бани на льду','img/inside-1200.webp','Отзыв владельца'],
+ ['b80a507949790d7aff3f214b8eba814a','Куб Winter 2 от Александра из Якутии','img/kub2-1600.webp','Якутия'],
+ ['1d338475c9bb5ef3ce5b8968b3d969b0','Видеоотзыв Андрея','img/hero-1000.webp','Петропавловск-Камчатский'],
+ ['1f39650b8fe88c2fc2a9de4ecd794007','Обзор Юрты от Константина','img/yurta-photo.webp','Новосибирск'],
+ ['04402148eb2328ba9bc868a2de0674ed','Палатка Куб EX-PRO Winter 4','img/hero-1000.webp','Обзор'],
+ ['fe6cd9d312092b6ebfa321eb857c9c71','Палатка EX-PRO Winter Иглу','img/iglu-photo.webp','Обзор'],
+ ['5fca011ce2d59f9545e06a94bc19f922','Сумка-рюкзак EX-PRO Discovery Bag','img/summer.webp','Снаряжение']];
+$('#vids').innerHTML=V.map(v=>`<button class="vd" data-v="${v[0]}"><div class="th"><img src="${v[2]}" alt="" loading="lazy"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></span><span class="who">${v[3]}</span></div><p>${v[1]}</p></button>`).join('');
+$('#vids').onclick=e=>{const b=e.target.closest('[data-v]');if(!b)return;openMd('mVid');$('#vFr').innerHTML=`<iframe src="https://rutube.ru/play/embed/${b.dataset.v}/?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`};
+const vs=()=>$('.vd').offsetWidth+14;$('#vnx').onclick=()=>$('#vids').scrollBy({left:vs(),behavior:'smooth'});$('#vpv').onclick=()=>$('#vids').scrollBy({left:-vs(),behavior:'smooth'});
+
+/* reveal + counters + таймер 2 минуты */
+function runClock(){if(RM){$('#tm').textContent='2:00';$('#ringFg').style.strokeDashoffset=0;return}const t0=performance.now(),D=2400;(function f(n){const q=Math.min(1,(n-t0)/D),e=1-Math.pow(1-q,2),s=Math.round(120*e);$('#tm').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');$('#ringFg').style.strokeDashoffset=264*(1-e);if(q<1)requestAnimationFrame(f)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');io.unobserve(t);
+  if(t.id==='clock')runClock();
+  t.querySelectorAll('[data-c]').forEach(c=>{c.textContent=c.dataset.c});
+  const rp=t.querySelector('#rp');if(rp&&!RM){const L=rp.getTotalLength();rp.animate([{strokeDashoffset:L*2},{strokeDashoffset:0}],{duration:1800,easing:'cubic-bezier(.2,.7,.2,1)'})}
+}),{threshold:.15,rootMargin:'0px 0px -30px 0px'});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+
+/* cookies */
+if(store.get('ex3cook',0))$('#cook').remove();else $('#cookB').onclick=()=>{store.set('ex3cook',1);$('#cook').remove()};
+
+renderCart();renderCmp();
+</script>
+</body>
+</html>
