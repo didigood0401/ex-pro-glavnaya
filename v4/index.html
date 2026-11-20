@@ -393,7 +393,7 @@ document.getElementById('ph').onclick=function(){if(!this.querySelector('iframe'
 
 const msg=document.getElementById("msg"),fab=document.getElementById("fab");fab.onclick=e=>{e.stopPropagation();const o=msg.classList.toggle("open");fab.setAttribute("aria-expanded",o)};document.addEventListener("click",e=>{if(!msg.contains(e.target)){msg.classList.remove("open");fab.setAttribute("aria-expanded",false)}});
 
-(()=>{const L=[...document.querySelectorAll("#offers .of")];let i=0;setInterval(()=>{const a=L[i];a.classList.remove("on");a.classList.add("out");i=(i+1)%L.length;const b=L[i];b.classList.remove("out");void b.offsetWidth;b.classList.add("on");setTimeout(()=>a.classList.remove("out"),600)},4200);const h=(new Date().getUTCHours()+7)%24,lv=document.getElementById("live");if(h<8||h>=21){lv.classList.add("off");lv.querySelector("span").textContent="Ответим с 8:00 по Барнаулу"}else{lv.querySelector("span").textContent="Мы онлайн - задайте вопрос"}})();
+(()=>{const L=[...document.querySelectorAll("#offers .of")];let i=0;let ps=false;const O=document.getElementById("offers");O.onmouseenter=()=>ps=true;O.onmouseleave=()=>ps=false;setInterval(()=>{if(ps)return;const a=L[i];a.classList.remove("on");a.classList.add("out");i=(i+1)%L.length;const b=L[i];b.classList.remove("out");void b.offsetWidth;b.classList.add("on");setTimeout(()=>a.classList.remove("out"),600)},4200);const h=(new Date().getUTCHours()+7)%24,lv=document.getElementById("live");if(h<8||h>=21){lv.classList.add("off");lv.querySelector("span").textContent="Ответим с 8:00 по Барнаулу"}else{lv.querySelector("span").textContent="Мы онлайн - задайте вопрос"}})();
 </script>
 </body>
 </html>
