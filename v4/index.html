@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EX-PRO - палатки собственного производства</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--or:#E05E0C;--or2:#C24F08;--ink:#1F242B;--ink2:#2C323A;--mut:#5D6570;--bg:#F3F4F6;--card:#fff;--line:#E4E6EA;--ok:#1E9E57;--r:22px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.w{max-width:1280px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px Manrope;border:0;border-radius:12px;padding:13px 20px;cursor:pointer;transition:background .2s,transform .15s}
+.btn:active{transform:scale(.97)}
+.bo{background:var(--or);color:#fff}.bo:hover{background:var(--or2)}
+.bd{background:var(--ink);color:#fff}.bd:hover{background:#000}
+.bw{background:#fff;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink)}
+/* шапка */
+.top{background:var(--ink);color:#C9CED6;font-size:13px}
+.top .w{display:flex;justify-content:space-between;align-items:center;height:40px;gap:12px}
+.top b{color:#fff}
+.hdr{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.hdr .w{display:flex;align-items:center;gap:14px;height:68px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo i{font-style:normal;background:var(--or);color:#fff;border-radius:8px;padding:2px 7px}
+.search{flex:1;display:flex;align-items:center;background:var(--bg);border-radius:12px;padding:0 14px;height:44px;color:var(--mut);font-size:14px}
+.hdr .ic{display:flex;gap:8px}
+.hdr .ic a{background:var(--bg);border-radius:12px;padding:11px 14px;font-size:14px;font-weight:600}
+.menu{background:#fff}
+.menu .w{display:flex;gap:26px;height:46px;align-items:center;font-size:14px;font-weight:600;color:var(--mut);overflow-x:auto;white-space:nowrap}
+.menu .w a:first-child{color:var(--ink)}
+/* 1 */
+.b1{margin:16px 0}
+.b1 .in{border-radius:16px;background:linear-gradient(90deg,var(--ink) 0 52%,var(--or) 52%);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;gap:16px;font-weight:700}
+.b1 .in span{opacity:.75;font-weight:500}
+/* сетка первого экрана: размеры как на сайте (2/3 + 1/3, 2 тайла справа) */
+.grid1{display:grid;grid-template-columns:2.1fr 1fr;gap:16px}
+.hero{position:relative;border-radius:var(--r);overflow:hidden;min-height:600px;background:#111;color:#fff}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 7s ease-out}
+.slide.on img{transform:scale(1)}
+.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,18,22,.82) 0,rgba(15,18,22,.45) 48%,rgba(15,18,22,0) 75%),linear-gradient(0deg,rgba(15,18,22,.7),transparent 40%)}
+.hcopy{position:absolute;left:34px;top:30px;right:34px;z-index:3;max-width:560px}
+.season{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.season button{font:600 13px Manrope;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.25);color:#fff;border-radius:999px;padding:6px 12px;cursor:pointer}
+.season button.on{background:#fff;color:var(--ink);border-color:#fff}
+.own{display:inline-flex;gap:8px;align-items:center;background:var(--or);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;margin-bottom:12px}
+.hcopy h1{font-size:clamp(28px,3vw,40px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
+.hcopy p{font-size:16px;opacity:.9;margin:12px 0 16px;max-width:470px}
+.utp{display:flex;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+.utp div{font-size:13px;opacity:.85}.utp b{display:block;font-size:22px;opacity:1}
+.hcta{display:flex;gap:10px;flex-wrap:wrap}
+.prog{position:absolute;left:34px;right:34px;top:14px;display:flex;gap:6px;z-index:3}
+.prog i{flex:1;height:3px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden}
+.prog i b{display:block;height:100%;width:0;background:#fff}
+.prog i.on b{animation:pg 6s linear forwards}.prog i.done b{width:100%}
+@keyframes pg{to{width:100%}}
+/* 7 - кнопки: форма та же, визуал новый */
+.b7{position:absolute;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;z-index:3}
+.b7 a{background:rgba(255,255,255,.96);color:var(--ink);border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700;transition:transform .2s}
+.b7 a:hover{transform:translateY(-3px)}
+.b7 a small{display:block;font-weight:500;color:var(--mut);font-size:12px}
+.b7 a img{width:54px;height:40px;object-fit:contain}
+.side{display:grid;grid-template-rows:1fr 1fr;gap:16px}.tile{min-height:292px}
+.tile{border-radius:var(--r);overflow:hidden;position:relative;padding:22px;display:flex;flex-direction:column;justify-content:space-between;min-height:270px;transition:transform .25s,box-shadow .25s}
+.tile:hover{transform:translateY(-3px);box-shadow:0 18px 36px -22px rgba(0,0,0,.35)}
+.tile h3{font-size:24px;line-height:1.1;font-weight:800;position:relative;z-index:2}
+.tile .tags{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:2}
+.tile .tags a{background:#fff;border-radius:10px;padding:7px 11px;font-size:13px;font-weight:700}
+.tile .pic{position:absolute;right:-6px;bottom:44px;width:62%;z-index:1}
+.t-acc{background:linear-gradient(160deg,#FFE7D3,#FFD2AE)}
+.t-trv{background:linear-gradient(160deg,#E8EBF0,#D7DCE3)}
+/* 5,6 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.wide{border-radius:var(--r);overflow:hidden;position:relative;min-height:360px;color:#fff;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.wide img.bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.wide:after,.goal:after{z-index:1}
+.wide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,18,22,.88),rgba(15,18,22,.55) 45%,rgba(15,18,22,.05) 80%)}
+.wide>*{position:relative;z-index:2}
+.wide h3{font-size:32px;line-height:1.05;font-weight:800}
+.wide p{opacity:.88;max-width:330px;margin-top:8px}
+.wide .tags{display:flex;gap:8px;flex-wrap:wrap}
+.new{position:absolute;top:18px;right:18px;z-index:3;background:var(--or);color:#fff;font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px;animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(242,112,28,0)}0%{box-shadow:0 0 0 0 rgba(242,112,28,.6)}}
+.bth{display:flex;gap:10px;margin-top:14px}
+.bth div{background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border-radius:12px;padding:8px 10px;font-size:13px}
+.bth b{display:block;font-size:16px}
+/* инфографика */
+section{padding:56px 0 0}
+h2{font-size:clamp(26px,2.8vw,36px);font-weight:800;letter-spacing:-.015em;line-height:1.1}
+.sub{color:var(--mut);margin:8px 0 24px;max-width:640px}
+.ig{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ig>div{background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line)}
+.ig b{font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--or);display:block;line-height:1}
+.ig strong{display:block;margin:10px 0 4px}
+.ig span{color:var(--mut);font-size:14px}
+.ig>.dk{background:var(--ink);color:#fff;border-color:var(--ink)}.ig .dk span{color:#C9CED6}
+.temp{height:8px;border-radius:8px;background:linear-gradient(90deg,#3B82F6,#93C5FD 45%,#FDBA74 70%,#EF4444);margin-top:14px;position:relative}
+.temp i{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--ink);left:0;animation:tm 5s ease-in-out infinite alternate}
+@keyframes tm{to{left:calc(100% - 18px)}}
+/* 8 акции */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pc{background:#fff;border-radius:18px;padding:14px;border:1px solid var(--line);display:flex;flex-direction:column}
+.pc .im{background:var(--bg);border-radius:12px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pc .im img{width:84%;height:84%;object-fit:contain}
+.pc .im .cut{position:absolute;top:10px;left:10px;background:var(--or);color:#fff;font-weight:800;font-size:12px;padding:4px 8px;border-radius:8px}
+.pc .st{color:var(--ok);font-size:13px;font-weight:600;margin-top:10px}
+.pc .pr{font-size:22px;font-weight:800;margin-top:4px}.pc .pr s{font-size:14px;color:#6B7280;font-weight:500;margin-left:6px}
+.pc .nm{font-size:14px;color:var(--mut);margin:4px 0 12px;flex:1}
+.pc .x4{font-size:12px;color:var(--mut);margin-bottom:10px}
+.pc .bb{display:grid;grid-template-columns:1fr 1fr;gap:6px}.pc .btn{padding:10px 8px;font-size:13px}
+/* 9 */
+.b9{display:grid;grid-template-columns:1.2fr 1fr;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line)}
+.b9 .l{padding:30px}
+.b9 .badge{display:inline-block;background:var(--or);color:#fff;font-weight:800;padding:6px 12px;border-radius:999px;font-size:13px}
+.b9 h3{font-size:28px;line-height:1.1;margin:14px 0}
+.b9 .pr{font-size:34px;font-weight:800}.b9 .pr s{font-size:18px;color:#6B7280;margin-left:8px;font-weight:600}
+.adv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 20px}
+.adv div{background:var(--bg);border-radius:14px;padding:12px;font-size:14px}
+.adv b{display:block;font-size:15px}
+.b9 .r{background:var(--ink);position:relative;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
+.puz{display:grid;grid-template-columns:repeat(3,70px);gap:4px;transform:rotate(-8deg)}
+.puz i{width:70px;height:70px;background:#4FA3D9 url(img/floor.webp) center/cover;border-radius:6px;animation:pz .9s cubic-bezier(.2,.8,.2,1) backwards}
+.puz i:nth-child(2){animation-delay:.1s}.puz i:nth-child(3){animation-delay:.2s}.puz i:nth-child(4){animation-delay:.3s}.puz i:nth-child(5){animation-delay:.4s}.puz i:nth-child(6){animation-delay:.5s}
+@keyframes pz{from{opacity:0;transform:translateY(-30px)}}
+.b9 .r span{position:absolute;bottom:16px;left:16px;color:#fff;font-weight:700;font-size:14px;opacity:.85}
+/* 10 производство */
+.b10{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.goal{border-radius:var(--r);overflow:hidden;position:relative;min-height:380px;color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.goal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.goal:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,22,.7),rgba(15,18,22,.1) 55%,rgba(15,18,22,.6))}
+.goal>*{position:relative;z-index:2}
+.goal h3{font-size:32px;line-height:1.05}
+.goal .tags{display:flex;gap:6px;flex-wrap:wrap}
+.prod{background:var(--ink);color:#fff;border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:16px}
+.prod h3{font-size:28px;line-height:1.1}
+.prod ol{list-style:none;padding:0;display:grid;gap:10px;counter-reset:p}
+.prod li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--ink2);border-radius:14px;padding:12px 14px}
+.prod li:before{counter-increment:p;content:counter(p);width:34px;height:34px;border-radius:10px;background:var(--or);display:flex;align-items:center;justify-content:center;font-weight:800}
+.prod li span{color:#C9CED6;font-size:14px;display:block}
+/* форма + 11-13 */
+.order{background:#fff;border-radius:var(--r);padding:34px;border:1px solid var(--line)}
+.order .top2{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.f{display:flex;gap:8px;background:var(--or);padding:8px;border-radius:16px;flex-wrap:wrap}
+.f input{flex:1;min-width:140px;font:15px Manrope;border:0;border-radius:10px;padding:13px}
+.agree{font-size:13px;color:var(--mut);margin-top:8px}
+.gal{display:flex;gap:10px;overflow-x:auto;margin:24px 0;scroll-snap-type:x mandatory;padding-bottom:6px}
+.gal img{height:180px;border-radius:14px;scroll-snap-align:start;flex:none;width:auto}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.c3 div{background:var(--bg);border-radius:16px;padding:18px}
+.c3 b{display:block;font-size:17px}
+.c3 span{color:var(--mut);font-size:14px}
+.c3 em{font-style:normal;display:inline-block;margin-top:10px;font-weight:700;color:var(--or2);font-size:14px}
+/* сбер + 14 */
+.sber{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#EAF7EF;border-radius:18px;padding:18px 24px;flex-wrap:wrap}
+.sber b{color:#128C3F}
+.dlv{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}
+.dmap{background:var(--ink);border-radius:var(--r);padding:26px;color:#fff;position:relative;overflow:hidden}
+.dmap svg{width:100%;height:auto;margin-top:10px}
+.route{stroke-dasharray:6 8;animation:rt 1.2s linear infinite}
+@keyframes rt{to{stroke-dashoffset:-28}}
+.dcalc{background:#fff;border-radius:var(--r);padding:26px;border:1px solid var(--line)}
+.dcalc select{width:100%;font:15px Manrope;padding:13px;border-radius:12px;border:1px solid var(--line);margin:12px 0}
+.dres{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dres div{background:var(--bg);border-radius:14px;padding:14px}.dres b{display:block;font-size:20px}
+.dsteps{display:grid;gap:8px;margin-top:14px;font-size:14px}
+.dsteps div{display:flex;gap:10px;align-items:center}.dsteps i{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+footer{margin-top:60px;background:var(--ink);color:#C9CED6;padding:36px 0;font-size:14px}
+footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.note{font-size:12px;color:var(--mut);margin-top:10px}
+.callb{position:fixed;right:18px;bottom:18px;z-index:40;box-shadow:0 12px 26px -10px rgba(0,0,0,.45)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:960px){.grid1,.grid2,.b10,.dlv,.b9,.order .top2{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr;grid-template-rows:none}.cards,.ig{grid-template-columns:1fr 1fr}.c3,.adv{grid-template-columns:1fr}.hero{min-height:620px}.b7{grid-template-columns:1fr}.hdr .search,.hdr .ic{display:none}}
+@media(max-width:560px){.side,.cards,.ig{grid-template-columns:1fr}.top .w span:first-child{display:none}.hcopy{left:18px;right:18px}.prog{left:18px;right:18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><div class="w"><span>г. Барнаул · пр. Калинина 116/10 · ежедневно 8:00-21:00</span><span><b>+7 800 600-52-29</b> · по России бесплатно</span></div></div>
+<header class="hdr"><div class="w">
+ <a class="logo" href="#"><i>EX</i>PRO</a>
+ <a class="btn bd" href="#cat" style="padding:11px 16px">Каталог</a>
+ <div class="search">Поиск: палатка куб, баня, скрадок…</div>
+ <div class="ic"><a href="#">Сравнение</a><a href="#">Корзина</a></div>
+ <a class="btn bo" href="#order" style="padding:11px 16px">Заказать звонок</a>
+</div></header>
+<nav class="menu"><div class="w"><a href="#">Покупателям</a><a href="#">Партнёрам</a><a href="#">Статьи</a><a href="#">Отзывы</a><a href="#">Галерея</a><a href="#">Способы оплаты</a><a href="#dlv">Доставка</a><a href="#">Контакты</a></div></nav>
+
+<main class="w">
+ <!-- 1 -->
+ <div class="b1"><div class="in">Проверенные товары для активного отдыха <span>Собственное производство · Барнаул</span></div></div>
+
+ <div class="grid1" id="cat">
+  <!-- 2 + 7 -->
+  <div class="hero" id="hero">
+   <div class="prog" id="prog"></div>
+   <div class="hcopy">
+    <div class="season" id="season"></div>
+    <div class="own">Собственное производство</div>
+    <h1 id="h1"></h1>
+    <p id="hp"></p>
+    <div class="utp" id="utp"></div>
+    <div class="hcta"><a class="btn bo" href="#order" id="cta"></a><a class="btn bw" href="#order">Заказать звонок</a></div>
+   </div>
+   <div class="b7">
+    <a href="#"><span>Зимние<small>от -45 °C</small></span><img src="img/yurta.webp" alt=""></a>
+    <a href="#"><span>Летние<small>до +50 °C</small></span><img src="img/summer.webp" alt=""></a>
+    <a href="#order"><span>На заказ<small>ваш размер</small></span><img src="img/iglu.webp" alt=""></a>
+   </div>
+  </div>
+  <div class="side">
+   <!-- 3: на месте бань - сопутствующие -->
+   <a class="tile t-acc" href="#"><h3>Сопутствующие<br>товары</h3><img class="pic" src="img/pegs.webp" alt=""><div class="tags"><span class="chip" style="background:#fff">Дуги</span><span class="chip" style="background:#fff">Вертыши</span><span class="chip" style="background:#fff">Другое</span></div></a>
+   <!-- 4: на месте печей - товары для путешествий -->
+   <a class="tile t-trv" href="#"><h3>Товары для<br>путешествий</h3><img class="pic" src="img/cloak.webp" alt="" style="width:48%"><div class="tags"><span class="chip" style="background:#fff">Спальники</span><span class="chip" style="background:#fff">Коврики</span><span class="chip" style="background:#fff">Другое</span></div></a>
+  </div>
+ </div>
+
+ <div class="grid2">
+  <!-- 5: бани -->
+  <a class="wide" href="#"><img class="bgi" src="img/s-bania.webp" alt="Мобильная баня EX-PRO">
+   <div><h3>Мобильные бани</h3><p>Парилка на льду или на даче за 2 минуты. Держит жар, не боится печи.</p><div class="bth"><div><b>+100 °C</b>внутри</div><div><b>-45 °C</b>снаружи</div><div><b>2 мин</b>установка</div></div></div>
+   <div class="tags"><span class="chip">Куб</span><span class="chip">Иглу</span><span class="chip">Летняя</span></div></a>
+  <!-- 6: новинка скрадок -->
+  <a class="wide" href="#"><img class="bgi" src="img/s-autumn.webp" alt="Скрадок охотничий EX-PRO"><span class="new">Новинка</span>
+   <div><h3>Скрадок охотничий</h3><p>Камуфляж под осенний и весенний лес, обзор во все стороны, тихая установка.</p></div>
+   <div class="tags"><span class="chip">Осень</span><span class="chip">Весна</span><span class="chip">Предзаказ</span></div></a>
+ </div>
+
+ <!-- инфографика перед 8 -->
+ <section class="rv">
+  <h2>Почему берут EX-PRO</h2>
+  <p class="sub">Коротко о главном - чтобы решиться сегодня.</p>
+  <div class="ig">
+   <div class="dk"><b>-45…+50</b><strong>Один дом на все сезоны</strong><span>Зимние и летние модели, проверено на Алтае и в Якутии</span><div class="temp"><i></i></div></div>
+   <div><b>2 мин</b><strong>Установка</strong><span>Каркас «зонтик»: раскрыл - закрепил - готово</span></div>
+   <div><b>12 мес</b><strong>Гарантия</strong><span>Шьём сами - отвечаем за каждый шов</span></div>
+   <div><b>1 день</b><strong>Отгрузка</strong><span>Товары в наличии - доставка по России и СНГ</span></div>
+   <div><b>×4</b><strong>Рассрочка Сбера</strong><span>Без комиссий и переплат</span></div>
+   <div><b>10%</b><strong>Кешбэк за отзыв</strong><span>Возвращаем деньги за честный отзыв</span></div>
+   <div><b>40%</b><strong>Скидка на пол</strong><span>При покупке любой палатки</span></div>
+   <div class="dk"><b>свой</b><strong>Размер под вас</strong><span>Палатка на заказ по вашему чертежу</span></div>
+  </div>
+ </section>
+
+ <!-- 8 акции -->
+ <section class="rv">
+  <h2>Акции</h2>
+  <p class="sub">Цены действуют, пока товар есть на складе.</p>
+  <div class="cards">
+   <div class="pc"><div class="im"><span class="cut">-37%</span><img src="img/floor.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">11 500 ₽<s>18 400 ₽</s></div><div class="nm">Пол для палатки Ex-Pro Зима 2 (5 см)</div><div class="x4">или 4 платежа по 2 875 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
+   <div class="pc"><div class="im"><span class="cut">-33%</span><img src="img/pegs.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">500 ₽<s>750 ₽</s></div><div class="nm">Адаптер для вкручивания вертышей</div><div class="x4">&nbsp;</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
+   <div class="pc"><div class="im"><span class="cut">-28%</span><img src="img/summer.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">6 500 ₽<s>9 000 ₽</s></div><div class="nm">Палатка автоматическая Ex-Pro off-site, оранжевая</div><div class="x4">или 4 платежа по 1 625 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
+   <div class="pc"><div class="im"><span class="cut">-9%</span><img src="img/yurta.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">115 300 ₽<s>126 900 ₽</s></div><div class="nm">Палатка Ex-Pro Зима Гранд Юрта</div><div class="x4">или 4 платежа по 28 825 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
+  </div>
+ </section>
+
+ <!-- 9 акция пол -->
+ <section class="rv">
+  <div class="b9">
+   <div class="l"><span class="badge">Акция</span><h3>Купите палатку - толстый пол со скидкой 40%</h3>
+    <div class="pr">6 900 ₽<s>11 500 ₽</s></div>
+    <div class="adv"><div><b>Тёплый пол</b>5 см между вами и льдом</div><div><b>Не промерзает</b>даже при -45 °C</div><div><b>Плотные пазлы</b>без щелей и сквозняков</div></div>
+    <a class="btn bo" href="#cat">Выбрать палатку</a></div>
+   <div class="r"><div class="puz"><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Пазлы собираются за минуту</span></div>
+  </div>
+ </section>
+
+ <!-- 10 цель + производство -->
+ <section class="rv">
+  <div class="b10">
+   <div class="goal"><img src="img/goal.webp" alt=""><div><span class="chip" style="background:var(--or);color:#fff">Гарантия 12 месяцев</span><h3 style="margin-top:12px">Палатки под вашу<br>цель применения</h3></div>
+    <div class="tags"><span class="chip">для рыбалки</span><span class="chip">для охоты</span><span class="chip">шатёр для компании</span><span class="chip">администр. назначения</span><span class="chip">для отдыха</span><span class="chip">для корпоративов</span></div></div>
+   <div class="prod"><h3>Собственное производство в Барнауле</h3><p style="color:#C9CED6">Мы не перепродаём чужое - шьём, тестируем и отвечаем сами.</p>
+    <ol><li><div><b>Ткань и каркас под Сибирь</b><span>Материалы подбираем под морозы до -45 °C</span></div></li><li><div><b>Пошив и контроль</b><span>Каждую палатку проверяем перед отгрузкой</span></div></li><li><div><b>Тест на льду</b><span>Модели проверены на рыбалке и в экспедициях</span></div></li><li><div><b>Нестандарт</b><span>Нужен другой размер - сошьём под вас</span></div></li></ol>
+    <a class="btn bo" href="#order" style="align-self:flex-start">Обсудить заказ</a></div>
+  </div>
+ </section>
+
+ <!-- форма + 11-13 -->
+ <section class="rv" id="order">
+  <div class="order">
+   <div class="top2"><div><h2>Заказывай - сейчас лучшее время для мечты</h2><p class="sub" style="margin-bottom:0">Перезвоним за 15 минут, подберём модель и посчитаем доставку.</p></div>
+    <div><form class="f" onsubmit="event.preventDefault();this.innerHTML='<b style=&quot;color:#fff;padding:12px&quot;>Спасибо! Перезвоним в течение 15 минут.</b>'"><input placeholder="Имя" required><input placeholder="Телефон" type="tel" required><button class="btn bd">Заказать</button></form><div class="agree">✓ Я принимаю правила и условия сайта</div></div></div>
+   <div class="gal"><img src="img/s-winter.webp" alt=""><img src="img/inside.webp" alt=""><img src="img/s-summer.webp" alt=""><img src="img/s-spring.webp" alt=""><img src="img/iglu.webp" alt=""><img src="img/offsite.webp" alt=""><img src="img/s-bania.webp" alt=""></div>
+   <div class="c3">
+    <div><b>По вашему чертежу</b><span>Пришлите эскиз или фото - рассчитаем стоимость за 1 день.</span><em>Прислать эскиз →</em></div>
+    <div><b>Только нужная комплектация</b><span>Не платите за лишнее: печь, пол, окна - по желанию.</span><em>Собрать комплект →</em></div>
+    <div><b>Индивидуальный размер</b><span>Под лодку, кузов, прицеп или большую компанию.</span><em>Указать размер →</em></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="rv"><div class="sber"><div><b>Покупайте со Сбербанком</b><br>Рассрочка на 4 месяца без комиссий и переплат</div><a class="btn" style="background:#128C3F;color:#fff" href="#">Отправить запрос</a></div></section>
+
+ <!-- 14 доставка -->
+ <section class="rv" id="dlv">
+  <h2>Доставка по России и СНГ</h2>
+  <p class="sub">Товары в наличии отгружаем за 1 день. Самовывоз - Барнаул, пр. Калинина 116/10.</p>
+  <div class="dlv">
+   <div class="dmap"><b style="font-size:18px">Из Барнаула - в любой город</b>
+    <svg viewBox="0 0 520 240" aria-hidden="true"><g fill="#3A424C"><circle cx="70" cy="120" r="5"/><circle cx="150" cy="100" r="5"/><circle cx="235" cy="135" r="5"/><circle cx="400" cy="90" r="5"/><circle cx="470" cy="150" r="5"/><circle cx="330" cy="190" r="5"/></g>
+     <g fill="none" stroke="#F2701C" stroke-width="2.5" class="route"><path d="M300 160Q190 90 70 120"/><path d="M300 160Q230 100 150 100"/><path d="M300 160Q270 140 235 135"/><path d="M300 160Q360 90 400 90"/><path d="M300 160Q400 170 470 150"/><path d="M300 160Q320 180 330 190"/></g>
+     <circle cx="300" cy="160" r="10" fill="#F2701C"/><text x="314" y="166" fill="#fff" font-size="14" font-family="Manrope" font-weight="700">Барнаул</text>
+     <g fill="#C9CED6" font-size="12" font-family="Manrope"><text x="40" y="108">Москва</text><text x="122" y="90">Екатеринбург</text><text x="208" y="125">Омск</text><text x="380" y="78">Якутск</text><text x="440" y="140">Хабаровск</text><text x="300" y="210">Алматы</text></g></svg></div>
+   <div class="dcalc"><b style="font-size:18px">Сколько ехать до вас</b>
+    <select id="city"><option value="2-3|от 900 ₽">Новосибирск</option><option value="3-5|от 1 400 ₽">Омск</option><option value="4-6|от 1 700 ₽">Екатеринбург</option><option value="7-10|от 2 500 ₽" selected>Москва</option><option value="8-12|от 3 200 ₽">Якутск</option><option value="5-8|от 2 200 ₽">Казахстан</option></select>
+    <div class="dres"><div><span>Срок</span><b id="dd">7-10 дней</b></div><div><span>Стоимость</span><b id="dp">от 2 500 ₽</b></div></div>
+    <div class="dsteps"><div><i></i>Оплачиваете заказ или оформляете рассрочку</div><div><i></i>Отгружаем в транспортную компанию за 1 день</div><div><i></i>Присылаем трек-номер, отслеживаете груз</div></div>
+    <p class="note">Сроки и цены - пример, точный расчёт при оформлении.</p></div>
+  </div>
+ </section>
+</main>
+
+<footer><div class="w"><span><b style="color:#fff">EX-PRO</b> · снаряжение собственного производства · Барнаул</span><span>+7 800 600-52-29 · expro.equipment@gmail.com</span></div></footer>
+<a class="btn bo callb" href="#order">Заказать звонок</a>
+
+<script>
+const S=[
+ {s:'Зима',img:'s-winter.webp',h:'Зимняя палатка, в которой тепло при -45 °C',p:'Шьём сами в Барнауле. Ставится за 2 минуты, держит тепло всю ночь на льду.',u:[['-45 °C','не промерзает'],['2 мин','установка'],['12 мес','гарантия']],c:'Подобрать зимнюю палатку'},
+ {s:'Зима',img:'s-bania.webp',h:'Мобильная баня: парилка прямо на льду',p:'Печь, пар и веник в 2 минутах от лунки. Ткань держит жар, каркас - ветер.',u:[['+100 °C','внутри'],['2 мин','установка'],['×4','рассрочка']],c:'Выбрать баню'},
+ {s:'Осень',img:'s-autumn.webp',h:'Новинка: скрадок охотничий для осенней охоты',p:'Камуфляж под осенний лес, обзор на 360°, тихая установка без звона железа.',u:[['360°','обзор'],['тихо','установка'],['новинка','предзаказ']],c:'Оформить предзаказ'},
+ {s:'Весна',img:'s-spring.webp',h:'Скрадок на весеннюю охоту - видите всё, вас не видно',p:'Окна-сетки по периметру, плотная ткань от ветра и сырости.',u:[['360°','обзор'],['весна','камуфляж'],['12 мес','гарантия']],c:'Оформить предзаказ'},
+ {s:'Лето',img:'s-summer.webp',h:'Лето: палатка-куб, автоматическая палатка и баня',p:'Раскрыл - и лагерь готов. Для рыбалки, дачи и походов до +50 °C.',u:[['+50 °C','без духоты'],['1 мин','автомат'],['от 6 500 ₽','цена']],c:'Подобрать на лето'}
+];
+const hero=document.getElementById('hero'),season=document.getElementById('season'),prog=document.getElementById('prog');
+S.forEach((x,i)=>{const d=document.createElement('div');d.className='slide';d.innerHTML='<img src="img/'+x.img+'" alt="">';hero.insertBefore(d,hero.firstChild);x.el=d;
+ const b=document.createElement('button');b.textContent=x.s+(i===1?' · баня':i===0?' · палатка':'');b.onclick=()=>go(i,true);season.appendChild(b);
+ const p=document.createElement('i');p.innerHTML='<b></b>';prog.appendChild(p)});
+let cur=0,t;
+function go(i,user){cur=i;S.forEach((x,k)=>x.el.classList.toggle('on',k===i));[...season.children].forEach((b,k)=>b.classList.toggle('on',k===i));
+ [...prog.children].forEach((p,k)=>{p.className=k<i?'done':'';if(k===i){void p.offsetWidth;p.className='on'}});
+ h1.textContent=S[i].h;hp.textContent=S[i].p;cta.textContent=S[i].c;utp.innerHTML=S[i].u.map(u=>'<div><b>'+u[0]+'</b>'+u[1]+'</div>').join('');
+ clearTimeout(t);t=setTimeout(()=>go((cur+1)%S.length),6000)}
+go(0);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+city.onchange=()=>{const v=city.value.split('|');dd.textContent=v[0]+' дней';dp.textContent=v[1]};
+</script>
+</body>
+</html>
