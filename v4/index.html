@@ -71,7 +71,7 @@ img{display:block;max-width:100%}
 .side{display:grid;grid-template-rows:1fr 1fr;gap:16px}.tile{min-height:292px}
 .tile{border-radius:var(--r);overflow:hidden;position:relative;padding:22px;display:flex;flex-direction:column;justify-content:space-between;min-height:270px;transition:transform .25s,box-shadow .25s}
 .tile:hover{transform:translateY(-3px);box-shadow:0 18px 36px -22px rgba(0,0,0,.35)}
-.tile h3{font-size:24px;line-height:1.1;font-weight:800;position:relative;z-index:2}
+.tile h2,.tile h3{font-size:24px;line-height:1.1;font-weight:800;position:relative;z-index:2}
 .tile .tags{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:2}
 .tile .tags a{background:#fff;border-radius:10px;padding:7px 11px;font-size:13px;font-weight:700}
 .tile .pic{position:absolute;right:-6px;bottom:44px;width:62%;z-index:1}
@@ -83,7 +83,7 @@ img{display:block;max-width:100%}
 .wide img.bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.wide:after,.goal:after{z-index:1}
 .wide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,18,22,.88),rgba(15,18,22,.55) 45%,rgba(15,18,22,.05) 80%)}
 .wide>*{position:relative;z-index:2}
-.wide h3{font-size:32px;line-height:1.05;font-weight:800}
+.wide h2,.wide h3{font-size:32px;line-height:1.05;font-weight:800}
 .wide p{opacity:.88;max-width:330px;margin-top:8px}
 .wide .tags{display:flex;gap:8px;flex-wrap:wrap}
 .new{position:absolute;top:18px;right:18px;z-index:3;background:var(--or);color:#fff;font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px;animation:pulse 2.4s infinite}
@@ -216,20 +216,20 @@ footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
   <div class="side">
    <!-- 3: на месте бань - сопутствующие -->
-   <a class="tile t-acc" href="#"><h3>Сопутствующие<br>товары</h3><img class="pic" src="img/pegs.webp" alt=""><div class="tags"><span class="chip" style="background:#fff">Дуги</span><span class="chip" style="background:#fff">Вертыши</span><span class="chip" style="background:#fff">Другое</span></div></a>
+   <a class="tile t-acc" href="#"><h2>Сопутствующие<br>товары</h2><img class="pic" src="img/pegs.webp" alt=""><div class="tags"><span class="chip" style="background:#fff">Дуги</span><span class="chip" style="background:#fff">Вертыши</span><span class="chip" style="background:#fff">Другое</span></div></a>
    <!-- 4: на месте печей - товары для путешествий -->
-   <a class="tile t-trv" href="#"><h3>Товары для<br>путешествий</h3><img class="pic" src="img/cloak.webp" alt="" style="width:48%"><div class="tags"><span class="chip" style="background:#fff">Спальники</span><span class="chip" style="background:#fff">Коврики</span><span class="chip" style="background:#fff">Другое</span></div></a>
+   <a class="tile t-trv" href="#"><h2>Товары для<br>путешествий</h2><img class="pic" src="img/cloak.webp" alt="" style="width:48%"><div class="tags"><span class="chip" style="background:#fff">Спальники</span><span class="chip" style="background:#fff">Коврики</span><span class="chip" style="background:#fff">Другое</span></div></a>
   </div>
  </div>
 
  <div class="grid2">
   <!-- 5: бани -->
   <a class="wide" href="#"><img class="bgi" src="img/s-bania.webp" alt="Мобильная баня EX-PRO">
-   <div><h3>Мобильные бани</h3><p>Парилка на льду или на даче за 2 минуты. Держит жар, не боится печи.</p><div class="bth"><div><b>+100 °C</b>внутри</div><div><b>-45 °C</b>снаружи</div><div><b>2 мин</b>установка</div></div></div>
+   <div><h2>Мобильные бани</h2><p>Парилка на льду или на даче за 2 минуты. Держит жар, не боится печи.</p><div class="bth"><div><b>+100 °C</b>внутри</div><div><b>-45 °C</b>снаружи</div><div><b>2 мин</b>установка</div></div></div>
    <div class="tags"><span class="chip">Куб</span><span class="chip">Иглу</span><span class="chip">Летняя</span></div></a>
   <!-- 6: новинка скрадок -->
   <a class="wide" href="#"><img class="bgi" src="img/s-autumn.webp" alt="Скрадок охотничий EX-PRO"><span class="new">Новинка</span>
-   <div><h3>Скрадок охотничий</h3><p>Камуфляж под осенний и весенний лес, обзор во все стороны, тихая установка.</p></div>
+   <div><h2>Скрадок охотничий</h2><p>Камуфляж под осенний и весенний лес, обзор во все стороны, тихая установка.</p></div>
    <div class="tags"><span class="chip">Осень</span><span class="chip">Весна</span><span class="chip">Предзаказ</span></div></a>
  </div>
 
