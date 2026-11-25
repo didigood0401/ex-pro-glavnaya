@@ -14,7 +14,7 @@ html{scroll-behavior:smooth}
 body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-.w{max-width:1280px;margin:0 auto;padding:0 20px}
+.w{max-width:1400px;margin:0 auto;padding:0 20px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px Manrope;border:0;border-radius:12px;padding:13px 20px;cursor:pointer;transition:background .2s,transform .15s}
 .btn:active{transform:scale(.97)}
 .bo{background:var(--or);color:#fff}.bo:hover{background:var(--or2)}
@@ -103,12 +103,12 @@ h2{font-size:clamp(26px,2.8vw,36px);font-weight:800;letter-spacing:-.015em;line-
 .temp i{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--ink);left:0;animation:tm 5s ease-in-out infinite alternate}
 @keyframes tm{to{left:calc(100% - 18px)}}
 /* 8 акции */
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .pc{background:#fff;border-radius:18px;padding:14px;border:1px solid var(--line);display:flex;flex-direction:column}
-.pc .im{background:var(--bg);border-radius:12px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pc .im{background:var(--bg);border-radius:12px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .pc .im img{width:84%;height:84%;object-fit:contain}
 .pc .im .cut{position:absolute;top:10px;left:10px;background:var(--or);color:#fff;font-weight:800;font-size:12px;padding:4px 8px;border-radius:8px}
-.pc .st{color:var(--ok);font-size:13px;font-weight:600;margin-top:10px}
+.pc h3{font-size:clamp(20px,1.6vw,25px);line-height:1.18;margin:16px 0 8px}.pc p{color:var(--mut);margin:0 0 20px;flex:1}.pc .btn{align-self:flex-start}.pc .st{color:var(--ok);font-size:13px;font-weight:600;margin-top:10px}
 .pc .pr{font-size:22px;font-weight:800;margin-top:4px}.pc .pr s{font-size:14px;color:#6B7280;font-weight:500;margin-left:6px}
 .pc .nm{font-size:14px;color:var(--mut);margin:4px 0 12px;flex:1}
 .pc .x4{font-size:12px;color:var(--mut);margin-bottom:10px}
@@ -200,7 +200,7 @@ footer .soc{margin:12px 0 0}footer .soc a{width:36px;height:36px;border-radius:1
 @media(max-width:560px){.vids,.fgrid{grid-template-columns:1fr}}
 .sber2{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;border-radius:var(--r);padding:34px;color:#fff;position:relative;overflow:hidden;background:radial-gradient(120% 140% at 0 0,#2FCB5B 0,#1A9F3F 45%,#0E7A33 100%)}.sber2:before{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;border:60px solid rgba(255,255,255,.08)}.sber2>*{position:relative}.sbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.18);padding:7px 12px;border-radius:999px;font-weight:700;font-size:14px}.sber2 h2{color:#fff;margin:16px 0 10px;font-size:clamp(28px,3.2vw,42px)}.sber2 h2 span{color:#D6FFB0}.sber2 p{color:#E3F7E8;max-width:440px}.zero{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}.zero div{background:rgba(255,255,255,.14);border-radius:14px;padding:12px 16px;font-size:13px;color:#E3F7E8}.zero b{display:block;font-size:26px;color:#fff;line-height:1.1}.sc{background:#fff;color:var(--ink);border-radius:20px;padding:22px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}.schips{display:flex;gap:6px;flex-wrap:wrap}.schips button{font:600 13px Manrope;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;cursor:pointer}.schips button.on{background:#128C3F;border-color:#128C3F;color:#fff}#srng{width:100%;margin:18px 0 6px;accent-color:#128C3F}.ssum,.sres{display:flex;justify-content:space-between;align-items:baseline}.ssum span,.sres span{color:var(--mut);font-size:14px}.ssum b{font-size:18px}.spay{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.spay div{border-radius:12px;padding:10px;background:#EAF7EF;font-size:12px;color:var(--mut)}.spay div b{display:block;color:var(--ink);font-size:15px}.spay i{display:block;height:6px;border-radius:6px;background:#128C3F;margin-bottom:8px;transform-origin:left;animation:sb .6s cubic-bezier(.2,.8,.2,1) backwards}.spay div:nth-child(2) i{animation-delay:.08s;opacity:.75}.spay div:nth-child(3) i{animation-delay:.16s;opacity:.55}.spay div:nth-child(4) i{animation-delay:.24s;opacity:.4}@keyframes sb{from{transform:scaleX(0)}}.sres b{font-size:30px;font-weight:800;color:#128C3F}.sbtn{width:100%;margin-top:14px;background:#128C3F;color:#fff}.sbtn:hover{background:#0E7A33}@media(max-width:960px){.sber2{grid-template-columns:1fr;padding:24px}}@media(max-width:560px){.spay{grid-template-columns:1fr 1fr}}@media(max-width:960px){.grid1,.grid2,.b10,.dlv,.b9,.order .top2{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr;grid-template-rows:none}.cards,.ig{grid-template-columns:1fr 1fr}.c3,.adv{grid-template-columns:1fr}.hero{min-height:620px}.b7{grid-template-columns:1fr}.hdr .search,.hdr .ic{display:none}}
 @media(max-width:560px){.side,.cards,.ig{grid-template-columns:1fr}.tph small{display:none}.hcopy{left:18px;right:18px}.prog{left:18px;right:18px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*{animation:none!important;transition:none!important}}
 .studio{background:#172028;color:white;border-radius:var(--r);padding:clamp(20px,4vw,50px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px}.studio p{color:#d6dce1;margin:16px 0 24px;max-width:46ch}.studio figure{margin:0;text-align:center;min-width:0}.studio canvas{display:block;width:100%;height:auto}.studio input{display:block;width:min(100%,280px);margin:10px auto;accent-color:#f2701c}
 .hero{min-height:clamp(480px,72svh,600px);display:grid}.hcopy{position:relative;inset:auto;padding:30px 34px 58px}.prog{z-index:4}
 @media(max-width:650px){.studio{grid-template-columns:1fr}.hcopy{padding:24px 18px 48px}}
@@ -263,7 +263,7 @@ footer .soc{margin:12px 0 0}footer .soc a{width:36px;height:36px;border-radius:1
   <h2>Почему берут EX-PRO</h2>
   <p class="sub">Коротко о главном - чтобы решиться сегодня.</p>
   <div class="ig">
-   <div class="dk"><b>-45…+50</b><strong>Один дом на все сезоны</strong><span>Зимние и летние модели, проверено на Алтае и в Якутии</span><div class="temp"><i></i></div></div>
+   <div class="dk"><b>Сами шьём</b><strong>И сами берём в походы</strong><span>Пользуемся своими палатками на Алтае и в Якутии. Этот опыт учитываем при пошиве в Барнауле.</span></div>
    <div><b>2 мин</b><strong>Установка</strong><span>Каркас «зонтик»: раскрыл - закрепил - готово</span></div>
    <div><b>12 мес</b><strong>Гарантия</strong><span>Шьём сами - отвечаем за каждый шов</span></div>
    <div><b>1 день</b><strong>Отгрузка</strong><span>Товары в наличии - доставка по России и СНГ</span></div>
@@ -275,14 +275,15 @@ footer .soc{margin:12px 0 0}footer .soc a{width:36px;height:36px;border-radius:1
  </section>
 
  <!-- 8 акции -->
- <section class="rv">
-  <h2>Акции</h2>
-  <p class="sub">Цены действуют, пока товар есть на складе.</p>
+ <section class="rv" id="promotions" aria-labelledby="promo-title">
+  <h2 id="promo-title">Акции</h2>
   <div class="cards">
-   <div class="pc"><div class="im"><span class="cut">-37%</span><img src="img/floor.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">11 500 ₽<s>18 400 ₽</s></div><div class="nm">Пол для палатки Ex-Pro Зима 2 (5 см)</div><div class="x4">или 4 платежа по 2 875 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
-   <div class="pc"><div class="im"><span class="cut">-33%</span><img src="img/pegs.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">500 ₽<s>750 ₽</s></div><div class="nm">Адаптер для вкручивания вертышей</div><div class="x4">&nbsp;</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
-   <div class="pc"><div class="im"><span class="cut">-28%</span><img src="img/summer.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">6 500 ₽<s>9 000 ₽</s></div><div class="nm">Палатка автоматическая Ex-Pro off-site, оранжевая</div><div class="x4">или 4 платежа по 1 625 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
-   <div class="pc"><div class="im"><span class="cut">-9%</span><img src="img/yurta.webp" alt=""></div><div class="st">● в наличии</div><div class="pr">115 300 ₽<s>126 900 ₽</s></div><div class="nm">Палатка Ex-Pro Зима Гранд Юрта</div><div class="x4">или 4 платежа по 28 825 ₽</div><div class="bb"><a class="btn bd" href="#">Купить сейчас</a><a class="btn bo" href="#">В корзину</a></div></div>
+   <article class="pc"><div class="im"><img src="img/floor.webp" alt="Секции тёплого пола EX-PRO"><span class="cut">−40%</span></div>
+    <h3>Тёплый пол в комплекте с палаткой</h3><p>При покупке палатки пол «Зима 2» толщиной 5 см стоит 6 900 ₽ вместо 11 500 ₽.</p><a class="btn bo" href="#order" data-topic="Палатка с тёплым полом со скидкой 40%">Подобрать комплект</a></article>
+   <article class="pc"><div class="im"><img src="img/yurta.webp" alt="Зимняя палатка EX-PRO"></div>
+    <h3>Бесплатная доставка зимней палатки</h3><p>Оформите покупку в день обращения — доставку оплатим мы. Акция действует за исключением отдалённых регионов.</p><a class="btn bo" href="#order" data-topic="Бесплатная доставка зимней палатки в день обращения">Уточнить по своему городу</a></article>
+   <article class="pc"><div class="im"><img src="img/summer.webp" alt="Летняя палатка EX-PRO"></div>
+    <h3>Летняя палатка зимой дешевле</h3><p>Купите летнюю палатку зимой по сезонной цене и получите доставку в подарок.</p><a class="btn bo" href="#order" data-topic="Летняя палатка зимой с доставкой в подарок">Узнать зимнюю цену</a></article>
   </div>
  </section>
 
@@ -377,7 +378,7 @@ footer .soc{margin:12px 0 0}footer .soc a{width:36px;height:36px;border-radius:1
 
 <footer id="contacts"><div class="w fgrid">
  <div><a class="logo" href="#" style="color:#fff"><i>EX</i>PRO</a><p style="margin-top:12px">г. Барнаул, пр. Калинина 116/10, офис 119/1<br>Ежедневно с 8:00 до 21:00</p><p style="margin-top:10px"><a href="tel:78006005229" style="color:#fff;font-weight:800;font-size:18px">+7 800 600-52-29</a><br>по России звонок бесплатный<br><a href="mailto:expro.equipment@gmail.com">expro.equipment@gmail.com</a></p><span class="soc"><a href="https://vk.com/exproequipment" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M3 7h3.2c.2 4 2 5.7 3.3 6V7h3v3.4c1.3-.1 2.6-1.7 3.1-3.4h3c-.5 2.4-2.1 4.1-3.3 4.8 1.2.6 3 2 3.7 4.6h-3.3c-.6-1.7-2-3-3.2-3.1V17h-.4C6.8 17 3.3 14 3 7Z"/></svg></a><a href="https://rutube.ru/channel/43542476/videos/" aria-label="Rutube"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M4 5h11.5c2.6 0 4.5 1.8 4.5 4.3 0 2-1.3 3.6-3.2 4.1L20 19h-3.7l-2.9-5.4H7.5V19H4Zm3.5 3v2.8h7.3c.9 0 1.6-.6 1.6-1.4S15.7 8 14.8 8Z"/></svg></a><a href="http://t.me/+79059835976" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.6 4.2 3.4 10.8c-1.2.5-1.1 1.2-.2 1.5l4.4 1.4 1.7 5.2c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.2-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.6-1.8Zm-3.4 4-7.5 6.8-.3 3.1-1.4-4.6 8.8-5.5c.4-.2.7.1.4.2Z"/></svg></a><a href="http://wa.me/+79059835976" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm5.2 12.7c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.4c.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg></a><a href="https://max.ru/u/f9LHodD0cOIaZmX5PJWblovr63jVH_NXpuZb1nKjP1pdw1wi9KetFnnHGJE" aria-label="MAX"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9c0 1.9.6 3.7 1.6 5.1L4 21l3.9-.6A9 9 0 1 0 12 3Zm4 12.5h-1.8v-4.3l-2.2 3h-.1l-2.2-3v4.3H8v-7h1.8l2.3 3.3 2.2-3.3H16Z"/></svg></a></span></div>
- <div><h4>Каталог</h4><ul><li><a href="#">Зимние палатки</a></li><li><a href="#">Летние палатки</a></li><li><a href="#">Мобильные бани</a></li><li><a href="#">Скрадки</a></li><li><a href="#">Пол для палаток</a></li><li><a href="#">Сопутствующие товары</a></li><li><a href="#">Товары для путешествий</a></li><li><a href="#promo">Акции</a></li></ul></div>
+ <div><h4>Каталог</h4><ul><li><a href="#">Зимние палатки</a></li><li><a href="#">Летние палатки</a></li><li><a href="#">Мобильные бани</a></li><li><a href="#">Скрадки</a></li><li><a href="#">Пол для палаток</a></li><li><a href="#">Сопутствующие товары</a></li><li><a href="#">Товары для путешествий</a></li><li><a href="#promotions">Акции</a></li></ul></div>
  <div><h4>Компания</h4><ul><li><a href="#">О компании</a></li><li><a href="#">Статьи</a></li><li><a href="#">Гарантия</a></li><li><a href="#payment">Способы оплаты</a></li><li><a href="#dlv">Доставка</a></li><li><a href="#reviews">Видео-обзоры</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#">Галерея</a></li></ul></div>
  <div><h4>Партнёрам</h4><ul><li><a href="#">Партнёрам</a></li><li><a href="#">Индивидуальные туры по Алтаю и Монголии</a></li><li><a href="#">Тюнинг внедорожников</a></li></ul><div class="pay"><span>Mastercard</span><span>VISA</span><span>МИР</span></div></div>
 </div></footer>
